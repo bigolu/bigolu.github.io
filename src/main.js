@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+import router from '@/scripts/router';
 import '@/styles/global.scss';
 
 new Vue({
   router,
-  render: h => h(App),
+  render: h => <App />,
 }).$mount('#root');

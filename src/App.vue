@@ -1,30 +1,25 @@
-<template>
-  <div class="app-container">
-    <Nav :routes="routes" />
-    <router-view />
-  </div>
-</template>
-
 <script>
 import Nav from "@/components/Nav.vue";
 
 export default {
   name: "App",
+  render() {
+    return (
+      <div class="container">
+        <Nav routes={this.$router.options.routes} />
+        <router-view />
+      </div>
+    );
+  },
   components: { Nav },
-  data: function() {
-    return {
-      routes: this.$router.options.routes
-    };
-  }
 };
 </script>
 
 <style scoped lang="scss">
-.app-container {
+.container {
   height: 100%;
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 11fr;
+  grid-template-columns: 100%;
+  grid-template-rows: 8% 92%;
 }
 </style>

@@ -1,14 +1,71 @@
-* {
+*,
+*:before,
+*:after {
 	margin: 0;
 	padding: 0;
-	color: $text-color;
+	color: $color2;
 	font-family: "Avenir", Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+  box-sizing: inherit;
 }
 
-html, body {
+html {
+  box-sizing: border-box;
 	height: 100%;
 	width: 100%;
 	font-size: 16px;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+}
+
+.size0-text {
+	font-size: 1em;
+  @media only screen 
+    and (max-device-width: 768px)
+    and (orientation: portrait)
+  {
+    & {
+			font-size: .5em;
+    }
+  }
+}
+
+.size1-text {
+	font-size: 1.5em;
+  @media only screen 
+    and (max-device-width: 768px)
+    and (orientation: portrait)
+  {
+    & {
+			font-size: 1.5em;
+    }
+  }
+}
+
+.size2-text {
+	font-size: 2em;
+  @media only screen 
+    and (max-device-width: 768px)
+    and (orientation: portrait)
+  {
+    & {
+			font-size: 1.5em;
+    }
+  }
+  @media only screen 
+    and (max-device-height: 450px)
+    and (orientation: landscape)
+  {
+    & {
+			font-size: 1.5em;
+    }
+  }
+}
+
+.color1 {
+	color: $color1;
 }

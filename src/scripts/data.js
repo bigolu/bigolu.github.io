@@ -5,17 +5,17 @@ import soundcloud from "../assets/soundcloud.png"
 
 export default {
   "about": {
-    "pic": {alt: 'biggs', src: biggs},
-    "email": "hi [at] bigo.lu",
+    "pic": {alt: 'pixelart image of Biggie', src: biggs},
+    "email": "hi [at] bigo {dot} lu",
     "links": [
       {
-        "src": github, "alt": "github", href: 'https://github.com/bigolu/'
+        "src": github, "alt": "github logo", href: 'https://github.com/bigolu/'
       },
       {
-        "src": soundcloud, "alt": "soundcloud", href: 'https://soundcloud.com/bigolu'
+        "src": soundcloud, "alt": "soundcloud logo", href: 'https://soundcloud.com/bigolu'
       },
       {
-        "src": linkedin, "alt": "linkedin", href: 'https://www.linkedin.com/in/bigolu/'
+        "src": linkedin, "alt": "linkedin logo", href: 'https://www.linkedin.com/in/bigolu/'
       }
     ]
   },

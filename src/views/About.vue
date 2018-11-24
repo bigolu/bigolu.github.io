@@ -1,21 +1,40 @@
 <template>
-  <div class="about-container">
-    <div class="about-pic">
+  <div class="container">
+    <figure class="pic-figure">
       <img
-        :alt="pic.alt"
-        :src="pic.src"
+        :alt="data.pic.alt"
+        :src="data.pic.src"
       >
-      <p><span class="ola hide-text">OLA</span><span class="olu">OLU</span> <br> <span class="big">BIG</span><span class="gie hide-text">GIE</span> <br> EMMANUEL</p>
-    </div>
-    <div class="about-text">
-      <div class="blurb-container">
-        <p class="blurb">
-          Software engineer at (hmm dunno yet);
-          Feel free to browse at your leisure.
-        </p>
-      </div>
-      <div class="links-container">
-        <template v-for="link in links">
+      <figcaption class="size2-text">
+        <span
+          ref="ola"
+          class="transparent color-animation"
+        >OLA</span>
+        <span
+          ref="olu"
+          class="color1 slide-down top-animation"
+        >OLU</span>
+        <br>
+        <span
+          ref="big"
+          class="color1 slide-up bottom-animation"
+        >BIG</span>
+        <span
+          ref="gie"
+          class="transparent color-animation"
+        >GIE</span>
+        <br>
+        EMMANUEL
+      </figcaption>
+    </figure>
+    <figure class="blurb-figure">
+      <p class="size1-text">
+        Software engineer at nowhere;
+        Feel free to browse at your leisure.
+      </p>
+      <hr>
+      <div>
+        <template v-for="link in data.links">
           <a
             target="_blank"
             :href="link.href"
@@ -28,9 +47,9 @@
           </a>
           &nbsp;
         </template>
-        <p> or email me at {{ email }} </p>
+        <p class="size1-text"> or email me at {{ data.email }} </p>
       </div>
-    </div>
+    </figure>
   </div>
 </template>
 
@@ -40,94 +59,136 @@ import $ from 'jquery';
 
 export default {
   name: "About",
-  data: function() {
-    return Data.about;
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
   },
-  created: function() {
-    $(function(){ 
-      console.log($('.ola'));
-      $('.big, .olu').animate(
-      {top: 0, bottom: 0},
-      3000,
-      function() {
-        $('.ola, .gie').addClass('show-text');
+  mounted: function() {
+    const refs = this.$refs;
+    $(
+      () => {
+        // bigolu animation
+        refs.big.classList.remove('slide-up');
+        refs.olu.classList.remove('slide-down');
+        refs.ola.classList.remove('transparent');
+        refs.gie.classList.remove('transparent');
       }
-    ); 
-    
-    });
+    );
   }
 };
 </script>
 
 <style scoped lang="scss">
-.about-container {
-  padding: 2%;
+.container {
+  padding: 3%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-}
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
 
-.about-pic {
-  display: flex;
-  flex-flow: column nowrap;
-  img {
-    padding: 3%;
-    flex-grow: 3;
-    height: 20px;
-    width: 50%;
-    margin: auto;
-  }
-  p {
-    flex-grow: 1;
-    text-align: center;
-    .hide-text {
-      color: transparent;
-      transition: color 3s ease-in-out;
-    }
-    .show-text {
-      color: $text-color;
-    }
-    .big, .olu {
-      color: $link-hover-color;
-    }
-    .big {
-      position: relative;
-      bottom: .69em;
-    }
-    .olu {
-      position: relative;
-      top: .69em;
-    }
-    font-size: 2em;
-  }
-}
+  .pic-figure {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 
-.about-text {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  .blurb-container {
-    display: table;
-    border-bottom: 1px solid rgba(0,0,0,0.25);
+    img {
+      display: block;
+      height: 70%;
+      max-height: 436px;
+      max-width: 407px;
+    }
+
+    figcaption {
+      text-align: center;
+      height: 30%;
+      width: 100%;
+
+      .color-animation {
+        transition: color 1s ease-in-out;
+      }
+
+      .transparent {
+        color: transparent;
+        background-color: transparent;
+      }
+
+      .top-animation {
+        position: relative;
+        transition: all 1s ease 0s;
+        top: 0;
+      }
+
+      .bottom-animation {
+        position: relative;
+        transition: bottom 1s ease 0s;
+        bottom: 0;
+      }
+
+      .slide-up {
+        bottom: .69em;
+      }
+
+      .slide-down {
+        top: .69em;
+      }
+    }
   }
-  .blurb {
-    display: table-cell;
-    padding: 3%;
-    font-size: 1.5em;
-  }
-  .links-container {
-    padding: 3%;
-    font-weight: bold;
+
+  .blurb-figure {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    p {
+      padding: 2%;
+    }
+
+    hr {
+      height: 2px;
+      width: 100%;
+      color: $color3;
+    }
+
+    div {
+      padding: 2%;
+
+      p {
+        display: inline;
+      }
+    }
   }
 }
 
 @media only screen 
-  and (max-device-width: 480px)
+  and (max-device-width: 768px)
   and (orientation: portrait)
 {
-  .about-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+  .container {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 100%;
+
+    .blurb-figure {
+      justify-content: center;
+      flex-flow: row nowrap;
+      align-items: center;
+      text-align: center;
+
+      hr {
+        height: 80%;
+        width: 2px;
+      }
+
+      p {
+        width: 48%;
+      }
+
+      div {
+        width: 48%;
+      }
+    }
   }
 }
 </style>
