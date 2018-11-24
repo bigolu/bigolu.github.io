@@ -20,6 +20,7 @@ export default {
   height: 100%;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 8% 92%;
+  grid-template-rows: 5% 95%;
+  background-color: $color4;
 }
 </style>

@@ -1,35 +1,47 @@
 <template>
-  <div class="container">
-    <figure class="pic-figure">
-      <img
-        :alt="data.pic.alt"
-        :src="data.pic.src"
-      >
-      <figcaption class="size2-text">
-        <span
-          ref="ola"
-          class="transparent color-animation"
-        >OLA</span>
-        <span
-          ref="olu"
-          class="color1 slide-down top-animation"
-        >OLU</span>
-        <br>
-        <span
-          ref="big"
-          class="color1 slide-up bottom-animation"
-        >BIG</span>
-        <span
-          ref="gie"
-          class="transparent color-animation"
-        >GIE</span>
-        <br>
-        EMMANUEL
-      </figcaption>
-    </figure>
-    <figure class="blurb-figure">
-      <p class="size1-text">
-        Software engineer at nowhere;
+  <div class="about-container">
+    <div class="container">
+      <div class="foo">
+        <Polaroid>
+          <img
+            slot="image"
+            :alt="data.pic.alt"
+            :src="data.pic.src"
+          >
+          <figcaption
+            slot="caption"
+            class="size2-text"
+          >
+            <span class="olaolu">
+              <span
+                ref="ola"
+                class="transparent color-animation"
+              >OLA</span>
+              <span
+                ref="olu"
+                class="color1 slide-down top-animation"
+              >OLU</span>
+            </span>
+            <br>
+            <span class="biggie">
+              <span
+                ref="big"
+                class="color1 slide-up bottom-animation"
+              >BIG</span>
+              <span
+                ref="gie"
+                class="transparent color-animation"
+              >GIE</span>
+            </span>
+            <br>
+            EMMANUEL
+          </figcaption>
+        </Polaroid>
+      </div>
+    </div>
+    <figure class="blurb-figure size2-text">
+      <p>
+        Software engineer at &lt;tbd&gt;
         Feel free to browse at your leisure.
       </p>
       <hr>
@@ -47,7 +59,7 @@
           </a>
           &nbsp;
         </template>
-        <p class="size1-text"> or email me at {{ data.email }} </p>
+        <p> or email me at {{ data.email }} </p>
       </div>
     </figure>
   </div>
@@ -56,6 +68,7 @@
 <script>
 import Data from '@/scripts/data.js';
 import $ from 'jquery';
+import Polaroid from '@/components/Polaroid.vue'
 
 export default {
   name: "About",
@@ -65,6 +78,7 @@ export default {
       required: true
     }
   },
+  components: {Polaroid},
   mounted: function() {
     const refs = this.$refs;
     $(
@@ -81,29 +95,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  padding: 3%;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 100%;
 
-  .pic-figure {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+
+  .foo {
+    height: 100%;
+    width: 90%;
 
     img {
-      display: block;
-      height: 70%;
       max-height: 436px;
       max-width: 407px;
+      height: 100%;
+      width: 100%;
+      display: block;
+      margin: auto;
     }
 
     figcaption {
       text-align: center;
-      height: 30%;
+      height: 100%;
       width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
 
       .color-animation {
         transition: color 1s ease-in-out;
@@ -135,6 +156,28 @@ export default {
       }
     }
   }
+}
+
+.about-container {
+  padding: 3%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+
+  .pic-figure {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      display: block;
+      height: 70%;
+      max-height: 436px;
+      max-width: 407px;
+    }
+
+  }
 
   .blurb-figure {
     display: flex;
@@ -165,7 +208,7 @@ export default {
   and (max-device-width: 768px)
   and (orientation: portrait)
 {
-  .container {
+  .about-container {
     display: grid;
     grid-template-rows: 50% 50%;
     grid-template-columns: 100%;
