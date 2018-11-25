@@ -2,7 +2,9 @@
   <div class="about-container">
     <div class="container">
       <div class="foo">
-        <Polaroid>
+        <Polaroid
+          caption-color="#f0f0f0"
+        >
           <img
             slot="image"
             :alt="data.pic.alt"
@@ -42,12 +44,12 @@
     <figure class="blurb-figure size2-text">
       <p>
         Software engineer at &lt;tbd&gt;
-        Feel free to browse at your leisure.
       </p>
       <hr>
       <div>
         <template v-for="link in data.links">
           <a
+            class="logo"
             target="_blank"
             :href="link.href"
             :key="link.href"
@@ -57,7 +59,6 @@
               :src="link.src"
             >
           </a>
-          &nbsp;
         </template>
         <p> or email me at {{ data.email }} </p>
       </div>
@@ -86,8 +87,13 @@ export default {
         // bigolu animation
         refs.big.classList.remove('slide-up');
         refs.olu.classList.remove('slide-down');
-        refs.ola.classList.remove('transparent');
-        refs.gie.classList.remove('transparent');
+        setTimeout(
+          () => {
+            refs.ola.classList.remove('transparent');
+            refs.gie.classList.remove('transparent');
+          },
+          1000
+        );
       }
     );
   }
@@ -95,6 +101,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.about-container {
+  background-color: #bcdee7;
+}
 
 .container {
   display: flex;
@@ -105,7 +115,7 @@ export default {
 
   .foo {
     height: 100%;
-    width: 90%;
+    width: 80%;
 
     img {
       max-height: 436px;
@@ -197,8 +207,13 @@ export default {
     div {
       padding: 2%;
 
+      .logo {
+        margin-right: 3%;
+      }
+
       p {
         display: inline;
+        padding: 0;
       }
     }
   }
