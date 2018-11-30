@@ -1,0 +1,22 @@
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    position: relative;
+    bottom: 0;
+  }
+
+  100% {
+    position: relative;
+    bottom: 2px;
+  }
+
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="polaroid-container">
+  <div class="container">
     <div
       class="image-container"
       :style="`background-color: ${imageColor};`"
@@ -34,18 +34,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.polaroid-container {
+.container {
   height: 100%;
   width: 100%;
-  display: grid;
+  display: grid !important;
   grid-template-columns: 100%;
   grid-template-rows: 60% 40%;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 6px rgba(0,0,0,.3);
-  border-radius: 2px;
+  padding: 0;
 
   .image-container {
-    padding: 3%;
+    height: 100%;
+    width: 100%
+  }
+
+  .caption-container {
+    height: 100%;
+    width: 100%;
+    font-size: 1.3rem;
   }
 }
 </style>

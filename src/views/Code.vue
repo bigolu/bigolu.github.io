@@ -1,6 +1,10 @@
 <template>
-  <p>working on it</p>
+  <div class="code-container">
+    <p>working on it</p>
+  </div>
 </template>
 
-<script>
-</script>
+<style scoped lang="scss">
+  .code-container {
+  }
+</style>
