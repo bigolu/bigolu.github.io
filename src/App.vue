@@ -38,7 +38,7 @@ export default {
   }
 
   & > * {
-    margin-bottom: 3%;
+    margin-bottom: 2%;
   }
 
   #resume {

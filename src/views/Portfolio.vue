@@ -1,9 +1,5 @@
 <template>
-  <section
-    class="container with-title"
-    id="portfolio-section-container"
-  >
-    <h1 class="title"> portfolio </h1>
+  <div id="portfolio-section-container">
     <section
       class="container with-title"
       id="skills-section-container"
@@ -58,7 +54,7 @@
         </figcaption>
       </figure>
     </section>
-  </section>
+  </div>
 </template>
 
 <script>
