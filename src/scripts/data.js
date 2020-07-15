@@ -25,6 +25,12 @@ export default {
     },
     "experience": [
       {
+        "title": "Squarespace",
+        "image": "",
+        "description": "Backend Engineer working on our CMS platform for managing user website content.",
+        "links": []
+      },
+      {
         "title": "Facebook",
         "image": "images/facebook.png",
         "description": "Developed a tool to automate the integration of other teams with the platform responsible for handling all messages and notifications in Messenger.",

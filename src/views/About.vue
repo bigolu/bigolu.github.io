@@ -3,7 +3,9 @@
     class="container with-title"
     id="about-section-container"
   >
-    <h1 class="title"> about </h1>
+    <h1 class="title">
+      about
+    </h1>
     <div id="about-section-content">
       <img
         id="biggie"
@@ -11,7 +13,10 @@
         :src="data.pic.src"
       >
       <p>
-        Hey, I'm Biggie and I'm a Developer currently studying at Rutgers --
+        Hey, I'm Biggie and I'm a Developer currently working at <a
+          class="link"
+          href="https://www.squarespace.com/"
+        >Squarespace</a> --
         You can find me on 
         <span class="logos">
           <template v-for="link in data.links">
@@ -59,6 +64,11 @@ export default {
       margin-right: 0;
     }
   }
+
+.link {
+    text-decoration: underline !important;
+    color: #e76e55;
+}
 
   @media (max-width: 780px) {
     flex-flow: column nowrap;
