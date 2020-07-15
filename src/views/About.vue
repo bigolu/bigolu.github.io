@@ -15,6 +15,7 @@
       <p>
         Hey, I'm Biggie and I'm a Developer currently working at <a
           class="link"
+          target="_blank"
           href="https://www.squarespace.com/"
         >Squarespace</a> --
         You can find me on 
