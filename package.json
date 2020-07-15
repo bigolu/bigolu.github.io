@@ -9,7 +9,7 @@
     "deploy": "npm run build; echo 'bigo.lu' > dist/CNAME; push-dir --dir=dist --branch=master --cleanup"
   },
   "dependencies": {
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
