@@ -117,7 +117,7 @@ export default {
       {
         "title": "notes-cli",
         "image": "images/notes-cli.png",
-        "description": "A command line interface for your notes so that you never have to google those arbitrary commands again.",
+        "description": "A CLI for your notes (complicated commands, steps to enable a virtualenv, etc.) to help you save time.",
         "links": [
           {
             "text": "github",
