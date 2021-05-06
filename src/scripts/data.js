@@ -143,7 +143,7 @@ export default {
       {
         "title": "ShadowrealmVR",
         "image": "images/shadowrealmvr.jpg",
-        "description": "Relive your favorite moments from Yu-Gi-Oh with the help of a duel disk, an Arduino, some RFID chips, and good ol' Unity3D.",
+        "description": "Relive your favorite moments from Yu-Gi-Oh with the help of a duel disk, an Arduino, some RFID chips, and Unity3D.",
         "links": [
           {
             "text": "video",
@@ -207,7 +207,7 @@ export default {
       {
         "title": "CaveHub",
         "image": "images/cavehub.jpg",
-        "description": "A chrome extension that gives you information for whats going on around the best computer lab ever. Includes bus times, weather, and who's working.",
+        "description": "A chrome extension that gives you information for whats going on in the CAVE. Includes bus times, weather, and who's working.",
         "links": [
           {
             "text": "CAVE",

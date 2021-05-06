@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
-    "deploy": "npm run build; echo 'bigo.lu' > dist/CNAME; push-dir --dir=dist --branch=master --cleanup"
+    "deploy": "npm install; npm run build; echo 'bigo.lu' > dist/CNAME; push-dir --dir=dist --branch=master --cleanup"
   },
   "dependencies": {
     "jquery": "^3.5.1",
