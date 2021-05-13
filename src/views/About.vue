@@ -13,11 +13,8 @@
         :src="data.pic.src"
       >
       <p>
-        Hey, I'm Biggie and I'm a Developer currently working at <a
-          class="link"
-          target="_blank"
-          href="https://www.squarespace.com/"
-        >Squarespace</a> --
+        Hey, I'm Biggie and I'm a Software Engineer
+        --
         You can find me on 
         <span class="logos">
           <template v-for="link in data.links">
