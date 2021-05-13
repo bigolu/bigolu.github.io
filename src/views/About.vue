@@ -13,7 +13,7 @@
         :src="data.pic.src"
       >
       <p>
-        Hey, I'm Biggie and I'm a Software Engineer
+        Hey, I'm Biggie and I'm a software engineer
         --
         You can find me on 
         <span class="logos">
