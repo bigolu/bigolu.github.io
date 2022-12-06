@@ -19,21 +19,21 @@ export default {
   },
   "portfolio": {
     "skills": {
-      languages: 'Python 2/3, Javascript, Java, HTML/CSS',
-      frontend: 'Vue, React',
+      languages: 'Python, Javascript, Java, HTML/CSS',
+      frontend: 'React',
       backend: 'Flask'
     },
     "experience": [
       {
         "title": "Squarespace",
         "image": "",
-        "description": "Backend Engineer working on our CMS platform for managing user website content.",
+        "description": "Backend Engineer working on the CMS platform for managing user website content.",
         "links": []
       },
       {
         "title": "Facebook",
         "image": "images/facebook.png",
-        "description": "Developed a tool to automate the integration of other teams with the platform responsible for handling all messages and notifications in Messenger.",
+        "description": "Developed a tool to automate the onboarding of other teams onto the message/notification delivery platform for Messenger",
         "links": [
           {
             "text": "facebook.com",
@@ -44,7 +44,7 @@ export default {
       {
         "title": "Pinterest",
         "image": "images/pinterest.png",
-        "description": "Interned on the data engineering team. Worked mostly with Apache Kafka to improve the creation of data pipelines for new Kafka topics.",
+        "description": "Interned on the data engineering team. Worked mostly with Apache Kafka to automate the creation of data pipelines for new Kafka topics.",
         "links": [
           {
             "text": "pinterest.com",
@@ -66,7 +66,7 @@ export default {
       {
         "title": "HackNY",
         "image": "images/hackny.png",
-        "description": "Spent the summer living with awesome developers and mentors. Also had a great speaker series with inspiring figures in tech.",
+        "description": "Spent the summer living with awesome developers and mentors. Also attended a great speaker series featuring inspiring figures in tech.",
         "links": [
           {
             "text": "hackny.org",
@@ -83,7 +83,7 @@ export default {
       {
         "title": "Rutgers",
         "image": "images/rutgers.jpeg",
-        "description": "Helped develop a backend to generate and grade quizzes for the ~10,000 students enrolled in a Chemistry or Mathematics class at Rutgers.",
+        "description": "Helped develop a backend to generate and grade quizzes for students enrolled in a Chemistry or Mathematics class at Rutgers.",
         "links": []
       },
       {
@@ -102,7 +102,7 @@ export default {
       {
         "title": "tabbo",
         "image": "images/tabbo.jpg",
-        "description": "A hotkeys management tool built specially for Google Chrome.",
+        "description": "A tab management tool for Google Chrome.",
         "links": [
           {
             "text": "try it",
@@ -117,7 +117,7 @@ export default {
       {
         "title": "notes-cli",
         "image": "images/notes-cli.png",
-        "description": "A CLI for your notes (complicated commands, steps to enable a virtualenv, etc.) to help you save time.",
+        "description": "A CLI for your notes (complicated shell commands, steps to enable a virtualenv, etc.) to help you save time.",
         "links": [
           {
             "text": "github",
