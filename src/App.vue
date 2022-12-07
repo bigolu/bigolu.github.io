@@ -1,5 +1,4 @@
 <script>
-import Nav from "@/components/Nav.vue";
 import Data from '@/scripts/data.js';
 import About from '@/views/About.vue';
 import Name from '@/views/Name.vue';
@@ -10,7 +9,6 @@ export default {
   render() {
     return (
       <div id="app-container">
-        <Nav routes={Object.keys(Data)} />
         <div id="sections-container" class="container">
           <Name />
           <About data={Data.about} />
@@ -27,7 +25,7 @@ export default {
       </div>
     );
   },
-  components: { Nav, About, Name, Portfolio }
+  components: { About, Name, Portfolio }
 };
 </script>
 
