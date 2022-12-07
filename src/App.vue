@@ -55,6 +55,7 @@ export default {
   text-align: right;
   margin-bottom: 10px;
   margin-right: 15px;
+  font-size: 12px;
 
   a {
     color: $link-color;
