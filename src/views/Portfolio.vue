@@ -4,13 +4,16 @@
       class="container with-title"
       id="skills-section-container"
     >
-      <h1 class="title"> skills </h1>
+      <h1 class="title">
+        skills
+      </h1>
       <ul id="skills-list">
         <li
           v-for="(skillList, category) in data.skills"
           :key="category"
           class="skill-category"
-        >{{ category }}: {{ skillList }}
+        >
+          {{ category }}: {{ skillList }}
         </li>
       </ul>
     </section>
@@ -18,7 +21,9 @@
       class="container with-title"
       id="experience-section-container"
     >
-      <h1 class="title"> experience </h1>
+      <h1 class="title">
+        experience
+      </h1>
       <figure
         v-for="e in data.experience"
         :key="e.description"
@@ -34,7 +39,9 @@
       class="container with-title"
       id="projects-section-container"
     >
-      <h1 class="title"> projects </h1>
+      <h1 class="title">
+        projects
+      </h1>
       <figure
         v-for="p in data.projects"
         :key="p.title"
@@ -78,7 +85,7 @@ export default {
 
 .link {
     text-decoration: underline !important;
-    margin-right: 3%;
+    margin-right: 20px;
     color: #e76e55;
 
     &:last-child {
