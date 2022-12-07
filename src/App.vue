@@ -56,4 +56,9 @@ export default {
     }
   }
 }
+
+#app-container {
+  max-width: 1280px;
+  margin: auto;
+}
 </style>
