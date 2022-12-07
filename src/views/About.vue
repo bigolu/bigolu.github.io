@@ -14,21 +14,14 @@
       >
       <p>
         Hey, I'm Biggie and I'm a software engineer. You can find me on
-        <span class="logos">
-          <template v-for="link in data.links">
-            <a
-              class="logo"
-              target="_blank"
-              :href="link.href"
-              :key="link.href"
-            >
-              <img
-                :alt="link.alt"
-                :src="link.src"
-              >
-            </a>
-          </template>
-        </span>
+        <template v-for="link in data.links">
+          <a
+            class="link"
+            target="_blank"
+            :href="link.href"
+            :key="link.href"
+          >{{ link.name }}</a>,
+        </template>
         or email me at {{ data.email }}
       </p>
     </div>

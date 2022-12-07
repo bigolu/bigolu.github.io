@@ -1,7 +1,4 @@
 import biggs from "../assets/biggs.gif"
-import github from "../assets/github.png"
-import linkedin from "../assets/linkedin.png"
-import soundcloud from "../assets/soundcloud.png"
 
 export default {
   "about": {
@@ -10,10 +7,10 @@ export default {
     "email": "hi@bigo.lu",
     "links": [
       {
-        "src": github, "alt": "github logo", href: 'https://github.com/bigolu/'
+        "name": 'GitHub', href: 'https://github.com/bigolu/'
       },
       {
-        "src": linkedin, "alt": "linkedin logo", href: 'https://www.linkedin.com/in/bigolu/'
+        "name": 'LinkedIn', href: 'https://www.linkedin.com/in/bigolu/'
       }
     ]
   },
