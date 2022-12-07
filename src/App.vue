@@ -22,8 +22,8 @@ export default {
           >
             <button id="resume" class="btn" type="button"> resume </button>
           </a>
-          <p id="footer"> Made with <a target="_blank" href="https://bcrikko.github.io/NES.css/"> NES.css </a> and <a target="_blank" href="https://vuejs.org/"> Vue.js </a> </p>
         </div>
+        <p id="footer"> Made with <a target="_blank" href="https://bcrikko.github.io/NES.css/"> NES.css </a> and <a target="_blank" href="https://vuejs.org/"> Vue.js </a> </p>
       </div>
     );
   },
@@ -33,6 +33,9 @@ export default {
 
 <style scoped lang="scss">
 #sections-container {
+  max-width: 1280px;
+  margin: auto;
+
   &:after {
     border: none;
   }
@@ -46,19 +49,15 @@ export default {
     margin-right: auto;
     display: block;
   }
-
-  #footer {
-    text-align: right;
-    margin-bottom: 0;
-
-    a {
-      color: $link-color;
-    }
-  }
 }
 
-#app-container {
-  max-width: 1280px;
-  margin: auto;
+#footer {
+  text-align: right;
+  margin-bottom: 10px;
+  margin-right: 15px;
+
+  a {
+    color: $link-color;
+  }
 }
 </style>
