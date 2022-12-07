@@ -25,6 +25,7 @@ button,
 a {
   color: $base-color;
   text-decoration: none !important;
+  white-space: nowrap;
 
   &:hover {
     animation: bounce .5s infinite;
