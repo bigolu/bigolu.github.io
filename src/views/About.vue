@@ -7,11 +7,16 @@
       about
     </h1>
     <div id="about-section-content">
-      <img
-        id="biggie"
-        :alt="data.pic.alt"
-        :src="data.pic.src"
-      >
+      <picture id="biggie">
+        <source
+          :srcset="data.pic.static_src"
+          media="(prefers-reduced-motion: reduce)"
+        >
+        <img
+          :srcset="data.pic.src"
+          :alt="data.pic.alt"
+        >
+      </picture>
       <p>
         Hey, I'm Biggie and I'm a software engineer. You can find me on
         <template v-for="link in data.links">

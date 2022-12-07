@@ -31,3 +31,10 @@ a {
     animation: bounce .5s infinite;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

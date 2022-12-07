@@ -1,9 +1,10 @@
 import biggs from "../assets/biggs.gif"
+import static_biggs from "../assets/static_biggs.png"
 
 export default {
   "about": {
     "name": "about",
-    "pic": {alt: 'pixelart image of Biggie', src: biggs},
+    "pic": {alt: 'pixelart image of Biggie', src: biggs, static_src: static_biggs},
     "email": "hi@bigo.lu",
     "links": [
       {
