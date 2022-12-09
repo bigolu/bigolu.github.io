@@ -79,7 +79,7 @@ export default {
 <style scoped lang="scss">
 #portfolio-section-container {
     & > * {
-        margin-bottom: 2%;
+        margin-bottom: 20px;
     }
 }
 
