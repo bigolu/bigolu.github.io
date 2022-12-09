@@ -87,7 +87,7 @@ export default {
       {
         "title": "Rutgers",
         "image": "images/rutgers.jpeg",
-        "description": "Tutored students in Data Structures, Computer Architecture, Systems Programming, and assisted with debugging.",
+        "description": "Tutored students in Data Structures, Computer Architecture, Systems Programming, and helped with debugging.",
         "links": [
           {
             "text": "the cave",
@@ -205,7 +205,7 @@ export default {
       {
         "title": "CaveHub",
         "image": "images/cavehub.jpg",
-        "description": "A chrome extension that gives you information for whats going on in the CAVE. Includes bus times, weather, and who's working.",
+        "description": "A Chrome extension that tells you what's going on in the CAVE. Includes bus times, weather, and who's working.",
         "links": [
           {
             "text": "CAVE",
