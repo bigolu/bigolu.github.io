@@ -31,7 +31,7 @@ import Data from '@/scripts/data.js';
 import $ from 'jquery';
 
 export default {
-  name: "Name",
+  name: "NameSection",
   mounted: function() {
     const refs = this.$refs;
     $(

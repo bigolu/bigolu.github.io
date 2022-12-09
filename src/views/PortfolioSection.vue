@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: "Portfolio",
+  name: "PortfolioSection",
   props: {
     data: {
       type: Object,

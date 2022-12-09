@@ -20,13 +20,15 @@
       </picture>
       <p>
         Hey, I'm Biggie and I'm a software engineer. You can find me on
-        <template v-for="link in data.links">
+        <template
+          v-for="link in data.links"
+          :key="link.href"
+        >
           <a
             class="link"
             target="_blank"
             :href="link.href"
-            :key="link.href"
-          >{{ link.name }}</a>,
+          >{{ link.name }}</a>, 
         </template>
         or email me at {{ data.email }}
       </p>
@@ -36,7 +38,7 @@
 
 <script>
 export default {
-  name: "About",
+  name: "AboutSection",
   props: {
     data: {
       type: Object,

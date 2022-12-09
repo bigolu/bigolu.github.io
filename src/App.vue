@@ -1,8 +1,8 @@
 <script>
 import Data from '@/scripts/data.js';
-import About from '@/views/About.vue';
-import Name from '@/views/Name.vue';
-import Portfolio from '@/views/Portfolio.vue';
+import AboutSection from '@/views/AboutSection.vue';
+import NameSection from '@/views/NameSection.vue';
+import PortfolioSection from '@/views/PortfolioSection.vue';
 
 export default {
   name: "App",
@@ -10,9 +10,9 @@ export default {
     return (
       <div id="app-container">
         <div id="sections-container" class="container">
-          <Name />
-          <About data={Data.about} />
-          <Portfolio data={Data.portfolio} />
+          <NameSection />
+          <AboutSection data={Data.about} />
+          <PortfolioSection data={Data.portfolio} />
           <a
             id="resume"
             href={Data.resume.href}
@@ -25,7 +25,7 @@ export default {
       </div>
     );
   },
-  components: { About, Name, Portfolio }
+  components: { AboutSection: AboutSection, NameSection: NameSection, PortfolioSection: PortfolioSection }
 };
 </script>
 

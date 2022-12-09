@@ -1,7 +1,5 @@
-import Vue from 'vue';
+import {createApp} from 'vue';
 import App from './App.vue';
 import '@/styles/nes.scss';
 
-new Vue({
-  render: h => <App />,
-}).$mount('#root');
+createApp(App).mount('#root')
