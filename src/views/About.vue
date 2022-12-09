@@ -7,12 +7,13 @@
       about
     </h1>
     <div id="about-section-content">
-      <picture id="biggie">
+      <picture>
         <source
           :srcset="data.pic.static_src"
           media="(prefers-reduced-motion: reduce)"
         >
         <img
+          id="biggie"
           :srcset="data.pic.src"
           :alt="data.pic.alt"
         >
