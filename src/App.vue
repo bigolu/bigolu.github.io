@@ -13,13 +13,15 @@ export default {
           <NameSection />
           <AboutSection data={Data.about} />
           <PortfolioSection data={Data.portfolio} />
-          <a
-            id="resume"
-            href={Data.resume.href}
-            target="_blank"
-          >
-            <button id="resume" class="btn" type="button"> resume </button>
-          </a>
+          <span id="resume-container">
+            <a
+              id="resume"
+              href={Data.resume.href}
+              target="_blank"
+            >
+              <button id="resume" class="btn" type="button"> resume </button>
+            </a>
+          </span>
         </div>
         <p id="footer"> Made with <a target="_blank" href="https://bcrikko.github.io/NES.css/"> NES.css </a> and <a target="_blank" href="https://vuejs.org/"> Vue.js </a> </p>
       </div>
@@ -42,10 +44,9 @@ export default {
     margin-bottom: 20px;
   }
 
-  #resume {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+  #resume-container {
+    display: flex;
+    justify-content: center;
   }
 }
 
