@@ -31,7 +31,7 @@ export default {
       {
         "title": "Facebook",
         "image": "images/facebook.png",
-        "description": "Developed a tool to automate the onboarding of other teams onto the message/notification delivery platform for Messenger",
+        "description": "Developed a tool to automate the onboarding of other teams onto the message delivery platform for Messenger",
         "links": [
           {
             "text": "facebook.com",

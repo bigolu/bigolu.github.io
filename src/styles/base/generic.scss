@@ -26,6 +26,7 @@ a {
   color: $base-color;
   text-decoration: none !important;
   white-space: nowrap;
+  display: inline-block;
 
   &:hover {
     animation: bounce .5s infinite;
