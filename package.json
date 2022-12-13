@@ -9,8 +9,7 @@
     "deploy": "npm install; npm run build; echo 'bigo.lu' > dist/CNAME; push-dir --dir=dist --branch=master --cleanup"
   },
   "dependencies": {
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
