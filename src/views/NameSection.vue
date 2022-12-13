@@ -28,26 +28,23 @@
 
 <script>
 import Data from '@/scripts/data.js';
-import $ from 'jquery';
 
 export default {
   name: "NameSection",
   mounted: function() {
-    const refs = this.$refs;
-    $(
-      () => {
-        // bigolu animation
-        refs.big.classList.remove('slide-up');
-        refs.olu.classList.remove('slide-down');
-        setTimeout(
-          () => {
-            refs.ola.classList.remove('transparent');
-            refs.gie.classList.remove('transparent');
-          },
-          1000
-        );
-      }
-    );
+    window.addEventListener('DOMContentLoaded', () => {
+      const refs = this.$refs;
+      // bigolu animation
+      refs.big.classList.remove('slide-up');
+      refs.olu.classList.remove('slide-down');
+      setTimeout(
+        () => {
+          refs.ola.classList.remove('transparent');
+          refs.gie.classList.remove('transparent');
+        },
+        1000
+      );
+    });
   }
 };
 </script>
