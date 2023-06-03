@@ -25,3 +25,25 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+#layout {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 9fr;
+}
+
+#header {
+  grid-column-start: 1 / 1;
+  grid-row-start: 1 / 1;
+}
+#header > * {
+  display: inline;
+}
+#header logo {
+  
+}
+
+#main {
+  grid-column-start: 1 / 1;
+  grid-row-start: 2 / 2;
+}
