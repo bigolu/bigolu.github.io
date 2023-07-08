@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  column-gap: 15px;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr;
+
+}
+
+.container > * {
+  grid-column-start: auto;
+  grid-row-start: 1;
+}
