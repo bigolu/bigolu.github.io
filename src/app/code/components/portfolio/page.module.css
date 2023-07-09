@@ -1,0 +1,12 @@
+.project {
+  outline: 1px green dashed;
+  grid-row: 1;
+}
+
+.container {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20%);
+  grid-template-rows: repeat(auto-fill, 20%);
+  column-gap: 10px;
+}

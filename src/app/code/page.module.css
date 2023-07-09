@@ -1,0 +1,15 @@
+.tab:not(:last-child) {
+  border-right: 1px black solid;
+  margin-right: 5px;
+  padding-right: 5px;
+}
+
+.tab-container {
+  border: 1px black solid;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.tab:hover {
+  text-decoration: underline;
+}

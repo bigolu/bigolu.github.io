@@ -4,7 +4,7 @@ import profilePicture from './static_biggs.png'
 
 export default function About() {
   return (
-    <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${styles.container}`}>
+    <main className={`flex min-h-screen flex-col items-center p-24 ${styles.container}`}>
       <Image
         src={profilePicture}
         alt="Picture of the author"

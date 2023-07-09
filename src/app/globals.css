@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import '~nes.css/css/nes.css';
+@import '~react-pdf/dist/esm/Page/TextLayer.css';
+@import '~react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
