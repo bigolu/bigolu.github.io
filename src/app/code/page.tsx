@@ -3,14 +3,12 @@
 import { AssertionError } from 'assert';
 import Portfolio from './components/portfolio/page';
 import Resume from './components/resume/page';
-import Timeline from './components/timeline/page';
 import styles from './page.module.css'
-import { FunctionComponent, ReactComponentElement, ReactElement, ReactNode, useState, MouseEvent } from 'react';
+import { ReactElement, useState, MouseEvent } from 'react';
 
 export default function Code() {
   const tabPagesByName: { [key: string]: ReactElement } = {
     Portfolio: <Portfolio></Portfolio>,
-    Timeline: <Timeline></Timeline>,
     Resume: <Resume></Resume>,
   }
   const tabNames = Object.keys(tabPagesByName);
