@@ -11,6 +11,7 @@
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
+  border-bottom: 2px rgb(var(--foreground-rgb)) solid;
 }
 
 .main {
