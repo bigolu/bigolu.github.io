@@ -11,8 +11,8 @@ export default function About() {
         width={500}
         height={500}
       />
-      <div className={`nes-container ${styles['greeting-container']}`} style={{padding: 0}}>
-        <span>Hey how{"'"}s it going?</span>
+      <div className={`nes-container ${styles['greeting-container']}`} style={{padding: '5px'}}>
+        <span>Hey how{"'"}s it going?</span><br></br>
       </div>
     </main>
   )

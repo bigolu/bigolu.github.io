@@ -1,7 +1,15 @@
-@import "~@fontsource/press-start-2p/400.css";
+/* Got the font from: https://www.dafont.com/pkmn-rbygsc.font */
+@font-face {
+  font-family: 'Pokemon Font';
+  src: url(../../../public/PKMN-RBYGSC.ttf);
+}
 
 .container {
-  font-family: "Press Start 2P";
+  font-family: "Pokemon Font";
+}
+
+.greeting-container {
+  width: 400px;
 }
 
 .greeting-container::after {
