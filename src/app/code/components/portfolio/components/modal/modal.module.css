@@ -1,0 +1,25 @@
+@keyframes enlarge {
+  0% {
+    color: white;
+  }
+  80% {
+    width: 70%;
+    height: 70%;
+    color: white;
+  }
+  100% {
+    width: 70%;
+    height: 70%;
+    color: unset;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.container {
+  position: fixed;
+  animation: enlarge 400ms;
+  animation-fill-mode: forwards;
+  outline: 1px green dashed;
+}
