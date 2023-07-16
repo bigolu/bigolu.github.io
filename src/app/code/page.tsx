@@ -5,9 +5,9 @@ import Resume from './components/resume/page';
 import styles from './page.module.css'
 import { ReactElement, useState } from 'react';
 
-export default function Code() {
+export default async function Code() {
   const tabPagesByName: { [key: string]: ReactElement } = {
-    Resume: <Resume></Resume>,
+    Resume: await Resume(),
     Portfolio: <Portfolio></Portfolio>,
   }
   const tabNames = Object.keys(tabPagesByName);
