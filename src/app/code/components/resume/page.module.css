@@ -1,0 +1,33 @@
+.container::before {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(#e66465, #e66465 var(--length-to-highlight), #9198e5 var(--length-to-highlight));
+  content: "";
+  transform: translate(50%, 0);
+  margin-left: 10px;
+  margin-right: 10px;
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+  padding-top: 10px;
+  --length-to-highlight: 0px;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+  min-height: 95px;
+}
+
+.timeline-image {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: rgb(var(--background-rgb));
+}

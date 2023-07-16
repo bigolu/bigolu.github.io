@@ -24,11 +24,6 @@ export default function Portfolio() {
   }
   function handleClick(event: MouseEvent<HTMLElement>) {
     event.currentTarget.style.visibility = 'hidden';
-    function assertIsString(val: any): asserts val is string {
-      if (typeof val !== "string") {
-        // throw new AssertionError({message: "Not a string!"});
-      }
-    }
     const rect = event.currentTarget.getBoundingClientRect();
     setModalData({
       width: rect.width,

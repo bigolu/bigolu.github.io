@@ -3,8 +3,6 @@
     color: white;
   }
   80% {
-    width: 70%;
-    height: 70%;
     color: white;
   }
   100% {
@@ -19,7 +17,8 @@
 
 .container {
   position: fixed;
-  animation: enlarge 400ms;
+  animation: enlarge 300ms;
   animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
   outline: 1px green dashed;
 }

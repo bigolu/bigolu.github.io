@@ -2,6 +2,7 @@
 
 import { useState, ReactElement, useEffect, useRef, } from 'react'
 import styles from './logo.module.css'
+import '@fontsource-variable/source-code-pro';
 import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export const usePrevious = <T,>(value: T) => {
@@ -46,28 +47,26 @@ export const useNavigation = ({ on }: { on?: NavigationEvents }) => {
 
 export default function LogoComponent() {
   const [logoType, setLogoType] = useState('default');
-  const logos: { [key: string]: ReactElement } = {
-    default: (
-      <div>
-        <span>ola</span><span>olu</span>
-        <br></br>
-        <span>big</span><span>gie</span>
-      </div>
-    ),
+  const logos: { [key: string]: ReactElement | null } = {
+    default: null,
     about: (
       <div>
         <span>ola</span><span>olu</span>
-        <br></br>
+        <br/>
         <span>big</span><span>gie</span>
-        <br></br>
+        <br/>
         <span>(about)</span>
       </div>
     ),
     code: (
-      <div>
-        <span>{'/*'} ola</span><span>olu</span>
-        <br></br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;big</span><span>gie */</span>
+      <div className={styles['code-logo']}>
+        <span>{'/*'}</span>
+        <br/>
+        <span>&nbsp;{'* '} ola</span><span>olu</span>
+        <br/>
+        <span>&nbsp;{'* '}big</span><span>gie</span>
+        <br/>
+        <span>&nbsp;{'*/'}</span>
       </div>
     ),
   }
