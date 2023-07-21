@@ -3,7 +3,7 @@
 import { useState, ReactElement, useEffect, useRef, } from 'react'
 import styles from './logo.module.css'
 import '@fontsource-variable/source-code-pro';
-import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, usePathname, useSearchParams } from 'next/navigation';
 
 export const usePrevious = <T,>(value: T) => {
   const ref = useRef<T>();
@@ -70,7 +70,7 @@ export default function LogoComponent() {
       </div>
     ),
   }
-  const router = useRouter();
+
   useNavigation({
     on: {
       routeChanged: (data) => {

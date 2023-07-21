@@ -17,7 +17,7 @@ export default function Modal(props: ModalProps) {
   const inlineStyles = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    'backgroundColor': 'white',
+    'backgroundColor': 'rgb(var(--background-rgb))',
     left: props.left,
     top: props.top,
   }
@@ -48,7 +48,7 @@ export default function Modal(props: ModalProps) {
 
     return () => {
       // delete the programatically created element
-      if (systemCreated && element != null && element.parentNode) {
+      if (systemCreated && element != null && element.parentNode != null) {
         element!.parentNode.removeChild(element);
       }
     }

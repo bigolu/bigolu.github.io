@@ -1,9 +1,9 @@
 @keyframes enlarge {
   0% {
-    color: white;
+    color: rgb(var(--background-rgb));
   }
   80% {
-    color: white;
+    color: rgb(var(--background-rgb));
   }
   100% {
     width: 70%;
@@ -20,5 +20,7 @@
   animation: enlarge 300ms;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
-  outline: 1px green dashed;
+  border: 1px solid rgb(var(--border-rgb));
+  border-radius: 10px;
+  padding: 10px;
 }

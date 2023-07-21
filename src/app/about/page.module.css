@@ -1,7 +1,7 @@
 /* Got the font from: https://www.dafont.com/pkmn-rbygsc.font */
 @font-face {
   font-family: 'Pokemon Font';
-  src: url(../../../public/PKMN-RBYGSC.ttf);
+  src: url(../../../public/font/PKMN-RBYGSC.ttf);
 }
 
 .container {
@@ -15,7 +15,7 @@
 .greeting-container::after {
   width: 3px;
   height: 3px;
-  color: #212529;
+  color: rgb(var(--foreground-rgb));
   box-shadow: 3px 3px,6px 3px,9px 3px,12px 3px,15px 3px,18px 3px,21px 3px,3px 6px,6px 6px,9px 6px,12px 6px,15px 6px,18px 6px,21px 6px,6px 9px,9px 9px,12px 9px,15px 9px,18px 9px,6px 12px,9px 12px,12px 12px,15px 12px,18px 12px,9px 15px,12px 15px,15px 15px,12px 18px;
   pointer-events: none;
   float: right;

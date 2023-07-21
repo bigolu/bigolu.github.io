@@ -5,13 +5,13 @@ import Resume from './components/resume/page';
 import styles from './page.module.css'
 import { ReactElement, useState } from 'react';
 
-export default async function Code() {
+export default function Code() {
   const tabPagesByName: { [key: string]: ReactElement } = {
-    Resume: await Resume(),
+    Resume: <Resume></Resume>,
     Portfolio: <Portfolio></Portfolio>,
   }
   const tabNames = Object.keys(tabPagesByName);
-  const [activeTabName, setActiveTab] = useState(tabNames[0]);
+  const [activeTabName, setActiveTab] = useState<string>(tabNames[0]);
   function makeTabButton(tabName: string) {
     function handleClick() {
       setActiveTab(tabName)

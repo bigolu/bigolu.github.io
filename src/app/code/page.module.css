@@ -1,11 +1,11 @@
 .tab:not(:last-child) {
-  border-right: 1px black solid;
+  border-right: 1px rgb(var(--border-rgb)) solid;
   margin-right: 5px;
   padding-right: 5px;
 }
 
 .tab-container {
-  border: 1px black solid;
+  border: 1px rgb(var(--border-rgb)) solid;
   padding: 3px;
   border-radius: 5px;
 }

@@ -3,24 +3,42 @@
 @tailwind utilities;
 
 @import '~nes.css/css/nes.css';
-@import '~react-pdf/dist/esm/Page/TextLayer.css';
-@import '~react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
+  --inactive-foreground-rgb: 193, 184, 184;
   --background-rgb: 255, 255, 255;
+  --inactive-timeline-rgb: 193, 184, 184;
+  --active-timeline-rgb: 0, 0, 0;
+  --border-rgb: 193, 184, 184;
+
+  --duration: 0.5s;
+  --timing: ease;
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
+    --inactive-foreground-rgb: 81, 81, 81;
+    --background-rgb: 15, 20, 31;
+    --inactive-timeline-rgb: 81, 81, 81;
+    --active-timeline-rgb: 251, 251, 251;
+    --border-rgb: 81, 81, 81;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
+  transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+}
+
+img {
+  /* Maintain the aspect ratio */
+  height: auto;
+  /* Images should never overflow their containers */
+  max-width: 100%;
 }
 
 * {

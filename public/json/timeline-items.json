@@ -1,0 +1,89 @@
+[
+  {
+    "role": "Software Engineer",
+    "company": "Squarespace",
+    "description": "Helped develop a new Content Management System and contributed to several other backend services such as the social accounts integration, website analytics platform, etc.",
+    "image": {
+      "light": {
+        "url": "/image/squarespace-light.svg",
+        "type": "svg"
+      },
+      "dark": {
+        "url": "/image/squarespace-dark.svg",
+        "type": "svg"
+      },
+      "alt": "Squarespace logo"
+    },
+    "date": "February 2019 - November 2020"
+  },
+  {
+    "role": "Software Engineer",
+    "company": "Meta (Formerly Facebook)",
+    "description": "Develop a tool to automate the onboarding of other teams onto the message/notification delivery platform for Messenger",
+    "image": {
+      "light": {
+        "url": "/image/meta-light.svg",
+        "type": "svg"
+      },
+      "dark": {
+        "url": "/image/meta-dark.svg",
+        "type": "svg"
+      },
+      "alt": "Meta logo"
+    },
+    "date": "Summer 2018"
+  },
+  {
+    "role": "Software Engineer",
+    "company": "Pinterest",
+    "description": "Automated the data pipeline setup for new Kafka topics",
+    "image": {
+      "light": {
+        "url": "/image/pinterest-light.svg",
+        "type": "svg"
+      },
+      "dark": {
+        "url": "/image/pinterest-dark.svg",
+        "type": "svg"
+      },
+      "alt": "Pinterest logo"
+    },
+    "date": "Summer 2017"
+  },
+  {
+    "role": "Software Engineer",
+    "company": "Skillshare",
+    "description": "Worked with designer to develop the front-end and back-end for new features on the site",
+    "date": "Summer 2016"
+  },
+  {
+    "role": "Software Engineer",
+    "company": "HackNY",
+    "description": "<TODO>",
+    "image": {
+      "both": {
+        "url": "/image/hackny.png",
+        "type": "png",
+        "width": 406,
+        "height": 377
+      },
+      "alt": "HackNY logo"
+    },
+    "date": "Summer 2016"
+  },
+  {
+    "role": "Tutor",
+    "company": "The C.A.V.E at Rutgers University",
+    "description": "Tutor students in Data Structures, Systems Programming, etc... and assist with debugging",
+    "image": {
+      "both": {
+        "url": "/image/cave.jpg",
+        "type": "jpg",
+        "width": 512,
+        "height": 512
+      },
+      "alt": "The C.A.V.E logo"
+    },
+    "date": "September 2015 - May 2018"
+  }
+]

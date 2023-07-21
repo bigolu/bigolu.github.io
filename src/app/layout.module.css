@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: auto auto;
 }
 
 .header {
@@ -11,7 +11,7 @@
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom: 2px rgb(var(--foreground-rgb)) solid;
+  border-bottom: 2px rgb(var(--border-rgb)) solid;
 }
 
 .main {
