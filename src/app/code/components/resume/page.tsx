@@ -12,7 +12,7 @@ async function getItems() {
 
 export default function Resume() {
   const ref = useRef<HTMLDivElement>(null);
-  const [data, setData] = useState<[]>([]);
+  const [data, setData] = useState<TimelineItem[]>([]);
 
   function setTimelineProgress() {
     const element = ref.current;
@@ -61,6 +61,7 @@ export default function Resume() {
     let half = numhalf + 'px';
     element.style.setProperty('--length-to-highlight', half);
   }
+
   useLayoutEffect(() => {
     if (data.length === 0) {
       getItems().then((value) => {
@@ -82,15 +83,28 @@ export default function Resume() {
     };
   }, [data]);
 
+  type TimelineItem = { role: string, company: string, image?: ImageProps, description: string, date: string, logoScaleFactor?: number, };
 
-  function makeElement(datum: { role: string, company: string, image?: ImageProps, description: string, date: string, }) {
+  const baseLogoSize = '4rem';
+  const highestScaleFactor = Math.max(...data.map((datum) => {
+    return datum.logoScaleFactor ?? 1;
+  }));
+  const largestLogoWidth = `calc(${highestScaleFactor} * var(--base-logo-size))`;
+  const largestLogoMidppoint = `calc(${largestLogoWidth} / 2)`;
+  const lineWidth = '2px';
+
+
+  function makeElement(datum: TimelineItem) {
     const defaultImage = <div>{datum.company}</div>;
     const image = datum.image ? <ImageComponent {...datum.image} /> : defaultImage;
+    const scale = datum.logoScaleFactor ?? 1;
 
     return (
       <div className={styles['timeline-item']} key={datum.role + datum.date + datum.company}>
-        <div className={styles['timeline-image']}>
-          {image}
+        <div style={{width: largestLogoWidth}}>
+          <div className={styles['timeline-image']} style={{'--logo-width': `calc(${scale} * var(--base-logo-size))`} as CSSProperties}>
+            {image}
+          </div>
         </div>
         <div className={styles['timeline-text']}>
           <h3>{datum.date}</h3>
@@ -104,7 +118,7 @@ export default function Resume() {
   const elements = data.map(makeElement);
 
   return (
-    <div className={styles.container} style={{'--length-to-highlight': '0px'} as CSSProperties} ref={ref}>
+    <div className={styles.container} style={{'--length-to-highlight': '0px', '--line-width': lineWidth, '--largest-logo-midpoint': largestLogoMidppoint, '--base-logo-size': baseLogoSize} as CSSProperties} ref={ref}>
       {elements}
     </div>
   );

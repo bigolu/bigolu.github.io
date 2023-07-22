@@ -1,7 +1,7 @@
 .container::before {
   top: 0;
   left: 0;
-  width: 2px;
+  width: var(--line-width);
   height: 100%;
   position: absolute;
   background: linear-gradient(
@@ -9,8 +9,8 @@
     rgb(var(--inactive-timeline-rgb)) var(--length-to-highlight)
   );
   content: "";
-  margin-left: 22px;
-  margin-right: 10px;
+  margin-left: var(--largest-logo-midpoint);
+  transform: translateX(-50%);
 }
 
 .container {
@@ -41,9 +41,10 @@
 .timeline-image {
   background-color: rgb(var(--background-rgb));
   align-self: flex-start;
-  /* TODO: multiply by width/height. Wait no i have to factor in text size too. */
-  width: 4rem;
+  width: var(--logo-width);
   z-index: 1;
+  position: relative;
+  margin: auto;
 }
 
 .timeline-image img {
@@ -56,6 +57,6 @@
   margin-left: 50px;
   margin-top: auto;
   margin-bottom: auto;
-  padding: 50px 0px 50px 0px;
+  padding: 50px 0px 50px var(--largest-logo-midpoint);
   max-width: 70ch;
 }
