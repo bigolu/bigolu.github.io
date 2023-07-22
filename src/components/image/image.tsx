@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 export type Image = {
   url: string,
-  type: string,
   width?: number,
   height?: number
 };
@@ -16,9 +15,7 @@ export type ImageProps = {
 };
 
 function getMetadata(image: Image) {
-  if (image.type === "svg") {
-    return {fill: true};
-  } else if (image.width && image.height) {
+  if (image.width && image.height) {
     return {width: image.width, height: image.height};
   } else {
     throw new Error("Invalid image metadata");

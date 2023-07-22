@@ -64,7 +64,7 @@ export default function Resume() {
   useLayoutEffect(() => {
     if (data.length === 0) {
       getItems().then((value) => {
-        setData(value);
+        setData(value.reverse());
       })
       return;
     }
@@ -88,7 +88,7 @@ export default function Resume() {
     const image = datum.image ? <ImageComponent {...datum.image} /> : defaultImage;
 
     return (
-      <div className={styles['timeline-item']} key={datum.role + datum.date}>
+      <div className={styles['timeline-item']} key={datum.role + datum.date + datum.company}>
         <div className={styles['timeline-image']}>
           {image}
         </div>

@@ -1,16 +1,37 @@
 [
   {
+    "role": "TBD",
+    "company": "TBD",
+    "description": "I'm looking for a new job so let me know of any opportunities.",
+    "image": {
+      "light": {
+        "url": "/image/question-mark-light.svg",
+        "width": 800,
+        "height": 800
+      },
+      "dark": {
+        "url": "/image/question-mark-dark.svg",
+        "width": 800,
+        "height": 800
+      },
+      "alt": "question mark"
+    },
+    "date": "Current"
+  },
+  {
     "role": "Software Engineer",
     "company": "Squarespace",
     "description": "Helped develop a new Content Management System and contributed to several other backend services such as the social accounts integration, website analytics platform, etc.",
     "image": {
       "light": {
         "url": "/image/squarespace-light.svg",
-        "type": "svg"
+        "width": 829,
+        "height": 196
       },
       "dark": {
         "url": "/image/squarespace-dark.svg",
-        "type": "svg"
+        "width": 829,
+        "height": 196
       },
       "alt": "Squarespace logo"
     },
@@ -23,11 +44,13 @@
     "image": {
       "light": {
         "url": "/image/meta-light.svg",
-        "type": "svg"
+        "width": 6962.3646,
+        "height": 3000
       },
       "dark": {
         "url": "/image/meta-dark.svg",
-        "type": "svg"
+        "width": 6962.3646,
+        "height": 3000
       },
       "alt": "Meta logo"
     },
@@ -40,11 +63,13 @@
     "image": {
       "light": {
         "url": "/image/pinterest-light.svg",
-        "type": "svg"
+        "width": 100,
+        "height": 100
       },
       "dark": {
         "url": "/image/pinterest-dark.svg",
-        "type": "svg"
+        "width": 100,
+        "height": 100
       },
       "alt": "Pinterest logo"
     },
@@ -54,6 +79,19 @@
     "role": "Software Engineer",
     "company": "Skillshare",
     "description": "Worked with designer to develop the front-end and back-end for new features on the site",
+    "image": {
+      "light": {
+        "url": "/image/skillshare-light.svg",
+        "width": 913,
+        "height": 452.7
+      },
+      "dark": {
+        "url": "/image/skillshare-dark.svg",
+        "width": 913,
+        "height": 452.7
+      },
+      "alt": "Skillshare logo"
+    },
     "date": "Summer 2016"
   },
   {
@@ -63,7 +101,6 @@
     "image": {
       "both": {
         "url": "/image/hackny.png",
-        "type": "png",
         "width": 406,
         "height": 377
       },
@@ -74,16 +111,29 @@
   {
     "role": "Tutor",
     "company": "The C.A.V.E at Rutgers University",
-    "description": "Tutor students in Data Structures, Systems Programming, etc... and assist with debugging",
+    "description": "Tutor students in Data Structures, Systems Programming, etc. and assist with debugging",
     "image": {
       "both": {
         "url": "/image/cave.jpg",
-        "type": "jpg",
         "width": 512,
         "height": 512
       },
       "alt": "The C.A.V.E logo"
     },
     "date": "September 2015 - May 2018"
+  },
+  {
+    "role": "Teaching Assistant",
+    "company": "Rutgers University",
+    "description": "Lead five classes of 15 students each in Introduction to Computer Science. Conduct workshops, provide tutoring, and grade assignments",
+    "image": {
+      "both": {
+        "url": "/image/rutgers.svg",
+        "width": 248,
+        "height": 219.38
+      },
+      "alt": "Rutgers logo"
+    },
+    "date": "September 2016 - May 2017"
   }
 ]

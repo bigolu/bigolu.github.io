@@ -50,12 +50,10 @@ export default function LogoComponent() {
   const logos: { [key: string]: ReactElement | null } = {
     default: null,
     about: (
-      <div>
-        <span>ola</span><span>olu</span>
+      <div className={styles['home-logo']}>
+        <span className={styles.ola}>ola</span><span className={styles.olu}>olu</span>
         <br/>
-        <span>big</span><span>gie</span>
-        <br/>
-        <span>(about)</span>
+        <span className={styles.big}>big</span><span className={styles['gie']}>gie</span>
       </div>
     ),
     code: (

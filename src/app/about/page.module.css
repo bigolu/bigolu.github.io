@@ -24,3 +24,14 @@
   margin-bottom: 20px;
   margin-right: 25px;
 }
+
+.greeting-content::before {
+  content: "Hey, how's it going?";
+}
+
+@media (prefers-color-scheme: dark) {
+  .greeting-content::before {
+    content: "Zzz...   go to some other page    Zzz...";
+    white-space: pre;
+  }
+}

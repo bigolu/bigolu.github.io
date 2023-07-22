@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~nes.css/css/nes.css';
+/* @import '~nes.css/css/nes.css'; */
 
 :root {
   --foreground-rgb: 0, 0, 0;
