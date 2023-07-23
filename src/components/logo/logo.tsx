@@ -58,13 +58,9 @@ export default function LogoComponent() {
     ),
     code: (
       <div className={styles['code-logo']}>
-        <span>{'/*'}</span>
-        <br/>
         <span>&nbsp;{'* '} ola</span><span>olu</span>
         <br/>
         <span>&nbsp;{'* '}big</span><span>gie</span>
-        <br/>
-        <span>&nbsp;{'*/'}</span>
       </div>
     ),
   }

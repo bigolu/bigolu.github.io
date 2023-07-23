@@ -1,50 +1,60 @@
+.container::before, .container.unemployed::after {
+  grid-column: 2;
+  justify-self: center;
+}
+
 .container::before {
-  top: 0;
-  left: 0;
-  width: var(--line-width);
-  height: 100%;
-  position: absolute;
+  /* TODO: They may add a keyword to span all rows: https://github.com/w3c/csswg-drafts/issues/2402 */
+  grid-row: 1 / var(--row-count);
+  width: 2px;
   background: linear-gradient(
     rgb(var(--active-timeline-rgb)) var(--length-to-highlight),
     rgb(var(--inactive-timeline-rgb)) var(--length-to-highlight)
   );
   content: "";
-  margin-left: var(--largest-logo-midpoint);
-  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+.container.unemployed::after {
+  grid-row: calc(var(--row-count) - 2) / var(--row-count);
+  content: "";
+  border-left: 2px dashed rgb(var(--background-rgb));
 }
 
 .container {
   width: 100%;
-  position: relative;
-  isolation: isolate;
-  padding-top: 10px;
+  display: grid;
+  row-gap: 30px;
+  grid-template-columns:  repeat(3, var(--largest-logo-width-third)) auto;
+  grid-template-rows: auto;
+  position: relative; /* for offsetTop */
+  margin-bottom: 25vh;
 }
 
-.timeline-item {
-  display: flex;
-  margin-bottom: 40px;
-  flex-direction: column;
-}
-
-.timeline-hidden {
+.timeline-text.hidden {
   color: rgb(var(--inactive-foreground-rgb));
 }
 
-.timeline-hidden .timeline-image img {
+.timeline-image.hidden img {
   filter: brightness(50%);
 }
+.timeline-image.show img {
+  filter: brightness(100%);
+}
 
-.timeline-show {
+.timeline-text.show {
   color: rgb(var(--foreground-rgb));
 }
 
 .timeline-image {
   background-color: rgb(var(--background-rgb));
-  align-self: flex-start;
   width: var(--logo-width);
-  z-index: 1;
-  position: relative;
-  margin: auto;
+  grid-column: 1 / span 3;
+  justify-self: center;
+}
+
+.timeline-image:first-child {
+  margin-top: 30px;
 }
 
 .timeline-image img {
@@ -54,9 +64,27 @@
 }
 
 .timeline-text {
-  margin-left: 50px;
-  margin-top: auto;
-  margin-bottom: auto;
-  padding: 50px 0px 50px var(--largest-logo-midpoint);
   max-width: 70ch;
+  grid-column: 3 / span 2;
+  padding: 40px 0 40px 0;
+}
+
+@media (min-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr repeat(3, var(--largest-logo-width-third)) 1fr;
+  }
+  .container::before, .container.unemployed::after {
+    grid-column: 3;
+  }
+  .timeline-image {
+    grid-column: 2 / span 3;
+  }
+  .timeline-text:nth-child(2n) {
+    grid-column: 1 / span 2;
+    text-align: right;
+  }
+  .timeline-text:nth-child(4n) {
+    grid-column: 4 / span 2;
+    text-align: left;
+  }
 }

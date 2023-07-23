@@ -12,9 +12,15 @@
   padding-left: 15px;
   padding-right: 15px;
   border-bottom: 2px rgb(var(--border-rgb)) solid;
+
+  position: sticky;
+  top: 0;
+  background-color: rgb(var(--background-rgb));
+  z-index: 1;
 }
 
 .main {
   grid-column-start: 1 / 1;
   grid-row-start: 2 / 2;
+  padding: 2.5%;
 }

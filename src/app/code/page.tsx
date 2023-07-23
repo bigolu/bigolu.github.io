@@ -28,7 +28,7 @@ export default function Code() {
   const tabPage = tabPagesByName[activeTabName];
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="flex min-h-screen flex-col items-center gap-6">
       <div className={styles['tab-container']}>
         {tabButtons}
       </div>

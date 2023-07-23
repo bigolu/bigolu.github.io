@@ -43,19 +43,23 @@ export default function Resume() {
     let scrollPercent = scrollTop / (docHeight - winHeight);
     numhalf = scrollPercent * element.clientHeight;
     // so the first timeline item is always highlighted
-    numhalf = Math.max(numhalf, 10);
+    numhalf = Math.max(numhalf, 30);
 
-    const timelineItems = element.getElementsByClassName(styles['timeline-item']) as HTMLCollectionOf<HTMLElement>;
-    for (let i = 0; i < timelineItems.length; i++) {
-      const timelineItem = timelineItems.item(i);
-      let toAdd = styles['timeline-show'];
-      let toRemove = styles['timeline-hidden'];
-      if ((timelineItem?.offsetTop ?? 0) > numhalf) {
-        toAdd = styles['timeline-hidden'];
-        toRemove = styles['timeline-show'];
+    const timelineTexts = element.getElementsByClassName(styles['timeline-text']) as HTMLCollectionOf<HTMLElement>;
+    const timelineImages = element.getElementsByClassName(styles['timeline-image']) as HTMLCollectionOf<HTMLElement>;
+    for (let i = 0; i < timelineImages.length; i++) {
+      const timelineImage = timelineImages[i];
+      const timelineText = timelineTexts[i];
+      let toAdd = styles['show'];
+      let toRemove = styles['hidden'];
+      if ((timelineImage?.offsetTop ?? 0) > numhalf) {
+        toAdd = styles['hidden'];
+        toRemove = styles['show'];
       }
-      timelineItem?.classList.remove(toRemove);
-      timelineItem?.classList.add(toAdd);
+      timelineImage?.classList.remove(toRemove);
+      timelineImage?.classList.add(toAdd);
+      timelineText?.classList.remove(toRemove);
+      timelineText?.classList.add(toAdd);
     }
 
     let half = numhalf + 'px';
@@ -85,40 +89,34 @@ export default function Resume() {
 
   type TimelineItem = { role: string, company: string, image?: ImageProps, description: string, date: string, logoScaleFactor?: number, };
 
-  const baseLogoSize = '4rem';
+  const baseLogoSize = '2.5rem';
   const highestScaleFactor = Math.max(...data.map((datum) => {
     return datum.logoScaleFactor ?? 1;
   }));
-  const largestLogoWidth = `calc(${highestScaleFactor} * var(--base-logo-size))`;
-  const largestLogoMidppoint = `calc(${largestLogoWidth} / 2)`;
-  const lineWidth = '2px';
+  const largestLogoWidthThird = `calc(calc(${highestScaleFactor} * var(--base-logo-size)) / 3)`;
 
 
-  function makeElement(datum: TimelineItem) {
+  function makeElement(datum: TimelineItem, index: number) {
     const defaultImage = <div>{datum.company}</div>;
     const image = datum.image ? <ImageComponent {...datum.image} /> : defaultImage;
     const scale = datum.logoScaleFactor ?? 1;
+    const newIndex = index + 1;
 
-    return (
-      <div className={styles['timeline-item']} key={datum.role + datum.date + datum.company}>
-        <div style={{width: largestLogoWidth}}>
-          <div className={styles['timeline-image']} style={{'--logo-width': `calc(${scale} * var(--base-logo-size))`} as CSSProperties}>
-            {image}
-          </div>
-        </div>
-        <div className={styles['timeline-text']}>
+    return [
+        <div key={datum.description + 'image'} className={styles['timeline-image']} style={{'--logo-width': `calc(${scale} * var(--base-logo-size))`, 'gridRow': 1 + (2 * (newIndex - 1))} as CSSProperties}>
+          {image}
+        </div>,
+        <div key={datum.description + 'text'} className={styles['timeline-text']} style={{'gridRow': 2 + (2 * (newIndex - 1)),} as CSSProperties}>
           <h3>{datum.date}</h3>
-          <h3>{datum.role}</h3>
-          <h3>{datum.company}</h3>
+          <h3>{datum.role} @ {datum.company}</h3>
           <p>{datum.description}</p>
-        </div>
-      </div>
-    );
+        </div>,
+    ];
   }
-  const elements = data.map(makeElement);
+  const elements = data.map(makeElement).reduce((accumulator, value) => accumulator.concat(value), []);
 
   return (
-    <div className={styles.container} style={{'--length-to-highlight': '0px', '--line-width': lineWidth, '--largest-logo-midpoint': largestLogoMidppoint, '--base-logo-size': baseLogoSize} as CSSProperties} ref={ref}>
+    <div className={styles.container + ' ' + styles.unemployed} style={{'--length-to-highlight': '0px', '--base-logo-size': baseLogoSize, '--row-count': (data.length * 2) + 1, '--largest-logo-width-third': largestLogoWidthThird} as CSSProperties} ref={ref}>
       {elements}
     </div>
   );
