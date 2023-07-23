@@ -70,9 +70,8 @@ export default function Resume() {
   useLayoutEffect(() => {
     if (data.length === 0) {
       getItems().then((value) => {
-        setData(value.reverse());
-      })
-      return;
+        setData(value);
+      });
     }
 
     // Only do the initial highlight after the elements are rendered in the timeline. Otherwise the whole thing
