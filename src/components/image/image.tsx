@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 export type Image = {
   url: string,
-  width?: number,
-  height?: number
+  width: number,
+  height: number
 };
 
 // TODO: The right type is both or light and dark, this way I don't have to assert that.

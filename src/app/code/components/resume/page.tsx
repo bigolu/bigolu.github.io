@@ -1,6 +1,5 @@
 import styles from './page.module.css'
 import React, { useLayoutEffect, useRef, useState, CSSProperties } from 'react';
-import Image from 'next/image';
 import { ImageComponent, ImageProps } from 'components/image/image';
 
 async function getItems() {
@@ -11,6 +10,8 @@ async function getItems() {
 }
 
 export default function Resume() {
+  type TimelineItem = { role: string, company: string, image: ImageProps, description: string, date: string, logoScaleFactor?: number, };
+
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<TimelineItem[]>([]);
 
@@ -87,36 +88,27 @@ export default function Resume() {
     };
   }, [data]);
 
-  type TimelineItem = { role: string, company: string, image?: ImageProps, description: string, date: string, logoScaleFactor?: number, };
-
-  const baseLogoSize = '2.5rem';
-  const highestScaleFactor = Math.max(...data.map((datum) => {
-    return datum.logoScaleFactor ?? 1;
-  }));
-  const largestLogoWidthThird = `calc(calc(${highestScaleFactor} * var(--base-logo-size)) / 3)`;
-
-
-  function makeElement(datum: TimelineItem, index: number) {
-    const defaultImage = <div>{datum.company}</div>;
-    const image = datum.image ? <ImageComponent {...datum.image} /> : defaultImage;
-    const scale = datum.logoScaleFactor ?? 1;
-    const newIndex = index + 1;
-
+  function makeImageAndTextElements(datum: TimelineItem, index: number) {
     return [
-        <div key={datum.description + 'image'} className={styles['timeline-image']} style={{'--logo-width': `calc(${scale} * var(--base-logo-size))`, 'gridRow': 1 + (2 * (newIndex - 1))} as CSSProperties}>
-          {image}
+        <div key={datum.description + 'image'} className={styles['timeline-image']} style={{'gridRow': 1 + (2 * index)} as CSSProperties}>
+          <ImageComponent {...datum.image} />
         </div>,
-        <div key={datum.description + 'text'} className={styles['timeline-text']} style={{'gridRow': 2 + (2 * (newIndex - 1)),} as CSSProperties}>
+        <div key={datum.description + 'text'} className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
           <h3>{datum.date}</h3>
           <h3>{datum.role} @ {datum.company}</h3>
           <p>{datum.description}</p>
         </div>,
     ];
   }
-  const elements = data.map(makeElement).reduce((accumulator, value) => accumulator.concat(value), []);
+
+  function flatten(list: React.JSX.Element[][]) {
+    return list.reduce((accumulator, value) => accumulator.concat(value), []);
+  }
+
+  const elements = flatten(data.map(makeImageAndTextElements));
 
   return (
-    <div className={styles.container + ' ' + styles.unemployed} style={{'--length-to-highlight': '0px', '--base-logo-size': baseLogoSize, '--row-count': (data.length * 2) + 1, '--largest-logo-width-third': largestLogoWidthThird} as CSSProperties} ref={ref}>
+    <div className={styles.container + ' ' + styles.unemployed} style={{'--length-to-highlight': '0px', '--row-count': (data.length * 2) + 1,} as CSSProperties} ref={ref}>
       {elements}
     </div>
   );
