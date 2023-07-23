@@ -2,11 +2,20 @@ import styles from './page.module.css'
 import React, { useLayoutEffect, useRef, useState, CSSProperties } from 'react';
 import { ImageComponent, ImageProps } from 'components/image/image';
 
-async function getItems() {
+async function getData() {
   const response = await fetch('/json/timeline-items.json');
   const timelineItems = await response.json();
 
   return timelineItems;
+}
+
+function getVerticalMarginHeight(element: HTMLElement) {
+  const computedStyles = window.getComputedStyle(element, null);
+  return parseFloat(computedStyles.marginBottom) + parseFloat(computedStyles.marginTop);
+}
+
+function getTimelineItemHeight(imageElement: HTMLElement, textElement: HTMLElement) {
+  return imageElement.clientHeight + getVerticalMarginHeight(imageElement) + textElement.clientHeight + getVerticalMarginHeight(textElement);
 }
 
 export default function Resume() {
@@ -43,8 +52,9 @@ export default function Resume() {
     let winHeight = window.innerHeight;
     let scrollPercent = scrollTop / (docHeight - winHeight);
     numhalf = scrollPercent * element.clientHeight;
-    // so the first timeline item is always highlighted
-    numhalf = Math.max(numhalf, 30);
+
+    // try out gradient
+    let firstUnseen = true;
 
     const timelineTexts = element.getElementsByClassName(styles['timeline-text']) as HTMLCollectionOf<HTMLElement>;
     const timelineImages = element.getElementsByClassName(styles['timeline-image']) as HTMLCollectionOf<HTMLElement>;
@@ -53,9 +63,28 @@ export default function Resume() {
       const timelineText = timelineTexts[i];
       let toAdd = styles['show'];
       let toRemove = styles['hidden'];
-      if ((timelineImage?.offsetTop ?? 0) > numhalf) {
+
+      const offsetTopIncludingTopMargin = timelineImage?.offsetTop - parseFloat(window.getComputedStyle(timelineImage, null).marginTop);
+
+      if (offsetTopIncludingTopMargin > numhalf) {
         toAdd = styles['hidden'];
         toRemove = styles['show'];
+
+        const timelineItemHeight = getTimelineItemHeight(timelineImages[i - 1], timelineTexts[i - 1]);
+        let sum = 0;
+        for (let current = 0; current < i - 1; current++) {
+          sum += getTimelineItemHeight(timelineImages[current], timelineTexts[current]);
+        }
+        const minimumOpacityPercentage = 20;
+        const percent = minimumOpacityPercentage + (((numhalf - sum) / timelineItemHeight) * (100 - minimumOpacityPercentage));
+        if (firstUnseen) {
+          firstUnseen = false;
+          timelineImage.style.setProperty('--percent', percent + '%');
+          timelineText.style.setProperty('--percent', percent + '%');
+        } else {
+          timelineImage.style.setProperty('--percent', minimumOpacityPercentage + '%');
+          timelineText.style.setProperty('--percent', minimumOpacityPercentage + '%');
+        }
       }
       timelineImage?.classList.remove(toRemove);
       timelineImage?.classList.add(toAdd);
@@ -69,9 +98,7 @@ export default function Resume() {
 
   useLayoutEffect(() => {
     if (data.length === 0) {
-      getItems().then((value) => {
-        setData(value);
-      });
+      getData().then(setData);
     }
 
     // Only do the initial highlight after the elements are rendered in the timeline. Otherwise the whole thing
@@ -107,7 +134,7 @@ export default function Resume() {
   const elements = flatten(data.map(makeImageAndTextElements));
 
   return (
-    <div className={styles.container + ' ' + styles.unemployed} style={{'--length-to-highlight': '0px', '--row-count': (data.length * 2) + 1,} as CSSProperties} ref={ref}>
+    <div className={styles.container + ' ' + styles.unemployed} style={{'--row-count': (data.length * 2) + 1,} as CSSProperties} ref={ref}>
       {elements}
     </div>
   );

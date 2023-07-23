@@ -8,54 +8,36 @@
   grid-row: 1 / var(--row-count);
   width: 2px;
   background: linear-gradient(
-    rgb(var(--active-timeline-rgb)) var(--length-to-highlight),
-    rgb(var(--inactive-timeline-rgb)) var(--length-to-highlight)
+    rgb(var(--active-timeline-rgb)) var(--length-to-highlight, 0px),
+    rgb(var(--inactive-timeline-rgb)) var(--length-to-highlight, 0px)
   );
   content: "";
   border-radius: 5px;
+  z-index: -2;
 }
 
 .container.unemployed::after {
-  grid-row: calc(var(--row-count) - 2) / var(--row-count);
+  grid-row: calc(var(--row-count) - 1) / var(--row-count);
   content: "";
   border-left: 2px dashed rgb(var(--background-rgb));
+  z-index: -1;
 }
 
 .container {
+  --logo-width: 11rem;
+  --logo-width-one-third: calc(var(--logo-width) / 3);
+  --logo-width-split-across-three-columns: repeat(3, var(--logo-width-one-third));
   width: 100%;
   display: grid;
-  row-gap: 30px;
-  --logo-height: 4rem;
-  /* I need something wide enough so logos are always padded on their sides since vertical padding would increase
-  the logo's distance from the timeline line. */
-  --logo-aspect-ratio: 32 / 9;
-  --logo-vertical-padding: 10px;
-  --widest-logo-width: calc(calc(var(--logo-height) - calc(2 * var(--logo-vertical-padding))) * calc(var(--logo-aspect-ratio)));
-  --widest-logo-width-one-third: calc(var(--widest-logo-width) / 3);
-  grid-template-columns:  repeat(3, var(--widest-logo-width-one-third)) auto;
+  grid-template-columns:   var(--logo-width-split-across-three-columns) auto;
   grid-template-rows: auto;
+  margin-bottom: 35vh;
   position: relative; /* for offsetTop */
-  margin-bottom: 25vh;
-}
-
-.timeline-text.hidden {
-  color: rgb(var(--inactive-foreground-rgb));
-}
-
-.timeline-image.hidden img {
-  filter: brightness(50%);
-}
-.timeline-image.show img {
-  filter: brightness(100%);
-}
-
-.timeline-text.show {
-  color: rgb(var(--foreground-rgb));
 }
 
 .timeline-image {
   background-color: rgb(var(--background-rgb));
-  height: var(--logo-height);
+  width: var(--logo-width);
   grid-column: 1 / span 3;
   justify-self: center;
 }
@@ -65,23 +47,37 @@
 }
 
 .timeline-image img {
+  --logo-vertical-padding: 10px;
   padding-bottom: var(--logo-vertical-padding);
   padding-top: var(--logo-vertical-padding);
-  width: auto;
-  height: 100%;
-  aspect-ratio: var(--logo-aspect-ratio);
+  width: 100%;
+  /* I need something wide enough that logos are always padded on their sides since vertical padding would increase
+  the logo's distance from the timeline line. */
+  aspect-ratio: 32 / 9;
   object-fit: scale-down;
 }
 
+.timeline-text.hidden, .timeline-image.hidden img {
+  opacity: var(--percent);
+}
+/* .fade {
+  height: 35vh;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, rgb(var(--background-rgb)), rgba(var(--background-rgb), 0));
+} */
+
 .timeline-text {
-  max-width: 70ch;
+  max-width: 30ch;
   grid-column: 3 / span 2;
-  padding: 40px 0 40px 0;
+  padding: 60px 0 60px 0;
 }
 
 @media (min-width: 1000px) {
   .container {
-    grid-template-columns: 1fr repeat(3, var(--widest-logo-width-one-third)) 1fr;
+    grid-template-columns: 1fr var(--logo-width-split-across-three-columns) 1fr;
   }
   .container::before, .container.unemployed::after {
     grid-column: 3;
@@ -91,10 +87,10 @@
   }
   .timeline-text:nth-child(2n) {
     grid-column: 1 / span 2;
-    text-align: right;
+    justify-self: end;
   }
   .timeline-text:nth-child(4n) {
     grid-column: 4 / span 2;
-    text-align: left;
+    justify-self: start;
   }
 }
