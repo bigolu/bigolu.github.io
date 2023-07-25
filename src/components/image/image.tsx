@@ -11,7 +11,7 @@ export type ImageProps = {
   both?: Image,
   light?: Image,
   dark?: Image,
-  alt: string
+  alt: string,
 };
 
 function getMetadata(image: Image) {
@@ -22,14 +22,16 @@ function getMetadata(image: Image) {
   }
 }
 
-export function ImageComponent(props: ImageProps) {
-  if (props.both) {
-    return <Image src={props.both.url} alt={props.alt} {...getMetadata(props.both)} />;
+export function ImageComponent({both, light, dark, alt, ...props}: ImageProps & any) {
+  if (both) {
+    return <picture {...props}>
+      <Image src={both.url} alt={alt} {...getMetadata(both)}/>
+    </picture>
   }
-  else if (props.light && props.dark) {
-    return <picture>
-      <source media="(prefers-color-scheme: dark)" srcSet={props.dark.url} {...getMetadata(props.dark)} />
-      <Image src={props.light.url} alt={props.alt} {...getMetadata(props.light)} />
+  else if (light && dark) {
+    return <picture {...props}>
+      <source media="(prefers-color-scheme: dark)" srcSet={dark.url} {...getMetadata(dark)} />
+      <Image src={light.url} alt={alt} {...getMetadata(light)}/>
     </picture>;
   }
   else {
