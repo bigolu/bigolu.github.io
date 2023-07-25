@@ -1,12 +1,12 @@
 .container::before, .container.unemployed::after {
   grid-column: 2;
   justify-self: center;
+  width: 2px;
 }
 
 .container::before {
   /* TODO: They may add a keyword to span all rows: https://github.com/w3c/csswg-drafts/issues/2402 */
   grid-row: 1 / var(--row-count);
-  width: 2px;
   background: linear-gradient(
     rgb(var(--active-timeline-rgb)) var(--length-to-highlight, 0px),
     rgb(var(--inactive-timeline-rgb)) var(--length-to-highlight, 0px)
@@ -19,12 +19,12 @@
 .container.unemployed::after {
   grid-row: calc(var(--row-count) - 1) / var(--row-count);
   content: "";
-  border-left: 2px dashed rgb(var(--background-rgb));
   z-index: -1;
+  background: repeating-linear-gradient(transparent, transparent 6px, rgb(var(--background-rgb)) 6px, rgb(var(--background-rgb)) 12px);
 }
 
 .container {
-  --logo-width: 11rem;
+  --logo-width: clamp(5.5rem, 19vw, 11rem);
   --logo-width-one-third: calc(var(--logo-width) / 3);
   --logo-width-split-across-three-columns: repeat(3, var(--logo-width-one-third));
   width: 100%;
@@ -37,9 +37,7 @@
 
 .timeline-image {
   background-color: rgb(var(--background-rgb));
-  width: var(--logo-width);
   grid-column: 1 / span 3;
-  justify-self: center;
 }
 
 .timeline-image:first-child {
@@ -53,7 +51,7 @@
   width: 100%;
   /* I need something wide enough that logos are always padded on their sides since vertical padding would increase
   the logo's distance from the timeline line. */
-  aspect-ratio: 32 / 9;
+  aspect-ratio: 16 / 9;
   object-fit: scale-down;
 }
 
@@ -72,10 +70,13 @@
 .timeline-text {
   max-width: 30ch;
   grid-column: 3 / span 2;
-  padding: 60px 0 60px 0;
+  background-color: rgb(var(--timeline-item-background-rgb));
+  padding: 20px;
+  border-radius: 10px;
+  margin: 40px 0 40px 0;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   .container {
     grid-template-columns: 1fr var(--logo-width-split-across-three-columns) 1fr;
   }
@@ -84,6 +85,10 @@
   }
   .timeline-image {
     grid-column: 2 / span 3;
+  }
+  .timeline-text {
+    max-width: 40ch;
+    margin: 80px 0 80px 0;
   }
   .timeline-text:nth-child(2n) {
     grid-column: 1 / span 2;
