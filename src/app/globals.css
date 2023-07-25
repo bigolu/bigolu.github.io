@@ -11,6 +11,7 @@
   --inactive-timeline-rgb: 193, 184, 184;
   --active-timeline-rgb: 0, 0, 0;
   --border-rgb: 193, 184, 184;
+  --timeline-item-background-rgb: 240, 240, 240;
 
   --duration: 0.5s;
   --timing: ease;
@@ -21,10 +22,11 @@
   :root {
     --foreground-rgb: 255, 255, 255;
     --inactive-foreground-rgb: 81, 81, 81;
-    --background-rgb: 15, 20, 31;
+    --background-rgb: 18, 18, 18;
     --inactive-timeline-rgb: 81, 81, 81;
     --active-timeline-rgb: 251, 251, 251;
     --border-rgb: 81, 81, 81;
+    --timeline-item-background-rgb: 36, 36, 36;
   }
 }
 
