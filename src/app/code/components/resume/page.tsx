@@ -120,8 +120,9 @@ export default function Resume() {
           <ImageComponent {...datum.image} />
         </div>,
         <div key={datum.description + 'text'} className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
-          <h3>{datum.date}</h3>
-          <h3>{datum.role} @ {datum.company}</h3>
+          <h3 className={styles.role}>{datum.role} @ {datum.company}</h3>
+          <h3 className={styles.date}>{datum.date}</h3>
+          <br/>
           <p>{datum.description}</p>
         </div>,
     ];

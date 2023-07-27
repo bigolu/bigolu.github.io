@@ -76,6 +76,15 @@
   margin: 40px 0 40px 0;
 }
 
+.role {
+  font-weight: bold;
+}
+
+.date {
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
 @media (min-width: 700px) {
   .container {
     grid-template-columns: 1fr var(--logo-width-split-across-three-columns) 1fr;
