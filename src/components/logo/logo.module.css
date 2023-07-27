@@ -1,13 +1,3 @@
-@import "~@fontsource/press-start-2p/400.css";
-
-.code-logo {
-  font-family: 'Source Code Pro Variable';
-  font-style: italic;
-}
-
-.home-logo {
-  font-family: "Press Start 2P";
-}
 .home-logo .big {
   transform: translateY(-50%);
 }

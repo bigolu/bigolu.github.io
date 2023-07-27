@@ -1,3 +1,5 @@
+@import "~@fontsource/press-start-2p/400.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,11 +22,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb: 248, 249, 250;
     --inactive-foreground-rgb: 81, 81, 81;
     --background-rgb: 18, 18, 18;
     --inactive-timeline-rgb: 81, 81, 81;
-    --active-timeline-rgb: 251, 251, 251;
+    --active-timeline-rgb: 248, 249, 250;
     --border-rgb: 81, 81, 81;
     --timeline-item-background-rgb: 36, 36, 36;
   }
