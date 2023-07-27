@@ -1,58 +1,50 @@
 "use client"
 
-import { createPortal } from 'react-dom';
 import styles from './modal.module.css'
-import React, { useLayoutEffect, useState } from 'react';
+import React, { RefObject, useLayoutEffect, useRef, useState } from 'react';
 
-interface ModalProps {
-  width: number,
-  height: number,
-  left: number,
-  top: number,
-  data: any,
-  isOpen: boolean,
+type ModalProps = {
+  open: boolean,
+  source: RefObject<HTMLDivElement>,
+  handleClose: () => void,
+  children: React.ReactNode,
 }
 
 export default function Modal(props: ModalProps) {
-  const inlineStyles = {
-    width: `${props.width}px`,
-    height: `${props.height}px`,
-    'backgroundColor': 'rgb(var(--background-rgb))',
-    left: props.left,
-    top: props.top,
-  }
-  const modalContent = (
-    <div className={styles.container} style={inlineStyles}>
-      <p>Hey there, I{"'"}m a modal.</p>
-    </div>
-  );
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [wrapperElement, setWrapperElement] = useState<HTMLElement|null>(null);
-  function createWrapperAndAppendToBody(wrapperId: string) {
-    const wrapperElement = document.createElement('div');
-    wrapperElement.setAttribute("id", wrapperId);
-    document.body.appendChild(wrapperElement);
-    return wrapperElement;
-  }
+  const modalRef = useRef<HTMLDialogElement>(null);
+
   useLayoutEffect(() => {
-    const wrapperId = 'my-modal-id';
-    let element = document.getElementById(wrapperId);
-    let systemCreated = false;
-    // if element is not found with wrapperId or wrapperId is not provided,
-    // create and append to body
-    if (!element) {
-      systemCreated = true;
-      element = createWrapperAndAppendToBody(wrapperId);
+    if (!props.source.current) {
+      return;
     }
-    setWrapperElement(element);
-
-    return () => {
-      // delete the programatically created element
-      if (systemCreated && element != null && element.parentNode != null) {
-        element!.parentNode.removeChild(element);
-      }
+    if (!modalRef.current) {
+      return;
     }
-  }, []);
 
-  return (wrapperElement && props.isOpen) ? createPortal(modalContent, wrapperElement) : null;
+    if (props.open && !isOpen) {
+      const rect = props.source.current.getBoundingClientRect();
+      modalRef.current.style.setProperty('--width', props.source.current.clientWidth + 'px');
+      modalRef.current.style.setProperty('--height', props.source.current.clientHeight + 'px');
+      modalRef.current.style.setProperty('--left', rect.left.toString() + 'px');
+      modalRef.current.style.setProperty('--top', rect.top.toString() + 'px');
+      modalRef.current.style.setProperty('--background-color', 'rgb(var(--timeline-item-background-rgb))');
+      // TODO: find bg color in ancestors, set border[-radius]
+
+      props.source.current.style.visibility = 'hidden';
+      modalRef.current.showModal();
+      setIsOpen(true);
+    } else if (!props.open && isOpen) {
+      modalRef.current.close();
+      props.source.current.style.visibility = 'unset';
+      setIsOpen(false);
+    }
+  }, [isOpen, props.open, props.source]);
+
+  return (
+    <dialog className={styles.container} ref={modalRef}>
+      {props.children}
+    </dialog>
+  );
 }

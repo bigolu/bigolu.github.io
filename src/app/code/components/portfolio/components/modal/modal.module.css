@@ -1,18 +1,21 @@
 @keyframes enlarge {
   0% {
-    color: rgb(var(--background-rgb));
   }
-  80% {
-    color: rgb(var(--background-rgb));
+  50% {
+    width: var(--width);
+    height: var(--height);
   }
   100% {
-    width: 70%;
+    width: 80%;
     height: 70%;
-    color: unset;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+.container::backdrop {
+  background-color: rgb(0,0,0,0);
 }
 
 .container {
@@ -20,7 +23,16 @@
   animation: enlarge 300ms;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
+  padding: 10px;
+
+  /* the dialog has margins by default */
+  margin: 0;
+
+  width: var(--width);
+  height: var(--height);
+  left: var(--left);
+  top: var(--top);
+  background-color: var(--background-color);
   border: 1px solid rgb(var(--border-rgb));
   border-radius: 10px;
-  padding: 10px;
 }

@@ -1,50 +1,70 @@
-import Modal from './components/modal/modal';
-import styles from './page.module.css'
-import { ReactElement, useState, MouseEvent } from 'react';
+import PortfolioCard, { PortfolioCardProps } from './components/portfolioCard/portfolioCard';
+import styles from './page.module.css';
 
 export default function Portfolio() {
-  const [modalData, setModalData] = useState({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-    data: {},
-    isOpen: false,
-  })
+  const portfolioItemData: PortfolioCardProps[] = [
+    {
+      name: 'project #1',
+      date: 'Summer 2015',
+      description: 'The first project I ever made.',
+      tags: [
+        'backend',
+        'frontend'
+      ],
+      links: [
 
-  const data = {
-    p1: {
-      name: 'p1',
-      description: 'The first thing I made.'
+      ],
+      teammates: [
+
+      ],
+      thumbnailImageUrl: "/image/rutgers.svg",
+      images: [
+        {
+         both: {
+           url: "/image/rutgers.svg",
+           width: 248,
+           height: 219.38
+         },
+         alt: "Rutgers logo"
+        }
+      ],
     },
-    p2: {
-      name: 'p2',
-      description: 'The second thing I made.'
+    {
+      name: 'project #2',
+      date: 'Summer 2016',
+      description: 'The second project I made.',
+      tags: [
+        'mobile',
+      ],
+      links: [
+
+      ],
+      teammates: [
+
+      ],
+      thumbnailImageUrl: "/image/rutgers.svg",
+      images: [
+        {
+         both: {
+           url: "/image/rutgers.svg",
+           width: 248,
+           height: 219.38
+         },
+         alt: "Rutgers logo"
+        }
+      ],
     },
+  ];
+
+  function makePortfolioCard(portfolioItemDatum: PortfolioCardProps) {
+    return <PortfolioCard {...portfolioItemDatum} key={portfolioItemDatum.name} />;
   }
-  function handleClick(event: MouseEvent<HTMLElement>) {
-    event.currentTarget.style.visibility = 'hidden';
-    const rect = event.currentTarget.getBoundingClientRect();
-    setModalData({
-      width: rect.width,
-      height: rect.height,
-      top: rect.top,
-      left: rect.left,
-      data: {},
-      isOpen: !modalData.isOpen,
-    })
-  }
-  const projects = Object.values(data).map((datum) =>
-    <div onClick={handleClick} className={styles.project} key={datum.name}>
-      <p>{datum.name}</p>
-      <p>{datum.description}</p>
-    </div>
-  )
+
+  const portfolioCards = portfolioItemData.map(makePortfolioCard);
 
   return (
     <div className={styles.container}>
-      {projects}
-      <Modal width={modalData.width} height={modalData.height} left={modalData.left} top={modalData.top} data={modalData.data} isOpen={modalData.isOpen}></Modal>
+      {portfolioCards}
     </div>
-  )
+  );
 }

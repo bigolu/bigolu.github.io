@@ -7,8 +7,8 @@ import { ReactElement, useState } from 'react';
 
 export default function Code() {
   const tabPagesByName: { [key: string]: ReactElement } = {
-    Resume: <Resume></Resume>,
     Portfolio: <Portfolio></Portfolio>,
+    Resume: <Resume></Resume>,
   }
   const tabNames = Object.keys(tabPagesByName);
   const [activeTabName, setActiveTab] = useState<string>(tabNames[0]);
@@ -32,7 +32,7 @@ export default function Code() {
       <div className={styles['tab-container']}>
         {tabButtons}
       </div>
-      <div>
+      <div style={{width: '100%',}}>
         {tabPage}
       </div>
     </main>

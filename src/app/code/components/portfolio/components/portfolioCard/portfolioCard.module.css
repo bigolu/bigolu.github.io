@@ -1,0 +1,26 @@
+.container {
+  border: 1px solid rgb(var(--border-rgb));
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), url('/image/rutgers.svg');
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  padding: 125px 10px 10px 10px;
+  background-color: rgb(var(--timeline-item-background-rgb));
+}
+
+.tag {
+  display: inline;
+  border: 1px solid;
+  padding: 4px;
+  border-radius: 24px;
+}
+
+.tag:not(:last-child) {
+  margin-right: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
