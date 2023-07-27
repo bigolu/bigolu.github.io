@@ -42,7 +42,7 @@
     "date": "Summer 2016"
   },
   {
-    "role": "Software Engineer",
+    "role": "Software Engineering Intern",
     "company": "Skillshare",
     "description": "Worked with designer to develop the front-end and back-end for new features on the site",
     "image": {
@@ -62,7 +62,7 @@
     "date": "Summer 2016"
   },
   {
-    "role": "Software Engineer",
+    "role": "Software Engineering Intern",
     "company": "Pinterest",
     "description": "Automated the data pipeline setup for new Kafka topics",
     "image": {
@@ -81,7 +81,7 @@
     "date": "Summer 2017"
   },
   {
-    "role": "Software Engineer",
+    "role": "Software Engineering Intern",
     "company": "Meta (Formerly Facebook)",
     "description": "Develop a tool to automate the onboarding of other teams onto the message/notification delivery platform for Messenger",
     "image": {
@@ -118,7 +118,7 @@
       "alt": "Squarespace logo"
     },
     "logoScaleFactor": 4,
-    "date": "February 2019 - November 2020"
+    "date": "February 2019 - April 2021"
   },
   {
     "role": "TBD",
