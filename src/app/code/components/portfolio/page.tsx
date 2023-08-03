@@ -1,3 +1,4 @@
+import { GalleryMediaType } from 'components/gallery/gallery';
 import PortfolioCard, { PortfolioCardProps } from './components/portfolioCard/portfolioCard';
 import styles from './page.module.css';
 
@@ -18,15 +19,22 @@ export default function Portfolio() {
 
       ],
       thumbnailImageUrl: "/image/rutgers.svg",
-      images: [
+      media: [
         {
-         both: {
-           url: "/image/rutgers.svg",
-           width: 248,
-           height: 219.38
-         },
+         _type: GalleryMediaType.Image,
+         url: "/image/rutgers.svg",
+         width: 248,
+         height: 219.38,
          alt: "Rutgers logo"
-        }
+        },
+        {
+          _type: GalleryMediaType.Video,
+          url: "",
+          width: -1,
+          height: -1,
+          alt: "",
+          embed: <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/N-pzoutwgU0" title="YouTube video player" style={{border: '0'}} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+        },
       ],
     },
     {
@@ -43,13 +51,12 @@ export default function Portfolio() {
 
       ],
       thumbnailImageUrl: "/image/rutgers.svg",
-      images: [
+      media: [
         {
-         both: {
-           url: "/image/rutgers.svg",
-           width: 248,
-           height: 219.38
-         },
+         _type: GalleryMediaType.Image,
+         url: "/image/rutgers.svg",
+         width: 248,
+         height: 219.38,
          alt: "Rutgers logo"
         }
       ],

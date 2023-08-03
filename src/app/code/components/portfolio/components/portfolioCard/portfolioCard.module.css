@@ -6,6 +6,13 @@
   background-repeat: no-repeat;
   padding: 125px 10px 10px 10px;
   background-color: rgb(var(--timeline-item-background-rgb));
+  max-width: 300px;
+  transition: transform 200ms ease-out;
+}
+
+.container:hover {
+  transform: scale(1.1);
+  transition: transform 200ms ease-in;
 }
 
 .tag {
@@ -23,4 +30,10 @@
   position: absolute;
   top: 0px;
   right: 5px;
+}
+
+.modal-container {
+  display: grid;
+  grid-template-rows: 60% 1fr;
+  height: 100%;
 }

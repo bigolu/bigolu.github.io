@@ -1,0 +1,59 @@
+.container {
+  display: grid;
+  /* I'd like to do math.min with the width, otherwise items overlap */
+  grid-template-rows: 80% 20%;
+}
+
+.media-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-rows: 100%;
+  grid-auto-columns: 100%;
+  gap: 20px;
+  overflow: scroll;
+}
+
+.thumbnail-container {
+  border: 1px solid;
+  padding: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.media-container > * {
+  grid-row: 1;
+  max-width: 100%;
+}
+
+@media (orientation: landscape) {
+  .image, .video, .media-container > * {
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+@media (orientation: portrait) {
+  .image, .video, .media-container > * {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.video-thumbnail::after {
+  content: "I am a video thumbnail";
+}
+
+.image, .video, .image-thumbnail, .video-thumbnail {
+}
+
+.image-thumbnail, .video-thumbnail {
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  width: auto;
+  border: 1px solid rgb(var(--foreground-rgb));
+  border-radius: 5px;
+  padding: 5px;
+}

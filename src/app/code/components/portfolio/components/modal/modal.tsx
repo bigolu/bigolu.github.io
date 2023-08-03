@@ -25,12 +25,15 @@ export default function Modal(props: ModalProps) {
 
     if (props.open && !isOpen) {
       const rect = props.source.current.getBoundingClientRect();
+      const computedStyles = window.getComputedStyle(props.source.current, null);
+
       modalRef.current.style.setProperty('--width', props.source.current.clientWidth + 'px');
       modalRef.current.style.setProperty('--height', props.source.current.clientHeight + 'px');
       modalRef.current.style.setProperty('--left', rect.left.toString() + 'px');
       modalRef.current.style.setProperty('--top', rect.top.toString() + 'px');
       modalRef.current.style.setProperty('--background-color', 'rgb(var(--timeline-item-background-rgb))');
-      // TODO: find bg color in ancestors, set border[-radius]
+      modalRef.current.style.setProperty('border-radius', computedStyles.borderRadius);
+      modalRef.current.style.setProperty('border', computedStyles.border);
 
       props.source.current.style.visibility = 'hidden';
       modalRef.current.showModal();

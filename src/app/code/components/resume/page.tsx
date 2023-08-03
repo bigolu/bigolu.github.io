@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import React, { useLayoutEffect, useRef, useState, CSSProperties } from 'react';
+import React, { useLayoutEffect, useRef, useState, CSSProperties, Fragment } from 'react';
 import { ImageComponent, ImageProps } from 'components/image/image';
 
 async function getData() {
@@ -19,7 +19,7 @@ function getTimelineItemHeight(imageElement: HTMLElement, textElement: HTMLEleme
 }
 
 export default function Resume() {
-  type TimelineItem = { role: string, company: string, image: ImageProps, description: string, date: string, logoScaleFactor?: number, };
+  type TimelineItem = { role: string, company: string, image: ImageProps, description: string, date: string, };
 
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<TimelineItem[]>([]);
@@ -115,24 +115,22 @@ export default function Resume() {
   }, [data]);
 
   function makeImageAndTextElements(datum: TimelineItem, index: number) {
-    return [
-        <div key={datum.description + 'image'} className={styles['timeline-image']} style={{'gridRow': 1 + (2 * index)} as CSSProperties}>
-          <ImageComponent {...datum.image} />
-        </div>,
-        <div key={datum.description + 'text'} className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
-          <h3 className={styles.role}>{datum.role} @ {datum.company}</h3>
-          <h3 className={styles.date}>{datum.date}</h3>
-          <br/>
-          <p>{datum.description}</p>
-        </div>,
-    ];
+    return (
+        <Fragment key={datum.description}>
+          <div className={styles['timeline-image']} style={{'gridRow': 1 + (2 * index)} as CSSProperties}>
+            <ImageComponent {...datum.image} />
+          </div>
+          <div className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
+            <h3 className={styles.role}>{datum.role} @ {datum.company}</h3>
+            <h3 className={styles.date}>{datum.date}</h3>
+            <br/>
+            <p>{datum.description}</p>
+          </div>
+        </Fragment>
+    );
   }
 
-  function flatten(list: React.JSX.Element[][]) {
-    return list.reduce((accumulator, value) => accumulator.concat(value), []);
-  }
-
-  const elements = flatten(data.map(makeImageAndTextElements));
+  const elements = data.map(makeImageAndTextElements);
 
   return (
     <div className={styles.container + ' ' + styles.unemployed} style={{'--row-count': (data.length * 2) + 1,} as CSSProperties} ref={ref}>

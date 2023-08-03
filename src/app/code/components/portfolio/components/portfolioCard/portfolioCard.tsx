@@ -1,7 +1,7 @@
-import { ImageProps } from 'components/image/image';
 import styles from './portfolioCard.module.css'
 import { useState, MouseEvent, useRef } from 'react';
 import Modal from '../modal/modal';
+import { Gallery, GalleryImage, GalleryVideo } from 'components/gallery/gallery';
 
 export type PortfolioCardProps = {
   name: string,
@@ -11,7 +11,7 @@ export type PortfolioCardProps = {
   links: string[],
   teammates: string[],
   thumbnailImageUrl: string,
-  images: ImageProps[],
+  media?: (GalleryImage|GalleryVideo)[],
 };
 
 export default function PortfolioCard(props: PortfolioCardProps) {
@@ -51,12 +51,14 @@ export default function PortfolioCard(props: PortfolioCardProps) {
       {makeTagList(props.tags)}
 
       <Modal open={open} source={cardRef} handleClose={handleModalClose}>
-        <div>
-          <p>{props.name}</p>
-          <p>{props.description}</p>
-          {makeTagList(props.tags)}
-          <p> TODO: show the assets </p>
-          <button className={styles.close} onClick={(event: MouseEvent<HTMLElement>) => {event.stopPropagation(); handleModalClose()}}>X</button>
+        <div className={styles['modal-container']}>
+          <Gallery media={props.media ?? []} />
+          <div>
+            <p>{props.name}</p>
+            <p>{props.description}</p>
+            {makeTagList(props.tags)}
+            <button className={styles.close} onClick={(event: MouseEvent<HTMLElement>) => {event.stopPropagation(); handleModalClose()}}>X</button>
+          </div>
         </div>
       </Modal>
     </div>
