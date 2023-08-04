@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { CSSProperties, useRef, useState } from 'react';
 import styles from './gallery.module.css';
 import Image from 'next/image';
 
@@ -31,15 +31,7 @@ export type GalleryProps = {
 };
 
 export function Gallery({media, ...props}: GalleryProps) {
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const thumbnailsRef = useRef<(HTMLElement|SVGElement|null)[] | null>(null);
-
-  function getThumbnails() {
-    if (!thumbnailsRef.current) {
-      thumbnailsRef.current = new Array(media.length).fill(null);
-    }
-    return thumbnailsRef.current;
-  }
+  const [activeIndex,setActiveIndex] = useState(0);
 
   function makeMedia(media: GalleryImage|GalleryVideo, index: Number) {
     const commonProps = {
@@ -75,7 +67,7 @@ export function Gallery({media, ...props}: GalleryProps) {
 
     return (
       <div className={styles.wrapper}>
-        <div ref={galleryRef} className={styles['media-container']}>
+        <div className={styles['media-container']} style={{'--active-item-index': activeIndex} as CSSProperties}>
           {elements}
         </div>
       </div>
@@ -83,36 +75,14 @@ export function Gallery({media, ...props}: GalleryProps) {
   }
 
   function makeThumbnailMedia(media: GalleryImage|GalleryVideo, index: number) {
-    function thumbnailsRefCallback(thumbnailElement: HTMLElement|SVGElement|null) {
-      const thumbnails = getThumbnails();
-      thumbnails[index] = thumbnailElement;
-    }
-
     function handleClick() {
-      const galleryContainer = galleryRef.current;
-      if (!galleryContainer) {
-        return;
-      }
-      galleryContainer.style.setProperty('--active-item-index', index.toString());
-
-      getThumbnails().forEach((thumbnail, currentIndex) => {
-        if (index === currentIndex) {
-          thumbnail?.classList.add(styles.active);
-        } else {
-          thumbnail?.classList.remove(styles.active);
-        }
-      });
+      setActiveIndex(index)
     }
 
     const commonProps = {
       onClick: handleClick,
       key: index.toString(),
-      ref: thumbnailsRefCallback,
-      className: '',
-    };
-
-    if (index === 0) {
-      commonProps.className = styles.active;
+      className: (index === activeIndex) ? styles.active : '',
     };
 
     if (media._type === GalleryMediaType.Image) {
