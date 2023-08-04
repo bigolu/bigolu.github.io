@@ -23,6 +23,9 @@ export default function Resume() {
 
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<TimelineItem[]>([]);
+  if (data.length === 0) {
+    getData().then(setData);
+  }
 
   function setTimelineProgress() {
     const element = ref.current;
@@ -97,10 +100,6 @@ export default function Resume() {
   }
 
   useLayoutEffect(() => {
-    if (data.length === 0) {
-      getData().then(setData);
-    }
-
     // Only do the initial highlight after the elements are rendered in the timeline. Otherwise the whole thing
     // will be highlighted because the height of the timeline with no items will be 0.
     setTimelineProgress();
@@ -112,7 +111,7 @@ export default function Resume() {
       window.removeEventListener('scroll', setTimelineProgress);
       window.removeEventListener('resize', setTimelineProgress);
     };
-  }, [data]);
+  }, []);
 
   function makeImageAndTextElements(datum: TimelineItem, index: number) {
     return (

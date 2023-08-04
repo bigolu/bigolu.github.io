@@ -1,0 +1,217 @@
+[
+  {
+    "name": "tabbo",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "media": [
+      {
+        "_type": "Image",
+        "url": "/image/tabbo-screenshot.png",
+        "width": 1280,
+        "height": 800,
+        "alt": "Screenshot of tabbo"
+      },
+      {
+        "_type": "Video",
+        "embed": {
+          "width": "560",
+          "height": "315",
+          "src": "https://www.youtube-nocookie.com/embed/lnltvwTZZpU",
+          "title": "YouTube video player",
+          "style": {"border": "0"},
+          "allow": "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+          "allowFullScreen": true
+        }
+      }
+    ],
+    "description": "A tab management tool for Google Chrome.",
+    "links": [
+      {
+        "text": "try it",
+        "href": "https://chrome.google.com/webstore/detail/tabbo/hedbkonckghacebehjebpfknhdbobiko?hl=en"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/hackny2016labs/tabbo"
+      }
+    ]
+  },
+  {
+    "name": "notes-cli",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A CLI for your notes (complicated shell commands, steps to enable a virtualenv, etc.) to help you save time.",
+    "links": [
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/notes-cli"
+      }
+    ]
+  },
+  {
+    "name": "Shrednought",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A shooter game made in Unity3D using a real guitar as a controller!",
+    "links": [
+      {
+        "text": "video",
+        "href": "https://www.youtube.com/watch?v=Vxwh66scEHw&feature=youtu.be"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/9/Shrednought"
+      }
+    ]
+  },
+  {
+    "name": "ShadowrealmVR",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "Relive your favorite moments from Yu-Gi-Oh with the help of a duel disk, an Arduino, some RFID chips, and Unity3D.",
+    "links": [
+      {
+        "text": "video",
+        "href": "https://www.youtube.com/watch?v=jfY9KvvZufw&feature=youtu.be"
+      },
+      {
+        "text": "article",
+        "href": "https://news.mlh.io/shadowrealmvr-12-15-2015"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/9/ShadowRealmVR"
+      }
+    ]
+  },
+  {
+    "name": "PhoneWtf",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A webapp that allows you to prank your friends and family with mysterious phone calls.",
+    "links": [
+      {
+        "text": "try it",
+        "href": "https://phone.wtf"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/nickgirardo/PhoneWtf"
+      }
+    ]
+  },
+  {
+    "name": "seenIt",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A webapp for adding scenic stops to any roadtrip.",
+    "links": [
+      {
+        "text": "try it",
+        "href": "https://seenit-ru.herokuapp.com"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/seenIt"
+      }
+    ]
+  },
+  {
+    "name": "Hackerspace Print Queue",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A webapp that allows people to request 3D prints online for the 3D printer at the Hackerspace.",
+    "links": [
+      {
+        "text": "Hackerspace",
+        "href": "http://hackerspace.cs.rutgers.edu/index.php"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/Hackerspace-Print-Queue"
+      }
+    ]
+  },
+  {
+    "name": "CaveHub",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A Chrome extension that tells you what's going on in the CAVE. Includes bus times, weather, and who's working.",
+    "links": [
+      {
+        "text": "CAVE",
+        "href": "https://www.cs.rutgers.edu/resources/cave"
+      },
+      {
+        "text": "try it",
+        "href": "https://chrome.google.com/webstore/detail/cavehub/nfjldjkhghgdaabjmcffhhpkfpmjdckd"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/CaveHub"
+      }
+    ]
+  },
+  {
+    "name": "HackBingo",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A bingo game for hackathons!",
+    "links": [
+      {
+        "text": "play",
+        "href": "https://hack-bingo.herokuapp.com"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/Hackathon-Bingo"
+      }
+    ]
+  },
+  {
+    "name": "RanchBot",
+    "date": "2016",
+    "tags": [
+      "web extension"
+    ],
+    "thumbnailImageUrl": "/image/tabbo-screenshot.png",
+    "description": "A bot that makes daily posts to the Ranch Facebook page with a ranchy quote.",
+    "links": [
+      {
+        "text": "R a n c h",
+        "href": "https://www.facebook.com/raaanchhh"
+      },
+      {
+        "text": "github",
+        "href": "https://github.com/bigolu/RanchBot"
+      }
+    ]
+  }
+]

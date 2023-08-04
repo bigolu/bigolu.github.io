@@ -7,12 +7,20 @@
 .media-container {
   width: 100%;
   height: 100%;
-  display: grid;
+  display: flex;
   place-items: center;
   grid-template-rows: 100%;
   grid-auto-columns: 100%;
-  gap: 20px;
-  overflow: scroll;
+  --gap: 20px;
+  gap: var(--gap);
+  transform: translateX(calc(calc(-1 * calc(100% + var(--gap))) * var(--active-item-index, 0)));
+  transition: transform 100ms ease-out;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .thumbnail-container {
@@ -22,9 +30,15 @@
   gap: 10px;
 }
 
+.thumbnail-container > .active {
+  border: 1px solid blue;
+}
+
 .media-container > * {
-  grid-row: 1;
+  /* grid-row: 1; */
+  flex: 0 0 100%;
   max-width: 100%;
+  object-fit: contain;
 }
 
 @media (orientation: landscape) {
@@ -42,8 +56,8 @@
   }
 }
 
-.video-thumbnail::after {
-  content: "I am a video thumbnail";
+.video-thumbnail {
+  fill: rgb(var(--foreground-rgb));
 }
 
 .image, .video, .image-thumbnail, .video-thumbnail {
@@ -51,6 +65,7 @@
 
 .image-thumbnail, .video-thumbnail {
   aspect-ratio: 1 / 1;
+  object-fit: contain;
   height: 100%;
   width: auto;
   border: 1px solid rgb(var(--foreground-rgb));

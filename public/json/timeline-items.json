@@ -1,5 +1,19 @@
 [
   {
+    "role": "Software Engineer",
+    "company": "Rutgers University",
+    "description": "Rutgers - Helped develop a backend to generate and grade quizzes for students enrolled in a Chemistry or Mathematics class at Rutgers.",
+    "image": {
+      "both": {
+        "url": "/image/rutgers.svg",
+        "width": 248,
+        "height": 219.38
+      },
+      "alt": "Rutgers logo"
+    },
+    "date": "Summer 2015"
+  },
+  {
     "role": "Teaching Assistant",
     "company": "Rutgers University",
     "description": "Lead five classes of 15 students each in Introduction to Computer Science. Conduct workshops, provide tutoring, and grade assignments",
@@ -82,7 +96,7 @@
   },
   {
     "role": "Software Engineering Intern",
-    "company": "Meta (Formerly Facebook)",
+    "company": "Meta",
     "description": "Develop a tool to automate the onboarding of other teams onto the message/notification delivery platform for Messenger",
     "image": {
       "light": {

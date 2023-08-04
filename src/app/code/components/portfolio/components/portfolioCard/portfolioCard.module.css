@@ -1,10 +1,11 @@
 .container {
+  --background-image-size: 200px;
   border: 1px solid rgb(var(--border-rgb));
   border-radius: 10px;
-  background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), url('/image/rutgers.svg');
-  background-size: 100% 100px;
+  background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), var(--thumbnail-image-url);
+  background-size: 100% var(--background-image-size);
   background-repeat: no-repeat;
-  padding: 125px 10px 10px 10px;
+  padding: calc(var(--background-image-size) + 25px) 10px 10px 10px;
   background-color: rgb(var(--timeline-item-background-rgb));
   max-width: 300px;
   transition: transform 200ms ease-out;
