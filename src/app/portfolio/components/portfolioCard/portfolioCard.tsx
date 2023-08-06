@@ -35,7 +35,7 @@ export default function PortfolioCard(props: PortfolioCardProps) {
   function makeTagList(tags: string[]) {
     const tagListItems = tags.map(makeTagListItem);
     return (
-      <ol>
+      <ol className={styles.taglist}>
         {tagListItems}
       </ol>
     );
@@ -68,9 +68,9 @@ export default function PortfolioCard(props: PortfolioCardProps) {
   return (
     <div className={styles.container} ref={cardRef} onClick={handleCardClick} style={{'--thumbnail-image-url': `url("${props.thumbnailImageUrl}")`} as CSSProperties}>
       <p>{props.name}</p>
-      <p>{props.date}</p>
       <p>{props.description}</p>
       {makeTagList(props.tags)}
+      <p className={styles.date}>Year: {props.date}</p>
 
       <Modal open={open} source={cardRef} handleClose={handleModalClose}>
         <div className={styles['modal-container']}>

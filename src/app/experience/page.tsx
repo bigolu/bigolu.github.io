@@ -1,3 +1,5 @@
+"use client"
+
 import styles from './page.module.css'
 import React, { useLayoutEffect, useRef, useState, CSSProperties, Fragment } from 'react';
 import { ImageComponent, ImageProps } from 'components/image/image';
@@ -18,7 +20,7 @@ function getTimelineItemHeight(imageElement: HTMLElement, textElement: HTMLEleme
   return imageElement.clientHeight + getVerticalMarginHeight(imageElement) + textElement.clientHeight + getVerticalMarginHeight(textElement);
 }
 
-export default function Resume() {
+export default function Experience() {
   type TimelineItem = { role: string, company: string, image: ImageProps, description: string, date: string, };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -99,7 +101,12 @@ export default function Resume() {
     element.style.setProperty('--length-to-highlight', half);
   }
 
+  // data is a dependency so I can set timeline progress when the data is fetched
   useLayoutEffect(() => {
+    if (data.length === 0) {
+      return;
+    }
+
     // Only do the initial highlight after the elements are rendered in the timeline. Otherwise the whole thing
     // will be highlighted because the height of the timeline with no items will be 0.
     setTimelineProgress();
@@ -111,7 +118,7 @@ export default function Resume() {
       window.removeEventListener('scroll', setTimelineProgress);
       window.removeEventListener('resize', setTimelineProgress);
     };
-  }, []);
+  }, [data]);
 
   function makeImageAndTextElements(datum: TimelineItem, index: number) {
     return (
@@ -120,8 +127,8 @@ export default function Resume() {
             <ImageComponent {...datum.image} />
           </div>
           <div className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
-            <h3 className={styles.role}>{datum.role} @ {datum.company}</h3>
-            <h3 className={styles.date}>{datum.date}</h3>
+            <p className={styles.role}>{datum.role} @ {datum.company}</p>
+            <p className={styles.date}>{datum.date}</p>
             <br/>
             <p>{datum.description}</p>
           </div>

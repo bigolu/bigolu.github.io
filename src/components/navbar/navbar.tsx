@@ -5,7 +5,8 @@ export default function NavbarComponent() {
   return (
     <div className={styles.container}>
       <Link href='/about'>about</Link>
-      <Link href='/code'>code</Link>
+      <Link href='/portfolio'>portfolio</Link>
+      <Link href='/experience'>experience</Link>
     </div>
   )
 }

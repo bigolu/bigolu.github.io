@@ -1,14 +1,16 @@
 .container {
-  --background-image-size: 200px;
+  --background-image-size: 50%;
+  --card-padding: 10px;
   border: 1px solid rgb(var(--border-rgb));
   border-radius: 10px;
   background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), var(--thumbnail-image-url);
   background-size: 100% var(--background-image-size);
   background-repeat: no-repeat;
-  padding: calc(var(--background-image-size) + 25px) 10px 10px 10px;
+  padding: calc(var(--background-image-size) + 25px) var(--card-padding) var(--card-padding) var(--card-padding);
   background-color: rgb(var(--timeline-item-background-rgb));
-  max-width: 300px;
   transition: transform 200ms ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 .container:hover {
@@ -16,11 +18,27 @@
   transition: transform 200ms ease-in;
 }
 
+.taglist {
+  margin-bottom: auto;
+}
+
+.date {
+  margin-top: 15px;
+  align-self: end;
+  font-weight: lighter;
+  font-size: 1.5rem;
+  position: relative;
+  --offset: calc(var(--card-padding) - 3px);
+  left: var(--offset);
+  top: var(--offset);
+  line-height: 1;
+}
+
 .tag {
   display: inline;
   border: 1px solid;
   padding: 4px;
-  border-radius: 24px;
+  font-size: .75rem;
 }
 
 .tag:not(:last-child) {

@@ -1,3 +1,7 @@
+.container {
+  font-family: var(--fun-font);
+  font-size-adjust: var(--fun-font-size-adjust);
+}
 .home-logo .big {
   transform: translateY(-50%);
 }

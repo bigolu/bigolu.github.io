@@ -1,15 +1,12 @@
-/* Got the font from: https://www.dafont.com/pkmn-rbygsc.font */
-@font-face {
-  font-family: 'Pokemon Font';
-  src: url(../../../public/font/PKMN-RBYGSC.ttf);
-}
-
-.container {
-  font-family: "Pokemon Font";
+.image > img {
+  width: 20vh;
+  margin: 0 auto 20px auto;
 }
 
 .greeting-container {
-  width: 400px;
+  border: 3px solid;
+  max-width: var(--max-line-length);
+  margin: auto;
 }
 
 .greeting-container::after {
@@ -21,17 +18,16 @@
   float: right;
   content: "";
   /* to account for the space taken up by the box shadow */
-  margin-bottom: 20px;
-  margin-right: 25px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  scale: 0.65;
 }
 
-.greeting-content::before {
-  content: "Hey, how's it going?";
+.skill-list {
+  padding-left: 30px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .greeting-content::before {
-    content: "Zzz...   go to some other page    Zzz...";
-    white-space: pre;
-  }
+.skillList {
+  margin: 10px;
+  padding: 10px;
 }

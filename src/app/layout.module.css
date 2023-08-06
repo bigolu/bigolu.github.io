@@ -1,28 +1,35 @@
 .container {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.container > * {
+  flex: 0 0 auto;
 }
 
 .header {
-  grid-column-start: auto;
-  grid-row-start: 1;
   display: flex;
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom: 4px rgb(var(--border-rgb)) solid;
+  border-bottom: 2px rgb(var(--border-rgb)) solid;
 
   position: sticky;
   top: 0;
   background-color: rgb(var(--background-rgb));
   z-index: 1;
 
-  font-family: "Press Start 2P";
 }
 
 .main {
-  grid-column-start: 1 / 1;
-  grid-row-start: 2 / 2;
-  padding: 2.5%;
+  padding: 20px;
+}
+
+.footer {
+  margin-top: auto;
+  margin-bottom: 10px;
+  /* I added left and right padding so text doesn't get clipped in a rounded OS window */
+  padding: 20px 8px 0 8px;
+  text-align: end;
 }

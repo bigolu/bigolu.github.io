@@ -56,10 +56,6 @@
   }
 }
 
-.video-thumbnail {
-  fill: rgb(var(--foreground-rgb));
-}
-
 .image, .video, .image-thumbnail, .video-thumbnail {
 }
 

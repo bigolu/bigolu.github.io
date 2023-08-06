@@ -1,6 +1,7 @@
 import { CSSProperties, useRef, useState } from 'react';
 import styles from './gallery.module.css';
 import Image from 'next/image';
+import { Icon, IconType } from 'components/icon/icon';
 
 export enum GalleryMediaType {
   Image = 'Image',
@@ -93,13 +94,10 @@ export function Gallery({media, ...props}: GalleryProps) {
     } else {
       commonProps.className += ` ${styles['video-thumbnail']}`;
       return (
-        <svg {...commonProps} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <use href="image/video-thumbnail.svg#icon"/>
-        </svg>
+        <Icon {...commonProps} type={IconType.Video} />
       );
     }
   }
-
 
   function makeThumbnailMediaSet(media: (GalleryImage|GalleryVideo)[]) {
     const elements = media.map(makeThumbnailMedia);

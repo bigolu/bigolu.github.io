@@ -6,6 +6,36 @@
 
 /* @import '~nes.css/css/nes.css'; */
 
+/* Got the font from: https://www.dafont.com/pkmn-rbygsc.font */
+@font-face {
+  font-family: 'Pokemon Font';
+  src: url(../../public/font/PKMN-RBYGSC.ttf);
+  size-adjust: 90%;
+}
+
+@font-face {
+  font-family: "Neue Pixel";
+  src: url("../../public/font/NeuePixelSans.ttf");
+  size-adjust: 108%;
+}
+
+@font-face {
+  font-family: Bender;
+  src: url("../../public/font/Jovanny Lemonad - Bender.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Bender;
+  font-weight: bold;
+  src: url("../../public/font/Jovanny Lemonad - Bender-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Bender;
+  font-weight: lighter;
+  src: url("../../public/font/Jovanny Lemonad - Bender-Light.otf") format("opentype");
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --inactive-foreground-rgb: 193, 184, 184;
@@ -18,6 +48,14 @@
   --duration: 0.5s;
   --timing: ease;
   color-scheme: light dark;
+
+  --fun-font: "Neue Pixel";
+  /* --fun-font-size-adjust: 1.2; */
+
+  font-family: Bender;
+  font-weight: bold;
+
+  --max-line-length: 60ch;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,6 +83,23 @@ img {
   max-width: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fun-font);
+  font-size: revert;
+  text-transform: uppercase;
+}
+
+li {
+  list-style: square;
+}
+
+.external {
+  --size: 1.15em;
+  width: var(--size);
+  height: var(--size);
+}
+
+/* for debugging */
 * {
   /* outline: 1px red solid; */
 }

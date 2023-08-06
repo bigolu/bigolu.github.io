@@ -1,0 +1,16 @@
+.container {
+  margin-top: 15px;
+  display: grid;
+  grid-auto-columns: min(300px, 100%);
+  grid-auto-rows: max-content;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 400px) {
+  .container {
+    grid-auto-columns: unset;
+    grid-template-columns: repeat(auto-fit, clamp(300px, 20%, 800px));
+  }
+}

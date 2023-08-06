@@ -9,4 +9,9 @@
 .container > * {
   grid-column-start: auto;
   grid-row-start: 1;
+  border-bottom: 1px solid transparent;
+}
+
+.container > *:hover {
+  border-bottom: 1px solid;
 }

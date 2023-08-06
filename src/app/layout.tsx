@@ -3,6 +3,7 @@ import './globals.css'
 import LogoComponent from 'components/logo/logo'
 import NavbarComponent from 'components/navbar/navbar'
 import styles from './layout.module.css'
+import { ExternalLink } from 'components/external-link/component'
 
 export const metadata: Metadata = {
   title: 'bigo-dot-lu',
@@ -25,6 +26,11 @@ export default function RootLayout({
           <div className={styles.main}>
             {children}
           </div>
+          <footer className={styles.footer}>
+            <ExternalLink href='https://github.com/bigolu/bigolu.github.io'>
+              source code for this website
+            </ExternalLink>
+          </footer>
         </div>
       </body>
     </html>

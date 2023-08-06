@@ -31,7 +31,6 @@
   display: grid;
   grid-template-columns:   var(--logo-width-split-across-three-columns) auto;
   grid-template-rows: auto;
-  margin-bottom: 35vh;
   position: relative; /* for offsetTop */
 }
 
