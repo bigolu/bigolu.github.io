@@ -121,16 +121,17 @@ export default function Experience() {
   }, [data]);
 
   function makeImageAndTextElements(datum: TimelineItem, index: number) {
+    // TODO: When `subgrid` has better support, I can use it to put these elements together in a container instead
+    // of using a Fragment.
+    // browser support: https://caniuse.com/css-subgrid
     return (
         <Fragment key={datum.description}>
           <div className={styles['timeline-image']} style={{'gridRow': 1 + (2 * index)} as CSSProperties}>
             <ImageComponent {...datum.image} />
           </div>
           <div className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
-            <p className={styles.role}>{datum.role} @ {datum.company}</p>
+            <p className={styles.role}>{datum.role} @ {datum.company} &#8212; {datum.description}</p>
             <p className={styles.date}>{datum.date}</p>
-            <br/>
-            <p>{datum.description}</p>
           </div>
         </Fragment>
     );

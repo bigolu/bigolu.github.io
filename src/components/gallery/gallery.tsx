@@ -37,22 +37,26 @@ export function Gallery({media, ...props}: GalleryProps) {
   function makeMedia(media: GalleryImage|GalleryVideo, index: Number) {
     const commonProps = {
       tabIndex: -1,
-      key: index.toString()
     };
+
+    // I get an error when I set the key using the spread operator so I have to set it explicitly. idk why I have to
+    // do this though.
+    // issue related to this problem: https://github.com/zillow/react-slider/issues/288
+    const key = index.toString();
 
     if (media._type === GalleryMediaType.Image) {
       return (
-        <Image {...commonProps} className={styles.image} alt={media.alt} src={media.url} width={media.width} height={media.height}/>
+        <Image key={key} {...commonProps} className={styles.image} alt={media.alt} src={media.url} width={media.width} height={media.height}/>
       );
     } else {
       if (media.embed) {
         return (
-          <iframe {...commonProps} {...media.embed}></iframe>
+          <iframe key={key} {...commonProps} {...media.embed}></iframe>
         );
       } else if (media.source) {
         const source = media.source;
         return (
-          <video {...commonProps} className={styles.video}>
+          <video key={key} {...commonProps} className={styles.video}>
             <source src={source.url} height={source.height} width={source.width}/>
             <p>{source.alt}</p>
           </video>
@@ -82,19 +86,23 @@ export function Gallery({media, ...props}: GalleryProps) {
 
     const commonProps = {
       onClick: handleClick,
-      key: index.toString(),
       className: (index === activeIndex) ? styles.active : '',
     };
+
+    // I get an error when I set the key using the spread operator so I have to set it explicitly. idk why I have to
+    // do this though.
+    // issue related to this problem: https://github.com/zillow/react-slider/issues/288
+    const key = index.toString();
 
     if (media._type === GalleryMediaType.Image) {
       commonProps.className += ` ${styles['image-thumbnail']}`;
       return (
-        <Image {...commonProps} alt={media.alt} src={media.url} width={media.width} height={media.height}/>
+        <Image key={key} {...commonProps} alt={media.alt} src={media.url} width={media.width} height={media.height}/>
       );
     } else {
       commonProps.className += ` ${styles['video-thumbnail']}`;
       return (
-        <Icon {...commonProps} type={IconType.Video} />
+        <Icon key={key} {...commonProps} type={IconType.Video} />
       );
     }
   }

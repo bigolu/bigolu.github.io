@@ -1,12 +1,26 @@
 import styles from './navbar.module.css'
 import Link from 'next/link'
 
-export default function NavbarComponent() {
+function makeLink([displayName, route]: string[]) {
   return (
-    <div className={styles.container}>
-      <Link href='/about'>about</Link>
-      <Link href='/portfolio'>portfolio</Link>
-      <Link href='/experience'>experience</Link>
-    </div>
+    <li className={styles.navbarItem} key={route}>
+      <Link href={`/${route}`}>{displayName}</Link>
+    </li>
+  );
+}
+
+export default function NavbarComponent() {
+  const routesByDisplayName = {
+    'about': 'about',
+    'portfolio': 'portfolio',
+    'experience': 'experience',
+  };
+
+  const links = Object.entries(routesByDisplayName).map(makeLink);
+
+  return (
+    <ul className={styles.container}>
+      {links}
+    </ul>
   )
 }

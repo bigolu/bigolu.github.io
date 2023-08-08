@@ -70,7 +70,7 @@ export default function PortfolioCard(props: PortfolioCardProps) {
       <p>{props.name}</p>
       <p>{props.description}</p>
       {makeTagList(props.tags)}
-      <p className={styles.date}>Year: {props.date}</p>
+      <p className={styles.date}>{props.date}</p>
 
       <Modal open={open} source={cardRef} handleClose={handleModalClose}>
         <div className={styles['modal-container']}>

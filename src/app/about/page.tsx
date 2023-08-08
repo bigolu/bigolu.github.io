@@ -1,6 +1,4 @@
 import styles from './page.module.css'
-import Image from 'next/image'
-import profilePicture from './static_biggs.png'
 import { ImageComponent, ImageProps } from 'components/image/image'
 import Email from 'components/email/email';
 import { Fragment } from 'react';
@@ -22,22 +20,28 @@ export default function About() {
   };
 
   const skills = {
-    'front-end': [
+    'Front-End': [
+      'React',
+      'Next.js',
       'HTML',
       'CSS',
       'JavaScript',
       'TypeScript',
-      'React',
-      'Next.js',
     ],
-    'back-end': [
+    'Back-End': [
+      'Spring',
+      'Flask',
+      'OpenAPI',
+      'Elasticsearch',
       'Java',
       'Python',
-      'Spring',
     ],
-    'other': [
-      'Shell (POSIX, Bash, Fish)',
+    'DevOps': [
+      'POSIX shell',
+      'Bash',
+      'Fish',
       'Nix',
+      'Unix-like Operating Systems',
     ],
   };
 
@@ -57,7 +61,7 @@ export default function About() {
       return (
         <Fragment key={subject}>
           <h2>{subject}</h2>
-          <ul>
+          <ul className={styles.list}>
             {skills.map(skill => <li key={skill}>{skill}</li>)}
           </ul>
         </Fragment>
@@ -65,7 +69,7 @@ export default function About() {
     }).map((fragment, index) => <li className={styles.skillList} key={index}>{fragment}</li>);
 
     return (
-      <ul>
+      <ul className={styles.topLevelLists}>
         {skillLists}
       </ul>
     );
@@ -73,16 +77,22 @@ export default function About() {
 
   return (
     <main className={styles.container}>
-      <ImageComponent className={styles.image} {...imageProps} />
-      <div className={`nes-container ${styles['greeting-container']}`} style={{padding: '5px'}}>
-        Hey, my name is Biggie and I&apos;m a full-stack software engineer. If you&apos;re here regarding a job oppurtunity you can send an email to <Email />.
+      <div>
+        <ImageComponent className={styles.image} {...imageProps} />
+        <div className={`nes-container ${styles['greeting-container']}`} style={{padding: '5px'}}>
+          Hey, my name is Olaolu, but I go by Biggie. I&apos;m a full-stack software engineer and I&apos;m looking for my next role so if you&apos;re looking for a developer, send an email to <Email />.
+        </div>
       </div>
-      <h1>skills</h1>
-      {makeSkillLists()}
-      <h1>find me on:</h1>
-      <ul className={styles['skill-list']}>
-        {links.map(link => <li key={link.href}><ExternalLink href={link.href}>{link.text}</ExternalLink></li>)}
-      </ul>
+      <div>
+        <h1>skills:</h1>
+        {makeSkillLists()}
+      </div>
+      <div>
+        <h1>find me on:</h1>
+        <ul className={styles.topLevelLists}>
+          {links.map(link => <li key={link.href}><ExternalLink href={link.href}>{link.text}</ExternalLink></li>)}
+        </ul>
+      </div>
     </main>
   );
 }

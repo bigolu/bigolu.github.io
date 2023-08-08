@@ -1,0 +1,6 @@
+.email {
+  --size: 0.90rem;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 3px;
+}

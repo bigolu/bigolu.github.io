@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fontsource-variable/source-code-pro": "^5.0.6",
     "@fontsource/press-start-2p": "^5.0.4",
     "@types/node": "20.2.3",
     "@types/react": "18.2.6",
@@ -22,7 +21,6 @@
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-pdf": "^7.1.2",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   }

@@ -1,10 +1,23 @@
 .image > img {
   width: 20vh;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 0 auto;
+}
+
+.topLevelLists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
 }
 
 .greeting-container {
-  border: 3px solid;
+  border: 3px solid rgb(var(--border-rgb));
+  border-radius: 3px;
   max-width: var(--max-line-length);
   margin: auto;
 }
@@ -12,7 +25,7 @@
 .greeting-container::after {
   width: 3px;
   height: 3px;
-  color: rgb(var(--foreground-rgb));
+  color: currentColor;
   box-shadow: 3px 3px,6px 3px,9px 3px,12px 3px,15px 3px,18px 3px,21px 3px,3px 6px,6px 6px,9px 6px,12px 6px,15px 6px,18px 6px,21px 6px,6px 9px,9px 9px,12px 9px,15px 9px,18px 9px,6px 12px,9px 12px,12px 12px,15px 12px,18px 12px,9px 15px,12px 15px,15px 15px,12px 18px;
   pointer-events: none;
   float: right;
@@ -23,11 +36,35 @@
   scale: 0.65;
 }
 
-.skill-list {
-  padding-left: 30px;
+.skillList {
+  padding: 10px;
+  display: grid;
+  align-items: center;
+  background-color: rgb(var(--timeline-item-background-rgb));
+  border-radius: 9px;
+  flex: 0 1 auto;
 }
 
-.skillList {
-  margin: 10px;
-  padding: 10px;
+@media (min-width: 600px) {
+
+  .skillList {
+    grid-template-columns: auto auto;
+    display: inline-grid;
+  }
+}
+
+.skillList h2 {
+  font-family: inherit;
+  font-weight: lighter;
+  white-space: nowrap;
+  margin-right: 15px;
+  text-transform: none;
+}
+
+.skillList .list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: start;
+  max-width: 40ch;
+  column-gap: 20px;
 }

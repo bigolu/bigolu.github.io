@@ -70,8 +70,9 @@
   max-width: 40ch;
   grid-column: 3 / span 2;
   background-color: rgb(var(--timeline-item-background-rgb));
-  padding: 20px;
-  border-radius: 10px;
+  --card-padding: 20px;
+  padding: var(--card-padding);
+  border-radius: 4px;
   margin: 40px 0 40px 0;
 }
 
@@ -81,10 +82,18 @@
 
 .date {
   text-transform: uppercase;
+  margin-top: 15px;
+  text-align: end;
   font-weight: lighter;
+  font-size: 1.25rem;
+  position: relative;
+  --offset: calc(var(--card-padding) - 3px);
+  /* left: var(--offset);
+  top: var(--offset); */
+  line-height: 1;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .container {
     grid-template-columns: 1fr var(--logo-width-split-across-three-columns) 1fr;
   }

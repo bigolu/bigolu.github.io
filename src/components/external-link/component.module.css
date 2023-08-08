@@ -1,5 +1,5 @@
 .external-link-icon {
-  --size: 1.5em;
+  --size: 1.5rem;
   width: var(--size);
   height: var(--size);
 }

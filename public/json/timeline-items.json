@@ -2,7 +2,7 @@
   {
     "role": "Software Engineer",
     "company": "Rutgers University",
-    "description": "Rutgers - Helped develop a backend to generate and grade quizzes for students enrolled in a Chemistry or Mathematics class at Rutgers.",
+    "description": "Helped develop a backend to generate and grade quizzes for students enrolled in a Chemistry or Mathematics class at Rutgers.",
     "image": {
       "both": {
         "url": "/image/rutgers.svg",
