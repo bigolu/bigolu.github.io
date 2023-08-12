@@ -83,7 +83,7 @@ export default function PortfolioCard(props: PortfolioCardProps) {
             {props.teammates ? makeTeammateList(props.teammates) : null}
             {props.links ? makeLinkList(props.links) : null}
           </div>
-          <button className={styles.close} onClick={(event: MouseEvent<HTMLElement>) => {event.stopPropagation(); handleModalClose()}}>X</button>
+          <button className={styles.close} onClick={(event: MouseEvent<HTMLElement>) => {event.stopPropagation(); handleModalClose()}}>close (X)</button>
         </div>
       </Modal>
     </div>

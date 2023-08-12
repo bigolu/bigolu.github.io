@@ -49,8 +49,8 @@
   --timing: ease;
   color-scheme: light dark;
 
-  --fun-font: "Neue Pixel";
-  /* --fun-font-size-adjust: 1.2; */
+  --fun-font: "Press Start 2P";
+  --fun-font-size-adjust: 0.8;
 
   font-family: Bender;
   font-weight: bold;

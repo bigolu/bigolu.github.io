@@ -3,6 +3,7 @@ import { ImageComponent, ImageProps } from 'components/image/image'
 import Email from 'components/email/email';
 import { Fragment } from 'react';
 import { ExternalLink } from 'components/external-link/component';
+import Link from 'next/link'
 
 export default function About() {
   const imageProps: ImageProps = {
@@ -20,7 +21,7 @@ export default function About() {
   };
 
   const skills = {
-    'Front-End': [
+    'Front End': [
       'React',
       'Next.js',
       'HTML',
@@ -28,7 +29,7 @@ export default function About() {
       'JavaScript',
       'TypeScript',
     ],
-    'Back-End': [
+    'Back End': [
       'Spring',
       'Flask',
       'OpenAPI',
@@ -36,12 +37,9 @@ export default function About() {
       'Java',
       'Python',
     ],
-    'DevOps': [
+    'Other': [
       'POSIX shell',
       'Bash',
-      'Fish',
-      'Nix',
-      'Unix-like Operating Systems',
     ],
   };
 
@@ -54,6 +52,10 @@ export default function About() {
       'href': 'https://www.linkedin.com/in/bigolu',
       'text': 'LinkedIn',
     },
+    {
+      'href': 'https://stackblitz.com/@bigolu',
+      'text': 'StackBlitz',
+    }
   ];
 
   function makeSkillLists() {
@@ -77,13 +79,13 @@ export default function About() {
 
   return (
     <main className={styles.container}>
-      <div>
+      <div className={styles.me}>
         <ImageComponent className={styles.image} {...imageProps} />
         <div className={`nes-container ${styles['greeting-container']}`} style={{padding: '5px'}}>
-          Hey, my name is Olaolu, but I go by Biggie. I&apos;m a full-stack software engineer and I&apos;m looking for my next role so if you&apos;re looking for a developer, send an email to <Email />.
+          Hey, my name is Olaolu, but I go by Biggie. I&apos;m a full-stack software engineer and I&apos;m looking for my next role so if you&apos;re looking for a developer, send an email to <Email />. {"You can find all of my experience on the"} <Link href='/portfolio'>portfolio</Link> {'and'} <Link href='/experience'>experience</Link> {"pages, but if you prefer a summary you can look at my"} <ExternalLink href='https://docs.google.com/viewerng/viewer?url=https://github.com/bigolu/jobs/raw/master/resume.pdf'>single-page resume</ExternalLink>.
         </div>
       </div>
-      <div>
+      <div className={styles.skills}>
         <h1>skills:</h1>
         {makeSkillLists()}
       </div>

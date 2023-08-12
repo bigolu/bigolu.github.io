@@ -1,21 +1,23 @@
 .container {
   font-family: var(--fun-font);
-  font-size-adjust: var(--fun-font-size-adjust);
+  /* font-size-adjust: var(--fun-font-size-adjust); */
+  text-align: center;
+  font-size: 1.5rem;
 }
 .home-logo .big {
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .home-logo .olu {
-  transform: translateY(50%);
+  /* transform: translateY(50%); */
 }
 .home-logo .big, .home-logo .olu {
-  color: #9ebad5;
+  color: steelblue;
 }
 .home-logo .gie {
-  opacity: 0;
+  /* opacity: 0; */
 }
 .home-logo .ola {
-  opacity: 0;
+  /* opacity: 0; */
 }
 .home-logo:hover > span {
   opacity: unset;

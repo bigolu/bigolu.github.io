@@ -2,13 +2,16 @@
   display: grid;
   /* I'd like to do math.min with the width, otherwise items overlap */
   grid-template-rows: 80% 20%;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px;
 }
 
 .media-container {
   width: 100%;
   height: 100%;
   display: flex;
-  place-items: center;
   grid-template-rows: 100%;
   grid-auto-columns: 100%;
   --gap: 20px;
@@ -24,35 +27,38 @@
 }
 
 .thumbnail-container {
-  border: 1px solid;
   padding: 5px;
   display: flex;
+  justify-content: center;
   gap: 10px;
 }
 
 .thumbnail-container > .active {
-  border: 1px solid blue;
+  opacity: 1;
+  border-bottom: 3px solid steelblue;
+}
+
+.thumbnail-container > *:hover {
+  opacity: 1;
 }
 
 .media-container > * {
   /* grid-row: 1; */
   flex: 0 0 100%;
   max-width: 100%;
-  object-fit: contain;
+  object-fit: scale-down;
 }
 
 @media (orientation: landscape) {
   .image, .video, .media-container > * {
     width: auto;
     height: 100%;
-    aspect-ratio: 1 / 1;
   }
 }
 @media (orientation: portrait) {
   .image, .video, .media-container > * {
     height: auto;
     width: 100%;
-    aspect-ratio: 1 / 1;
   }
 }
 
@@ -64,7 +70,7 @@
   object-fit: contain;
   height: 100%;
   width: auto;
-  border: 1px solid rgb(var(--foreground-rgb));
-  border-radius: 5px;
+  opacity: .4;
+  border-bottom: 3px solid transparent;
   padding: 5px;
 }

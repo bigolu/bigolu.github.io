@@ -8,7 +8,6 @@ export default function Email() {
   const linkTextRef = useRef<HTMLSpanElement>(null);
   const linkRef = useRef<HTMLAnchorElement>(null);
 
-
   useLayoutEffect(() => {
     // I'm assserting that this is non-null since this effect runs after the email element in rendered in the DOM.
     const linkTextElement = linkTextRef.current!;

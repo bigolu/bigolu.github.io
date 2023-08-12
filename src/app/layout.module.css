@@ -2,6 +2,17 @@
   display: flex;
   flex-direction: column;
   min-height: 100dvb;
+  padding: 16px;
+}
+
+@media (min-width: 600px) {
+  .main {
+    padding: 64px 32px 0 32px;
+  }
+  .container {
+    padding: 32px;
+    padding-bottom: 0;
+  }
 }
 
 .container > * {
@@ -10,20 +21,20 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-bottom: 2px rgb(var(--border-rgb)) solid;
+  padding-left: 16px;
+  column-gap: 32px;
+  padding-right: 16px;
 
-  position: sticky;
+  /* position: sticky;
   top: 0;
   background-color: rgb(var(--background-rgb));
-  z-index: 1;
+  z-index: 1; */
 
 }
 
-.main {
-  padding: 20px;
+.body {
+  /* max-width: 1100px; */
+  margin: 0 auto;
 }
 
 .footer {

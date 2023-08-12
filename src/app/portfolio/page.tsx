@@ -17,15 +17,9 @@ export default function Portfolio() {
     getPortfolioItems().then(setPortfolioItems);
   }
 
-  function makePortfolioCard(portfolioItemDatum: PortfolioCardProps) {
-    return <PortfolioCard {...portfolioItemDatum} key={portfolioItemDatum.name} />;
-  }
-
-  const portfolioCards = portfolioItems.map(makePortfolioCard);
-
   return (
     <div className={styles.container}>
-      {portfolioCards}
+      {portfolioItems.map(portfolioItem => <PortfolioCard {...portfolioItem} key={portfolioItem.name} />)}
     </div>
   );
 }

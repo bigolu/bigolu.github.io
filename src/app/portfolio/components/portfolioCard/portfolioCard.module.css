@@ -1,21 +1,23 @@
 .container {
   --background-image-size: 50%;
   --card-padding: 10px;
-  border: 1px solid rgb(var(--border-rgb));
-  border-radius: 4px;
+  /* border: 1px solid rgb(var(--border-rgb)); */
+  border-radius: 9px;
   background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), var(--thumbnail-image-url);
   background-size: 100% var(--background-image-size);
   background-repeat: no-repeat;
   padding: calc(var(--background-image-size) + 25px) var(--card-padding) var(--card-padding) var(--card-padding);
   background-color: rgb(var(--timeline-item-background-rgb));
-  transition: transform 200ms ease-out;
+  transition: transform 200ms ease-in;
   display: flex;
   flex-direction: column;
+  border-width: 1px;
+  border-color: rgb(var(--border-rgb));
 }
 
 .container:hover {
   transform: scale(1.1);
-  transition: transform 200ms ease-in;
+  transition: transform 200ms ease-out;
 }
 
 .taglist {
@@ -27,10 +29,6 @@
   align-self: end;
   font-weight: lighter;
   font-size: 1.5rem;
-  position: relative;
-  --offset: calc(var(--card-padding) - 3px);
-  /* left: var(--offset);
-  top: var(--offset); */
   line-height: 1;
 }
 
@@ -48,11 +46,13 @@
 .close {
   position: absolute;
   top: 0px;
-  right: 5px;
+  right: 7px;
+  font-size: 1.2rem;
 }
 
 .modal-container {
   display: grid;
-  grid-template-rows: 60% 1fr;
+  grid-template-rows: 70% auto;
   height: 100%;
+  padding: 20px;
 }

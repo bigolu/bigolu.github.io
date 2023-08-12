@@ -3,6 +3,10 @@
   margin: 0 auto 0 auto;
 }
 
+.image {
+  flex-shrink: 0;
+}
+
 .topLevelLists {
   display: flex;
   flex-wrap: wrap;
@@ -11,15 +15,24 @@
 
 .container {
   display: flex;
-  flex-direction: column;
-  row-gap: 30px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.me {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .greeting-container {
   border: 3px solid rgb(var(--border-rgb));
   border-radius: 3px;
   max-width: var(--max-line-length);
-  margin: auto;
 }
 
 .greeting-container::after {
@@ -50,6 +63,10 @@
   .skillList {
     grid-template-columns: auto auto;
     display: inline-grid;
+  }
+
+  .skills {
+    width: 50%;
   }
 }
 
