@@ -13,7 +13,7 @@
         let
           pkgs = import nixpkgs { inherit system; };
         in {
-          devShells.default = pkgs.mkShell { packages = [pkgs.nodejs]; };
+          devShells.default = pkgs.mkShell { packages = with pkgs; [nodejs just]; };
         }
       );
 }
