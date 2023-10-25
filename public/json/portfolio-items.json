@@ -2,9 +2,7 @@
   {
     "name": "tabbo",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "media": [
       {
@@ -21,7 +19,7 @@
           "height": "315",
           "src": "https://www.youtube-nocookie.com/embed/lnltvwTZZpU",
           "title": "YouTube video player",
-          "style": {"border": "0"},
+          "style": { "border": "0" },
           "allow": "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
           "allowFullScreen": true
         }
@@ -42,9 +40,7 @@
   {
     "name": "notes-cli",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A CLI for your notes (complicated shell commands, steps to enable a virtualenv, etc.) to help you save time.",
     "links": [
@@ -57,9 +53,7 @@
   {
     "name": "Shrednought",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A shooter game made in Unity3D using a real guitar as a controller!",
     "links": [
@@ -76,9 +70,7 @@
   {
     "name": "ShadowrealmVR",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "Relive your favorite moments from Yu-Gi-Oh with the help of a duel disk, an Arduino, some RFID chips, and Unity3D.",
     "links": [
@@ -99,9 +91,7 @@
   {
     "name": "PhoneWtf",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A webapp that allows you to prank your friends and family with mysterious phone calls.",
     "links": [
@@ -118,9 +108,7 @@
   {
     "name": "seenIt",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A webapp for adding scenic stops to any roadtrip.",
     "links": [
@@ -137,9 +125,7 @@
   {
     "name": "Hackerspace Print Queue",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A webapp that allows people to request 3D prints online for the 3D printer at the Hackerspace.",
     "links": [
@@ -156,9 +142,7 @@
   {
     "name": "CaveHub",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A Chrome extension that tells you what's going on in the CAVE. Includes bus times, weather, and who's working.",
     "links": [
@@ -179,9 +163,7 @@
   {
     "name": "HackBingo",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A bingo game for hackathons!",
     "links": [
@@ -198,9 +180,7 @@
   {
     "name": "RanchBot",
     "date": "2016",
-    "tags": [
-      "web extension"
-    ],
+    "tags": ["web extension"],
     "thumbnailImageUrl": "/image/tabbo-screenshot.png",
     "description": "A bot that makes daily posts to the Ranch Facebook page with a ranchy quote.",
     "links": [

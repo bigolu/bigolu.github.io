@@ -10,7 +10,8 @@
 .home-logo .olu {
   /* transform: translateY(50%); */
 }
-.home-logo .big, .home-logo .olu {
+.home-logo .big,
+.home-logo .olu {
   color: steelblue;
 }
 .home-logo .gie {
@@ -24,7 +25,10 @@
   transform: unset;
 }
 
-.ola, .olu, .big, .gie {
+.ola,
+.olu,
+.big,
+.gie {
   display: inline-block;
   transition: opacity 1s, transform 1s;
 }

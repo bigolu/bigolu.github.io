@@ -1,11 +1,17 @@
-"use client"
+"use client";
 
-import styles from './page.module.css'
-import React, { useLayoutEffect, useRef, useState, CSSProperties, Fragment } from 'react';
-import { ImageComponent, ImageProps } from 'components/image/image';
+import styles from "./page.module.css";
+import React, {
+  useLayoutEffect,
+  useRef,
+  useState,
+  CSSProperties,
+  Fragment,
+} from "react";
+import { ImageComponent, ImageProps } from "components/image/image";
 
 async function getData() {
-  const response = await fetch('/json/timeline-items.json');
+  const response = await fetch("/json/timeline-items.json");
   const timelineItems = await response.json();
 
   return timelineItems;
@@ -13,15 +19,32 @@ async function getData() {
 
 function getVerticalMarginHeight(element: HTMLElement) {
   const computedStyles = window.getComputedStyle(element, null);
-  return parseFloat(computedStyles.marginBottom) + parseFloat(computedStyles.marginTop);
+  return (
+    parseFloat(computedStyles.marginBottom) +
+    parseFloat(computedStyles.marginTop)
+  );
 }
 
-function getTimelineItemHeight(imageElement: HTMLElement, textElement: HTMLElement) {
-  return imageElement.clientHeight + getVerticalMarginHeight(imageElement) + textElement.clientHeight + getVerticalMarginHeight(textElement);
+function getTimelineItemHeight(
+  imageElement: HTMLElement,
+  textElement: HTMLElement
+) {
+  return (
+    imageElement.clientHeight +
+    getVerticalMarginHeight(imageElement) +
+    textElement.clientHeight +
+    getVerticalMarginHeight(textElement)
+  );
 }
 
 export default function Experience() {
-  type TimelineItem = { role: string, company: string, image: ImageProps, description: string, date: string, };
+  type TimelineItem = {
+    role: string;
+    company: string;
+    image: ImageProps;
+    description: string;
+    date: string;
+  };
 
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<TimelineItem[]>([]);
@@ -38,11 +61,11 @@ export default function Experience() {
     var elH = element.clientHeight;
     var H = window.outerHeight;
     var r = element.getBoundingClientRect();
-    var t=r.top;
-    var b=r.bottom;
-    var result = Math.max(0, t>0? Math.min(elH, H-t) : Math.min(b, H));
+    var t = r.top;
+    var b = r.bottom;
+    var result = Math.max(0, t > 0 ? Math.min(elH, H - t) : Math.min(b, H));
 
-    var numhalf = ((result / 2) + (t < 0 ? t * -1 : 0));
+    var numhalf = result / 2 + (t < 0 ? t * -1 : 0);
 
     // try out centering the line
     numhalf = numhalf - Math.max(0, (window.innerHeight - result) / 2);
@@ -61,34 +84,55 @@ export default function Experience() {
     // try out gradient
     let firstUnseen = true;
 
-    const timelineTexts = element.getElementsByClassName(styles['timeline-text']) as HTMLCollectionOf<HTMLElement>;
-    const timelineImages = element.getElementsByClassName(styles['timeline-image']) as HTMLCollectionOf<HTMLElement>;
+    const timelineTexts = element.getElementsByClassName(
+      styles["timeline-text"]
+    ) as HTMLCollectionOf<HTMLElement>;
+    const timelineImages = element.getElementsByClassName(
+      styles["timeline-image"]
+    ) as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < timelineImages.length; i++) {
       const timelineImage = timelineImages[i];
       const timelineText = timelineTexts[i];
-      let toAdd = styles['show'];
-      let toRemove = styles['hidden'];
+      let toAdd = styles["show"];
+      let toRemove = styles["hidden"];
 
-      const offsetTopIncludingTopMargin = timelineImage?.offsetTop - parseFloat(window.getComputedStyle(timelineImage, null).marginTop);
+      const offsetTopIncludingTopMargin =
+        timelineImage?.offsetTop -
+        parseFloat(window.getComputedStyle(timelineImage, null).marginTop);
 
       if (offsetTopIncludingTopMargin > numhalf) {
-        toAdd = styles['hidden'];
-        toRemove = styles['show'];
+        toAdd = styles["hidden"];
+        toRemove = styles["show"];
 
-        const timelineItemHeight = getTimelineItemHeight(timelineImages[i - 1], timelineTexts[i - 1]);
+        const timelineItemHeight = getTimelineItemHeight(
+          timelineImages[i - 1],
+          timelineTexts[i - 1]
+        );
         let sum = 0;
         for (let current = 0; current < i - 1; current++) {
-          sum += getTimelineItemHeight(timelineImages[current], timelineTexts[current]);
+          sum += getTimelineItemHeight(
+            timelineImages[current],
+            timelineTexts[current]
+          );
         }
         const minimumOpacityPercentage = 20;
-        const percent = minimumOpacityPercentage + (((numhalf - sum) / timelineItemHeight) * (100 - minimumOpacityPercentage));
+        const percent =
+          minimumOpacityPercentage +
+          ((numhalf - sum) / timelineItemHeight) *
+            (100 - minimumOpacityPercentage);
         if (firstUnseen) {
           firstUnseen = false;
-          timelineImage.style.setProperty('--percent', percent + '%');
-          timelineText.style.setProperty('--percent', percent + '%');
+          timelineImage.style.setProperty("--percent", percent + "%");
+          timelineText.style.setProperty("--percent", percent + "%");
         } else {
-          timelineImage.style.setProperty('--percent', minimumOpacityPercentage + '%');
-          timelineText.style.setProperty('--percent', minimumOpacityPercentage + '%');
+          timelineImage.style.setProperty(
+            "--percent",
+            minimumOpacityPercentage + "%"
+          );
+          timelineText.style.setProperty(
+            "--percent",
+            minimumOpacityPercentage + "%"
+          );
         }
       }
       timelineImage?.classList.remove(toRemove);
@@ -97,8 +141,8 @@ export default function Experience() {
       timelineText?.classList.add(toAdd);
     }
 
-    let half = numhalf + 'px';
-    element.style.setProperty('--length-to-highlight', half);
+    let half = numhalf + "px";
+    element.style.setProperty("--length-to-highlight", half);
   }
 
   // data is a dependency so I can set timeline progress when the data is fetched
@@ -111,12 +155,12 @@ export default function Experience() {
     // will be highlighted because the height of the timeline with no items will be 0.
     setTimelineProgress();
 
-    window.addEventListener('scroll', setTimelineProgress, { passive: true });
+    window.addEventListener("scroll", setTimelineProgress, { passive: true });
     window.addEventListener("resize", setTimelineProgress);
 
     return () => {
-      window.removeEventListener('scroll', setTimelineProgress);
-      window.removeEventListener('resize', setTimelineProgress);
+      window.removeEventListener("scroll", setTimelineProgress);
+      window.removeEventListener("resize", setTimelineProgress);
     };
   }, [data]);
 
@@ -125,22 +169,34 @@ export default function Experience() {
     // of using a Fragment.
     // browser support: https://caniuse.com/css-subgrid
     return (
-        <Fragment key={datum.description}>
-          <div className={styles['timeline-image']} style={{'gridRow': 1 + (2 * index)} as CSSProperties}>
-            <ImageComponent {...datum.image} />
-          </div>
-          <div className={styles['timeline-text']} style={{'gridRow': 2 + (2 * index),} as CSSProperties}>
-            <p className={styles.role}>{datum.role} @ {datum.company} &#8212; {datum.description}</p>
-            <p className={styles.date}>{datum.date}</p>
-          </div>
-        </Fragment>
+      <Fragment key={datum.description}>
+        <div
+          className={styles["timeline-image"]}
+          style={{ gridRow: 1 + 2 * index } as CSSProperties}
+        >
+          <ImageComponent {...datum.image} />
+        </div>
+        <div
+          className={styles["timeline-text"]}
+          style={{ gridRow: 2 + 2 * index } as CSSProperties}
+        >
+          <p className={styles.role}>
+            {datum.role} @ {datum.company} &#8212; {datum.description}
+          </p>
+          <p className={styles.date}>{datum.date}</p>
+        </div>
+      </Fragment>
     );
   }
 
   const elements = data.map(makeImageAndTextElements);
 
   return (
-    <div className={styles.container + ' ' + styles.unemployed} style={{'--row-count': (data.length * 2) + 1,} as CSSProperties} ref={ref}>
+    <div
+      className={styles.container + " " + styles.unemployed}
+      style={{ "--row-count": data.length * 2 + 1 } as CSSProperties}
+      ref={ref}
+    >
       {elements}
     </div>
   );

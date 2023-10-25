@@ -23,7 +23,7 @@
 }
 
 .container::backdrop {
-  background-color: rgb(0,0,0,0.6);
+  background-color: rgb(0, 0, 0, 0.6);
   opacity: 0;
   animation: dim 400ms;
   animation-fill-mode: forwards;
@@ -56,7 +56,6 @@
   top: var(--top);
   background-color: var(--background-color);
 }
-
 
 @media (min-width: 700px) {
   .container {

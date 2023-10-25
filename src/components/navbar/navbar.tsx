@@ -1,5 +1,5 @@
-import styles from './navbar.module.css'
-import Link from 'next/link'
+import styles from "./navbar.module.css";
+import Link from "next/link";
 
 function makeLink([displayName, route]: string[]) {
   return (
@@ -11,16 +11,12 @@ function makeLink([displayName, route]: string[]) {
 
 export default function NavbarComponent() {
   const routesByDisplayName = {
-    'about': 'about',
-    'portfolio': 'portfolio',
-    'experience': 'experience',
+    about: "about",
+    portfolio: "portfolio",
+    experience: "experience",
   };
 
   const links = Object.entries(routesByDisplayName).map(makeLink);
 
-  return (
-    <ul className={styles.container}>
-      {links}
-    </ul>
-  )
+  return <ul className={styles.container}>{links}</ul>;
 }

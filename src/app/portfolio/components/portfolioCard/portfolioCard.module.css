@@ -3,10 +3,17 @@
   --card-padding: 10px;
   /* border: 1px solid rgb(var(--border-rgb)); */
   border-radius: 9px;
-  background-image: linear-gradient(to bottom, #fff0 0%, #fff0 70%, rgb(var(--timeline-item-background-rgb)) 100%), var(--thumbnail-image-url);
+  background-image: linear-gradient(
+      to bottom,
+      #fff0 0%,
+      #fff0 70%,
+      rgb(var(--timeline-item-background-rgb)) 100%
+    ),
+    var(--thumbnail-image-url);
   background-size: 100% var(--background-image-size);
   background-repeat: no-repeat;
-  padding: calc(var(--background-image-size) + 25px) var(--card-padding) var(--card-padding) var(--card-padding);
+  padding: calc(var(--background-image-size) + 25px) var(--card-padding)
+    var(--card-padding) var(--card-padding);
   background-color: rgb(var(--timeline-item-background-rgb));
   transition: transform 200ms ease-in;
   display: flex;
@@ -36,7 +43,7 @@
   display: inline;
   border: 1px solid;
   padding: 4px;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .tag:not(:last-child) {

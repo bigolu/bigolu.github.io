@@ -8,7 +8,7 @@
 
 /* Got the font from: https://www.dafont.com/pkmn-rbygsc.font */
 @font-face {
-  font-family: 'Pokemon Font';
+  font-family: "Pokemon Font";
   src: url(../../public/font/PKMN-RBYGSC.ttf);
   size-adjust: 90%;
 }
@@ -27,13 +27,15 @@
 @font-face {
   font-family: Bender;
   font-weight: bold;
-  src: url("../../public/font/Jovanny Lemonad - Bender-Bold.otf") format("opentype");
+  src: url("../../public/font/Jovanny Lemonad - Bender-Bold.otf")
+    format("opentype");
 }
 
 @font-face {
   font-family: Bender;
   font-weight: lighter;
-  src: url("../../public/font/Jovanny Lemonad - Bender-Light.otf") format("opentype");
+  src: url("../../public/font/Jovanny Lemonad - Bender-Light.otf")
+    format("opentype");
 }
 
 :root {
@@ -73,7 +75,8 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+  transition: color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing);
 }
 
 img {
@@ -83,7 +86,12 @@ img {
   max-width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--fun-font);
   font-size: revert;
   text-transform: uppercase;
