@@ -1,0 +1,20 @@
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = ["*.css", "*.html", "*.js", "*.json", "*.jsx", "*.md", "*.mdx", "*.scss", "*.ts", "*.tsx",]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["--language-dialect", "bash", "--write",]
+includes = [".envrc",]
+
+# Nix is planning to make an official linter based off of this one so I should move to that when it's ready:
+# https://github.com/serokell/nixfmt/issues/129
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix",]
+
+[formatter.just]
+command = "just"
+options = ["--unstable", "--fmt", "--justfile",]
+includes = ["justfile",]
