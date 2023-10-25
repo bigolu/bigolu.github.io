@@ -13,13 +13,11 @@
   );
   content: "";
   border-radius: 5px;
-  z-index: -2;
 }
 
 .container.unemployed::after {
   grid-row: calc(var(--row-count) - 1) / var(--row-count);
   content: "";
-  z-index: -1;
   background: repeating-linear-gradient(transparent, transparent 6px, rgb(var(--background-rgb)) 6px, rgb(var(--background-rgb)) 12px);
 }
 
