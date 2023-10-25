@@ -1,3 +1,5 @@
+set shell := ["bash", "-uc"]
+
 # Display this message
 help:
     @just --list --justfile {{ justfile() }} --unsorted
