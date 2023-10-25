@@ -1,7 +1,7 @@
 [formatter.prettier]
 command = "prettier"
 options = ["--write"]
-includes = ["*.css", "*.html", "*.js", "*.json", "*.jsx", "*.md", "*.mdx", "*.scss", "*.ts", "*.tsx",]
+includes = ["*.css", "*.html", "*.js", "*.json", "*.jsx", "*.md", "*.mdx", "*.scss", "*.ts", "*.tsx", "*.yml"]
 
 [formatter.shfmt]
 command = "shfmt"

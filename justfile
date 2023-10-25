@@ -2,6 +2,10 @@
 help:
     @just --list --justfile {{ justfile() }} --unsorted
 
+# Install git hooks
+install-git-hooks:
+    lefthook install
+
 # Start the development server
 run-dev-server:
     next dev --port 8000
@@ -9,3 +13,7 @@ run-dev-server:
 # Format all of the source code
 format:
     treefmt
+
+# Run precommit git hook
+run-precommit-hook:
+    lefthook run pre-commit

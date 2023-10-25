@@ -19,6 +19,7 @@
             nodePackages.prettier
             shfmt
             nixfmt
+            lefthook
           ];
         };
       });

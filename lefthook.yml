@@ -1,0 +1,11 @@
+colors:
+  cyan: 6
+  gray: 8
+  green: 2
+  red: 1
+  yellow: 3
+
+pre-commit:
+  commands:
+    format:
+      run: just format
