@@ -21,6 +21,7 @@
             shfmt
             nixfmt
             lefthook
+            git
           ];
         };
       });
