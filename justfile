@@ -8,6 +8,10 @@ help:
 install-git-hooks:
     lefthook install
 
+reload:
+    direnv reload
+    nix-direnv-reload
+
 # Start the development server
 run-dev-server:
     next dev --port 8000
