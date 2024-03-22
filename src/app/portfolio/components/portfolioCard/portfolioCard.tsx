@@ -1,6 +1,6 @@
 import styles from "./portfolioCard.module.css";
 import { useState, MouseEvent, useRef, CSSProperties } from "react";
-import Modal from "../modal/modal";
+import Modal from "../modal";
 import {
   Gallery,
   GalleryImage,

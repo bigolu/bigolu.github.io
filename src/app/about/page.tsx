@@ -37,7 +37,7 @@ export default function About() {
       "Java",
       "Python",
     ],
-    Other: ["POSIX shell", "Bash"],
+    Other: ["Shell"],
   };
 
   const links = [
