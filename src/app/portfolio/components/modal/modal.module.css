@@ -23,7 +23,7 @@
 }
 
 .container::backdrop {
-  background-color: rgb(0, 0, 0, 0.6);
+  background-color: rgb(0, 0, 0, 0.8);
   opacity: 0;
   animation: dim var(--animation-duration);
   animation-fill-mode: forwards;

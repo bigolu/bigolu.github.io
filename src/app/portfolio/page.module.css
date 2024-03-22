@@ -11,6 +11,6 @@
 @media (min-width: 400px) {
   .container {
     grid-auto-columns: unset;
-    grid-template-columns: repeat(auto-fit, clamp(300px, 16%, 375px));
+    grid-template-columns: repeat(auto-fit, clamp(300px, 16%, 325px));
   }
 }

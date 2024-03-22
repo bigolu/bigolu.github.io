@@ -1,3 +1,8 @@
+# yaml-language-server: $schema=https://json.schemastore.org/lefthook.json
+
+# By default lefthook uses true colors (e.g. #FFFFFF), but they may not be
+# readable depending on the terminal background color. Instead I'm using ANSI
+# colors since they come from the terminal's color palette.
 colors:
   cyan: 6
   gray: 8
@@ -5,7 +10,9 @@ colors:
   red: 1
   yellow: 3
 
+output: false
+
 pre-commit:
   commands:
     format:
-      run: just format
+      run: DIRENV_LOG_FORMAT='' direnv exec "$PWD" just format
