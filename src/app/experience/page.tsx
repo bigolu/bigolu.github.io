@@ -10,11 +10,17 @@ import React, {
 } from "react";
 import { ImageComponent, ImageProps } from "components/image/image";
 
-async function getData() {
-  const response = await fetch("/json/timeline-items.json");
-  const timelineItems = await response.json();
+type Job = {
+  role: string;
+  company: string;
+  image: ImageProps;
+  description: string;
+  date: string;
+};
 
-  return timelineItems;
+async function getJobs() {
+  const response = await fetch("/json/jobs.json");
+  return await response.json();
 }
 
 function getVerticalMarginHeight(element: HTMLElement) {
@@ -26,68 +32,47 @@ function getVerticalMarginHeight(element: HTMLElement) {
 }
 
 function getTimelineItemHeight(
-  imageElement: HTMLElement,
-  textElement: HTMLElement
+  image: HTMLElement,
+  text: HTMLElement
 ) {
   return (
-    imageElement.clientHeight +
-    getVerticalMarginHeight(imageElement) +
-    textElement.clientHeight +
-    getVerticalMarginHeight(textElement)
+    image.clientHeight +
+    getVerticalMarginHeight(image) +
+    text.clientHeight +
+    getVerticalMarginHeight(text)
   );
 }
 
-export default function Experience() {
-  type TimelineItem = {
-    role: string;
-    company: string;
-    image: ImageProps;
-    description: string;
-    date: string;
-  };
-
-  const ref = useRef<HTMLDivElement>(null);
-  const [data, setData] = useState<TimelineItem[]>([]);
-  if (data.length === 0) {
-    getData().then(setData);
-  }
-
-  function setTimelineProgress() {
-    const element = ref.current;
-    if (element === null) {
-      return;
-    }
-
-    var elH = element.clientHeight;
-    var H = window.outerHeight;
-    var r = element.getBoundingClientRect();
-    var t = r.top;
-    var b = r.bottom;
-    var result = Math.max(0, t > 0 ? Math.min(elH, H - t) : Math.min(b, H));
-
+function makeTimelineProgressUpdater(timeline: HTMLElement) {
+  return function () {
+    var timelineClientHeight = timeline.clientHeight;
+    var windowOuterHeight = window.outerHeight;
+    var timelineBoundingClientRect = timeline.getBoundingClientRect();
+    var t = timelineBoundingClientRect.top;
+    var b = timelineBoundingClientRect.bottom;
+    var result = Math.max(0, t > 0 ? Math.min(timelineClientHeight, windowOuterHeight - t) : Math.min(b, windowOuterHeight));
+  
     var numhalf = result / 2 + (t < 0 ? t * -1 : 0);
-
-    // try out centering the line
+  
     numhalf = numhalf - Math.max(0, (window.innerHeight - result) / 2);
-
-    if (element.getBoundingClientRect().bottom <= window.innerHeight) {
-      numhalf = element.clientHeight;
+  
+    if (timeline.getBoundingClientRect().bottom <= window.innerHeight) {
+      numhalf = timelineClientHeight;
     }
-
-    // try out percentage of total scroll
+  
     let scrollTop = window.scrollY;
     let docHeight = document.body.offsetHeight;
     let winHeight = window.innerHeight;
     let scrollPercent = scrollTop / (docHeight - winHeight);
-    numhalf = scrollPercent * element.clientHeight;
-
+    numhalf = scrollPercent * timelineClientHeight;
+  
     // try out gradient
     let firstUnseen = true;
-
-    const timelineTexts = element.getElementsByClassName(
+  
+    const timelineTexts = timeline.getElementsByClassName(
       styles["timeline-text"]
     ) as HTMLCollectionOf<HTMLElement>;
-    const timelineImages = element.getElementsByClassName(
+    const timelineImages = timeline.getElementsByClassName(
       styles["timeline-image"]
     ) as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < timelineImages.length; i++) {
@@ -95,15 +80,15 @@ export default function Experience() {
       const timelineText = timelineTexts[i];
       let toAdd = styles["show"];
       let toRemove = styles["hidden"];
-
+  
       const offsetTopIncludingTopMargin =
         timelineImage?.offsetTop -
         parseFloat(window.getComputedStyle(timelineImage, null).marginTop);
-
+  
       if (offsetTopIncludingTopMargin > numhalf) {
         toAdd = styles["hidden"];
         toRemove = styles["show"];
-
+  
         const timelineItemHeight = getTimelineItemHeight(
           timelineImages[i - 1],
           timelineTexts[i - 1]
@@ -135,69 +120,68 @@ export default function Experience() {
           );
         }
       }
-      timelineImage?.classList.remove(toRemove);
-      timelineImage?.classList.add(toAdd);
-      timelineText?.classList.remove(toRemove);
-      timelineText?.classList.add(toAdd);
+      timelineImage.classList.remove(toRemove);
+      timelineImage.classList.add(toAdd);
+      timelineText.classList.remove(toRemove);
+      timelineText.classList.add(toAdd);
     }
+  
+    timeline.style.setProperty("--length-to-highlight", numhalf + "px");
+  }
+}
 
-    let half = numhalf + "px";
-    element.style.setProperty("--length-to-highlight", half);
+export default function Experience() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const [jobs, setJobs] = useState<Job[]>([]);
+  if (jobs.length === 0) {
+    getJobs().then(setJobs);
   }
 
-  // data is a dependency so I can set timeline progress when the data is fetched
   useLayoutEffect(() => {
-    if (data.length === 0) {
-      return;
-    }
-
-    // Only do the initial highlight after the elements are rendered in the timeline. Otherwise the whole thing
-    // will be highlighted because the height of the timeline with no items will be 0.
-    setTimelineProgress();
-
-    window.addEventListener("scroll", setTimelineProgress, { passive: true });
-    window.addEventListener("resize", setTimelineProgress);
+    // current won't be null since we're in a layout effect
+    const updateTimelineProgress = makeTimelineProgressUpdater(timelineRef.current!);
+    updateTimelineProgress();
+    window.addEventListener("scroll", updateTimelineProgress, { passive: true });
+    window.addEventListener("resize", updateTimelineProgress);
 
     return () => {
-      window.removeEventListener("scroll", setTimelineProgress);
-      window.removeEventListener("resize", setTimelineProgress);
+      window.removeEventListener("scroll", updateTimelineProgress);
+      window.removeEventListener("resize", updateTimelineProgress);
     };
-  }, [data]);
-
-  function makeImageAndTextElements(datum: TimelineItem, index: number) {
-    // TODO: When `subgrid` has better support, I can use it to put these elements together in a container instead
-    // of using a Fragment.
-    // browser support: https://caniuse.com/css-subgrid
-    return (
-      <Fragment key={datum.description}>
-        <div
-          className={styles["timeline-image"]}
-          style={{ gridRow: 1 + 2 * index } as CSSProperties}
-        >
-          <ImageComponent {...datum.image} />
-        </div>
-        <div
-          className={styles["timeline-text"]}
-          style={{ gridRow: 2 + 2 * index } as CSSProperties}
-        >
-          <p className={styles.role}>
-            {datum.role} @ {datum.company} &#8212; {datum.description}
-          </p>
-          <p className={styles.date}>{datum.date}</p>
-        </div>
-      </Fragment>
-    );
-  }
-
-  const elements = data.map(makeImageAndTextElements);
+  }, [jobs]);
 
   return (
     <div
-      className={styles.container + " " + styles.unemployed}
-      style={{ "--row-count": data.length * 2 + 1 } as CSSProperties}
-      ref={ref}
+      className={`${styles.container} ${styles.unemployed}`}
+      style={{ "--job-count": jobs.length } as CSSProperties}
+      ref={timelineRef}
     >
-      {elements}
+      {jobs.map((job, index) =>
+        // TODO: When `subgrid` has better support[1], I can use it to put these
+        // elements together in a container instead of using a Fragment.
+        //
+        // [1]: https://caniuse.com/css-subgrid
+        <Fragment key={job.description}>
+          <div
+            className={styles["timeline-image"]}
+            style={{ "--job-index": index + 1 } as CSSProperties}
+          >
+            <ImageComponent {...job.image} />
+          </div>
+          <div
+            className={styles["timeline-text"]}
+            style={{ "--job-index": index + 1 } as CSSProperties}
+          >
+            <p className={styles.role}>
+              {job.role} @ {job.company}
+              <br />
+              {job.description}
+            </p>
+            <p className={styles.date}>{job.date}</p>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 }

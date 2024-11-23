@@ -40,6 +40,6 @@
   margin-top: auto;
   margin-bottom: 10px;
   /* I added left and right padding so text doesn't get clipped in a rounded OS window */
-  padding: 20px 8px 0 8px;
+  padding: 20px 0 0 0;
   text-align: end;
 }
