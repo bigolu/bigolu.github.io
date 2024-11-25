@@ -90,8 +90,8 @@ export default function About() {
           software engineer and I&apos;m looking for my next role so if
           you&apos;re looking for a developer, send an email to <Email />.{" "}
           {"You can find all of my experience on the"}{" "}
-          <Link href="/portfolio">portfolio</Link> {"and"}{" "}
-          <Link href="/experience">experience</Link>{" "}
+          <Link href="/portfolio">projects</Link> {"and"}{" "}
+          <Link href="/experience">employment-history</Link>{" "}
           {"pages, but if you prefer a summary you can look at my"}{" "}
           <ExternalLink href="https://docs.google.com/viewerng/viewer?url=https://github.com/bigolu/jobs/raw/master/resume.pdf">
             single-page resume

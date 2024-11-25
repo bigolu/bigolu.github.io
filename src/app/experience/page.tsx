@@ -23,165 +23,107 @@ async function getJobs() {
   return await response.json();
 }
 
-function getVerticalMarginHeight(element: HTMLElement) {
-  const computedStyles = window.getComputedStyle(element, null);
-  return (
-    parseFloat(computedStyles.marginBottom) +
-    parseFloat(computedStyles.marginTop)
+function updateTimelineProgress(timeline: HTMLElement) {
+  const windowHeight = window.innerHeight;
+  const bodyHeight = document.body.scrollHeight;
+  const hasScrollbar = bodyHeight > windowHeight;
+
+  let scrollPercentage = null;
+  if (!hasScrollbar) {
+    scrollPercentage = 100;
+  } else {
+    scrollPercentage =
+      (window.scrollY / (document.body.offsetHeight - windowHeight)) * 100;
+  }
+
+  timeline.style.setProperty(
+    "--timeline-scroll-percentage",
+    `${scrollPercentage}%`
   );
 }
 
-function getTimelineItemHeight(
-  image: HTMLElement,
-  text: HTMLElement
-) {
-  return (
-    image.clientHeight +
-    getVerticalMarginHeight(image) +
-    text.clientHeight +
-    getVerticalMarginHeight(text)
-  );
-}
+// TODO: Consider intersection observer API:
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+function updateTimelineFade(timeline: HTMLElement, fade: HTMLElement) {
+  const didReachBottomOfTimeline =
+    timeline.getBoundingClientRect().bottom <= window.innerHeight;
 
-function makeTimelineProgressUpdater(timeline: HTMLElement) {
-  return function () {
-    var timelineClientHeight = timeline.clientHeight;
-    var windowOuterHeight = window.outerHeight;
-    var timelineBoundingClientRect = timeline.getBoundingClientRect();
-    var t = timelineBoundingClientRect.top;
-    var b = timelineBoundingClientRect.bottom;
-    var result = Math.max(0, t > 0 ? Math.min(timelineClientHeight, windowOuterHeight - t) : Math.min(b, windowOuterHeight));
-  
-    var numhalf = result / 2 + (t < 0 ? t * -1 : 0);
-  
-    numhalf = numhalf - Math.max(0, (window.innerHeight - result) / 2);
-  
-    if (timeline.getBoundingClientRect().bottom <= window.innerHeight) {
-      numhalf = timelineClientHeight;
-    }
-  
-    let scrollTop = window.scrollY;
-    let docHeight = document.body.offsetHeight;
-    let winHeight = window.innerHeight;
-    let scrollPercent = scrollTop / (docHeight - winHeight);
-    numhalf = scrollPercent * timelineClientHeight;
-  
-    // try out gradient
-    let firstUnseen = true;
-  
-    const timelineTexts = timeline.getElementsByClassName(
-      styles["timeline-text"]
-    ) as HTMLCollectionOf<HTMLElement>;
-    const timelineImages = timeline.getElementsByClassName(
-      styles["timeline-image"]
-    ) as HTMLCollectionOf<HTMLElement>;
-    for (let i = 0; i < timelineImages.length; i++) {
-      const timelineImage = timelineImages[i];
-      const timelineText = timelineTexts[i];
-      let toAdd = styles["show"];
-      let toRemove = styles["hidden"];
-  
-      const offsetTopIncludingTopMargin =
-        timelineImage?.offsetTop -
-        parseFloat(window.getComputedStyle(timelineImage, null).marginTop);
-  
-      if (offsetTopIncludingTopMargin > numhalf) {
-        toAdd = styles["hidden"];
-        toRemove = styles["show"];
-  
-        const timelineItemHeight = getTimelineItemHeight(
-          timelineImages[i - 1],
-          timelineTexts[i - 1]
-        );
-        let sum = 0;
-        for (let current = 0; current < i - 1; current++) {
-          sum += getTimelineItemHeight(
-            timelineImages[current],
-            timelineTexts[current]
-          );
-        }
-        const minimumOpacityPercentage = 20;
-        const percent =
-          minimumOpacityPercentage +
-          ((numhalf - sum) / timelineItemHeight) *
-            (100 - minimumOpacityPercentage);
-        if (firstUnseen) {
-          firstUnseen = false;
-          timelineImage.style.setProperty("--percent", percent + "%");
-          timelineText.style.setProperty("--percent", percent + "%");
-        } else {
-          timelineImage.style.setProperty(
-            "--percent",
-            minimumOpacityPercentage + "%"
-          );
-          timelineText.style.setProperty(
-            "--percent",
-            minimumOpacityPercentage + "%"
-          );
-        }
-      }
-      timelineImage.classList.remove(toRemove);
-      timelineImage.classList.add(toAdd);
-      timelineText.classList.remove(toRemove);
-      timelineText.classList.add(toAdd);
-    }
-  
-    timeline.style.setProperty("--length-to-highlight", numhalf + "px");
+  if (didReachBottomOfTimeline) {
+    fade.classList.add(styles.hide);
+  } else {
+    fade.classList.remove(styles.hide);
   }
 }
 
-export default function Experience() {
-  const timelineRef = useRef<HTMLDivElement>(null);
+function addViewportChangeHandler(handler: (event: Event) => any) {
+  window.addEventListener("scroll", handler);
+  window.addEventListener("resize", handler);
+}
 
-  const [jobs, setJobs] = useState<Job[]>([]);
+function removeViewportChangeHandler(handler: () => void) {
+  window.removeEventListener("scroll", handler);
+  window.removeEventListener("resize", handler);
+}
+
+export default function Experience() {
+  let [jobs, setJobs] = useState<Job[]>([]);
   if (jobs.length === 0) {
     getJobs().then(setJobs);
   }
 
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const timelineFadeRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     // current won't be null since we're in a layout effect
-    const updateTimelineProgress = makeTimelineProgressUpdater(timelineRef.current!);
-    updateTimelineProgress();
-    window.addEventListener("scroll", updateTimelineProgress, { passive: true });
-    window.addEventListener("resize", updateTimelineProgress);
+    const timeline = timelineRef.current!;
+    const timelineFade = timelineFadeRef.current!;
+    const viewportChangeHandler = () => {
+      updateTimelineProgress(timeline);
+      updateTimelineFade(timeline, timelineFade);
+    };
+
+    viewportChangeHandler();
+
+    addViewportChangeHandler(viewportChangeHandler);
 
     return () => {
-      window.removeEventListener("scroll", updateTimelineProgress);
-      window.removeEventListener("resize", updateTimelineProgress);
+      removeViewportChangeHandler(viewportChangeHandler);
     };
   }, [jobs]);
 
   return (
-    <div
-      className={`${styles.container} ${styles.unemployed}`}
-      style={{ "--job-count": jobs.length } as CSSProperties}
-      ref={timelineRef}
-    >
-      {jobs.map((job, index) =>
-        // TODO: When `subgrid` has better support[1], I can use it to put these
-        // elements together in a container instead of using a Fragment.
-        //
-        // [1]: https://caniuse.com/css-subgrid
-        <Fragment key={job.description}>
-          <div
-            className={styles["timeline-image"]}
-            style={{ "--job-index": index + 1 } as CSSProperties}
-          >
-            <ImageComponent {...job.image} />
-          </div>
-          <div
-            className={styles["timeline-text"]}
-            style={{ "--job-index": index + 1 } as CSSProperties}
-          >
-            <p className={styles.role}>
-              {job.role} @ {job.company}
-              <br />
-              {job.description}
-            </p>
-            <p className={styles.date}>{job.date}</p>
-          </div>
-        </Fragment>
-      )}
-    </div>
+    <Fragment>
+      <div
+        className={`${styles.timeline} ${styles.unemployed}`}
+        style={{ "--job-count": jobs.length } as CSSProperties}
+        ref={timelineRef}
+      >
+        {jobs.map((job, index) => (
+          // TODO: When `subgrid` has better support[1], I can use it to put these
+          // elements together in a container instead of using a Fragment.
+          //
+          // [1]: https://caniuse.com/css-subgrid
+          <Fragment key={job.description}>
+            <ImageComponent
+              className={styles["job-logo"]}
+              style={{ "--job-index": index + 1 } as CSSProperties}
+              {...job.image}
+            />
+            <div
+              className={styles["job-card"]}
+              style={{ "--job-index": index + 1 } as CSSProperties}
+            >
+              <p className={styles.role}>
+                {job.role} @ {job.company}
+                <br />
+                {job.description}
+              </p>
+              <p className={styles["job-card-date"]}>{job.date}</p>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+      <div ref={timelineFadeRef} className={styles["timeline-fade"]} />
+    </Fragment>
   );
 }

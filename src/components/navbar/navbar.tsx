@@ -12,8 +12,8 @@ function makeLink([displayName, route]: string[]) {
 export default function NavbarComponent() {
   const routesByDisplayName = {
     about: "about",
-    portfolio: "portfolio",
-    experience: "experience",
+    projects: "portfolio",
+    "employment-history": "experience",
   };
 
   const links = Object.entries(routesByDisplayName).map(makeLink);
