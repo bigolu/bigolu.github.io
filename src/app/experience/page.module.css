@@ -17,13 +17,22 @@
 @property --job-logo-width-split-across-three-columns {
   syntax: "*";
   inherits: false;
-  initial-value: 0;
 }
 @property --job-logo-vertical-padding {
   syntax: "<length>";
   inherits: false;
   initial-value: 0;
 }
+@property --timeline-fade-direction {
+  syntax: "*";
+  inherits: false;
+}
+@property --timeline-fade-translate-percentage {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 
 /* Properties provided by JavaScript */
 @property --timeline-scroll-percentage {
@@ -54,7 +63,7 @@
   display: grid;
   grid-template-columns: var(--job-logo-width-split-across-three-columns) auto;
   grid-template-rows: auto;
-  margin-bottom: 160px;
+  margin-bottom: 64px;
 }
 
 .timeline::before,
@@ -90,22 +99,41 @@
   );
 }
 
-.timeline-fade {
-  height: 20vh;
+.timeline-bottom-fade,
+.timeline-top-fade {
+  height: 10vh;
   width: 100vw;
   position: fixed;
-  bottom: 0;
   left: 0;
+  transition: transform 400ms ease-out;
   background: linear-gradient(
-    to top,
+    var(--timeline-fade-direction),
     rgb(var(--background-rgb)),
     rgba(var(--background-rgb), 0)
   );
-  transition: transform 400ms ease-out;
 }
 
-.timeline-fade.hide {
-  transform: translateY(100%);
+.timeline-bottom-fade.hide,
+.timeline-top-fade.hide {
+  transform: translateY(var(--timeline-fade-translate-percentage));
+}
+
+.timeline-bottom-fade {
+  --timeline-fade-direction: to top;
+  bottom: 0;
+}
+
+.timeline-bottom-fade.hide {
+  --timeline-fade-translate-percentage: 100%;
+}
+
+.timeline-top-fade {
+  --timeline-fade-direction: to bottom;
+  top: 0;
+}
+
+.timeline-top-fade.hide {
+  --timeline-fade-translate-percentage: -100%;
 }
 
 .job-logo {

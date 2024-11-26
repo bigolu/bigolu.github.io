@@ -4,31 +4,13 @@
   text-align: center;
   font-size: 1.5rem;
 }
+
 .home-logo .big {
-  /* transform: translateY(-50%); */
-}
-.home-logo .olu {
-  /* transform: translateY(50%); */
-}
-.home-logo .big,
-.home-logo .olu {
   color: steelblue;
 }
-.home-logo .gie {
-  /* opacity: 0; */
-}
-.home-logo .ola {
-  /* opacity: 0; */
-}
-.home-logo:hover > span {
-  opacity: unset;
-  transform: unset;
-}
 
-.ola,
 .olu,
-.big,
-.gie {
+.big {
   display: inline-block;
   transition: opacity 1s, transform 1s;
 }

@@ -38,7 +38,7 @@
     format("opentype");
 }
 
-:root {
+html {
   --foreground-rgb: 0, 0, 0;
   --inactive-foreground-rgb: 193, 184, 184;
   --background-rgb: 255, 255, 255;
@@ -61,7 +61,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  html {
     --foreground-rgb: 248, 249, 250;
     --inactive-foreground-rgb: 81, 81, 81;
     --background-rgb: 18, 18, 18;

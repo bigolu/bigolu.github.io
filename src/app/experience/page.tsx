@@ -44,14 +44,21 @@ function updateTimelineProgress(timeline: HTMLElement) {
 
 // TODO: Consider intersection observer API:
 // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-function updateTimelineFade(timeline: HTMLElement, fade: HTMLElement) {
+function updateTimelineFade(timeline: HTMLElement, bottomFade: HTMLElement, topFade: HTMLElement) {
   const didReachBottomOfTimeline =
-    timeline.getBoundingClientRect().bottom <= window.innerHeight;
-
+    window.innerHeight >= timeline.getBoundingClientRect().bottom;
   if (didReachBottomOfTimeline) {
-    fade.classList.add(styles.hide);
+    bottomFade.classList.add(styles.hide);
   } else {
-    fade.classList.remove(styles.hide);
+    bottomFade.classList.remove(styles.hide);
+  }
+
+  const didReachTopOfTimeline =
+    window.scrollY >= timeline.getBoundingClientRect().top;
+  if (didReachTopOfTimeline) {
+    topFade.classList.remove(styles.hide);
+  } else {
+    topFade.classList.add(styles.hide);
   }
 }
 
@@ -72,27 +79,30 @@ export default function Experience() {
   }
 
   const timelineRef = useRef<HTMLDivElement>(null);
-  const timelineFadeRef = useRef<HTMLDivElement>(null);
+  const timelineBottomFadeRef = useRef<HTMLDivElement>(null);
+  const timelineTopFadeRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     // current won't be null since we're in a layout effect
     const timeline = timelineRef.current!;
-    const timelineFade = timelineFadeRef.current!;
-    const viewportChangeHandler = () => {
+    const timelineBottomFade = timelineBottomFadeRef.current!;
+    const timelineTopFade = timelineTopFadeRef.current!;
+    const updateTimelineEffects = () => {
       updateTimelineProgress(timeline);
-      updateTimelineFade(timeline, timelineFade);
+      updateTimelineFade(timeline, timelineBottomFade, timelineTopFade);
     };
 
-    viewportChangeHandler();
+    updateTimelineEffects();
 
-    addViewportChangeHandler(viewportChangeHandler);
+    addViewportChangeHandler(updateTimelineEffects);
 
     return () => {
-      removeViewportChangeHandler(viewportChangeHandler);
+      removeViewportChangeHandler(updateTimelineEffects);
     };
   }, [jobs]);
 
   return (
     <Fragment>
+      <div ref={timelineTopFadeRef} className={styles["timeline-top-fade"]} />
       <div
         className={`${styles.timeline} ${styles.unemployed}`}
         style={{ "--job-count": jobs.length } as CSSProperties}
@@ -123,7 +133,7 @@ export default function Experience() {
           </Fragment>
         ))}
       </div>
-      <div ref={timelineFadeRef} className={styles["timeline-fade"]} />
+      <div ref={timelineBottomFadeRef} className={styles["timeline-bottom-fade"]} />
     </Fragment>
   );
 }
