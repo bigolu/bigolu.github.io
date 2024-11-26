@@ -52,7 +52,7 @@
 
 .timeline {
   --timeline-last-row-line: calc(calc(2 * var(--job-count)) + 1);
-  --job-logo-width: clamp(5.5rem, 19vw, 11rem);
+  --job-logo-width: clamp(5.5rem, 9rem, 11rem);
   --job-logo-width-one-third: calc(var(--job-logo-width) / 3);
   --job-logo-width-split-across-three-columns: repeat(
     3,

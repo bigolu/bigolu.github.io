@@ -23,7 +23,9 @@ async function getJobs() {
   return await response.json();
 }
 
-function updateTimelineProgress(timeline: HTMLElement) {
+function updateTimelineProgress(
+  setTimelineProgressPercentage: React.Dispatch<React.SetStateAction<number>>
+) {
   const windowHeight = window.innerHeight;
   const bodyHeight = document.body.scrollHeight;
   const hasScrollbar = bodyHeight > windowHeight;
@@ -36,34 +38,23 @@ function updateTimelineProgress(timeline: HTMLElement) {
       (window.scrollY / (document.body.offsetHeight - windowHeight)) * 100;
   }
 
-  timeline.style.setProperty(
-    "--timeline-scroll-percentage",
-    `${scrollPercentage}%`
-  );
+  setTimelineProgressPercentage(scrollPercentage);
 }
 
 // TODO: Consider intersection observer API:
 // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 function updateTimelineFade(
   timeline: HTMLElement,
-  bottomFade: HTMLElement,
-  topFade: HTMLElement
+  setHideTopFade: React.Dispatch<React.SetStateAction<boolean>>,
+  setHideBottomFade: React.Dispatch<React.SetStateAction<boolean>>
 ) {
-  const didReachBottomOfTimeline =
-    window.innerHeight >= timeline.getBoundingClientRect().bottom;
-  if (didReachBottomOfTimeline) {
-    bottomFade.classList.add(styles.hide);
-  } else {
-    bottomFade.classList.remove(styles.hide);
-  }
-
   const didReachTopOfTimeline =
     window.scrollY <= timeline.getBoundingClientRect().top;
-  if (didReachTopOfTimeline) {
-    topFade.classList.add(styles.hide);
-  } else {
-    topFade.classList.remove(styles.hide);
-  }
+  setHideTopFade(didReachTopOfTimeline);
+
+  const didReachBottomOfTimeline =
+    window.innerHeight >= timeline.getBoundingClientRect().bottom;
+  setHideBottomFade(didReachBottomOfTimeline);
 }
 
 function addViewportChangeHandler(handler: (event: Event) => any) {
@@ -77,22 +68,22 @@ function removeViewportChangeHandler(handler: () => void) {
 }
 
 export default function Experience() {
-  let [jobs, setJobs] = useState<Job[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   if (jobs.length === 0) {
     getJobs().then(setJobs);
   }
 
+  const [hideTopFade, setHideTopFade] = useState<boolean>(false);
+  const [hideBottomFade, setHideBottomFade] = useState<boolean>(false);
+  const [timelineProgressPercentage, setTimelineProgressPercentage] =
+    useState<number>(0);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const timelineBottomFadeRef = useRef<HTMLDivElement>(null);
-  const timelineTopFadeRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     // current won't be null since we're in a layout effect
     const timeline = timelineRef.current!;
-    const timelineBottomFade = timelineBottomFadeRef.current!;
-    const timelineTopFade = timelineTopFadeRef.current!;
     const updateTimelineEffects = () => {
-      updateTimelineProgress(timeline);
-      updateTimelineFade(timeline, timelineBottomFade, timelineTopFade);
+      updateTimelineProgress(setTimelineProgressPercentage);
+      updateTimelineFade(timeline, setHideTopFade, setHideBottomFade);
     };
 
     updateTimelineEffects();
@@ -106,10 +97,19 @@ export default function Experience() {
 
   return (
     <Fragment>
-      <div ref={timelineTopFadeRef} className={styles["timeline-top-fade"]} />
+      <div
+        className={`${styles["timeline-top-fade"]} ${
+          hideTopFade ? styles.hide : ""
+        }`}
+      />
       <div
         className={`${styles.timeline} ${styles.unemployed}`}
-        style={{ "--job-count": jobs.length } as CSSProperties}
+        style={
+          {
+            "--job-count": jobs.length,
+            "--timeline-scroll-percentage": `${timelineProgressPercentage}%`,
+          } as CSSProperties
+        }
         ref={timelineRef}
       >
         {jobs.map((job, index) => (
@@ -127,7 +127,7 @@ export default function Experience() {
               className={styles["job-card"]}
               style={{ "--job-index": index + 1 } as CSSProperties}
             >
-              <p className={styles.role}>
+              <p>
                 {job.role} @ {job.company}
                 <br />
                 {job.description}
@@ -138,8 +138,9 @@ export default function Experience() {
         ))}
       </div>
       <div
-        ref={timelineBottomFadeRef}
-        className={styles["timeline-bottom-fade"]}
+        className={`${styles["timeline-bottom-fade"]} ${
+          hideBottomFade ? styles.hide : ""
+        }`}
       />
     </Fragment>
   );
