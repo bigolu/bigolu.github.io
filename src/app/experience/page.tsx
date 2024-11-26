@@ -44,7 +44,11 @@ function updateTimelineProgress(timeline: HTMLElement) {
 
 // TODO: Consider intersection observer API:
 // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-function updateTimelineFade(timeline: HTMLElement, bottomFade: HTMLElement, topFade: HTMLElement) {
+function updateTimelineFade(
+  timeline: HTMLElement,
+  bottomFade: HTMLElement,
+  topFade: HTMLElement
+) {
   const didReachBottomOfTimeline =
     window.innerHeight >= timeline.getBoundingClientRect().bottom;
   if (didReachBottomOfTimeline) {
@@ -54,11 +58,11 @@ function updateTimelineFade(timeline: HTMLElement, bottomFade: HTMLElement, topF
   }
 
   const didReachTopOfTimeline =
-    window.scrollY >= timeline.getBoundingClientRect().top;
+    window.scrollY <= timeline.getBoundingClientRect().top;
   if (didReachTopOfTimeline) {
-    topFade.classList.remove(styles.hide);
-  } else {
     topFade.classList.add(styles.hide);
+  } else {
+    topFade.classList.remove(styles.hide);
   }
 }
 
@@ -133,7 +137,10 @@ export default function Experience() {
           </Fragment>
         ))}
       </div>
-      <div ref={timelineBottomFadeRef} className={styles["timeline-bottom-fade"]} />
+      <div
+        ref={timelineBottomFadeRef}
+        className={styles["timeline-bottom-fade"]}
+      />
     </Fragment>
   );
 }

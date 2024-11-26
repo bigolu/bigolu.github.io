@@ -42,8 +42,6 @@
   transform-origin: center;
   /* filter: blur(10px); */
 
-  /* --modal-width: 100vw;
-  --modal-height: 100vh; */
   width: var(--modal-width);
   height: var(--modal-height);
   transform: scale(var(--scale));
@@ -66,9 +64,6 @@
 
   @keyframes enlarge {
     0% {
-    }
-    10% {
-      transform: scale(var(--scale));
     }
     100% {
       top: calc(50dvb - calc(var(--modal-height) / 2));
