@@ -1,0 +1,74 @@
+/* UTIL CSS */
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: underline;
+  opacity: 0.6;
+}
+
+a:hover {
+  opacity: 1;
+}
+
+@media all and (max-width: 1200px) {
+  a {
+    opacity: 1;
+  }
+}
+/* END UTIL CSS */
+
+body {
+  background-color: black;
+}
+
+#main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+@media all and (max-width: 1200px) {
+  #main-container {
+    flex-flow: column nowrap;
+  }
+}
+
+#biggie-pic {
+  width: 13em;
+  height: auto;
+  transform: rotate(25deg);
+  border-radius: 50%;
+  border: medium solid white;
+}
+
+.biggie-link {
+  width: 30%;
+  height: 10%;
+  text-align: center;
+}
+
+#github {
+  color: #dd0d0d;
+}
+
+#facebook {
+  color: #1c496a;
+}
+
+#linkedin {
+  color: #ff5a00;
+}
+
+#resume {
+  color: #ffcc00;
+}
+
+#email {
+  color: #cfff37;
+}

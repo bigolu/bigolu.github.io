@@ -1,0 +1,155 @@
+/* general */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #006699;
+  color: #e9f1f7;
+  font-family: "Lato", sans-serif;
+}
+
+#page-container {
+  height: 100%;
+  width: 100%;
+  padding: 3%;
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+}
+
+a {
+  color: #e7dfc6;
+  text-decoration: underline;
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* profile */
+#profile {
+  height: 100%;
+}
+
+#email {
+  text-decoration: none;
+  cursor: default;
+}
+
+#my-face {
+  height: 10em;
+}
+
+/* divider line */
+#profile-portfolio-divider-container {
+  height: 100%;
+}
+
+#profile-portfolio-divider {
+  width: 2px;
+  height: 60%;
+  border: none;
+  color: #e9f1f7;
+  background-color: #e9f1f7;
+}
+
+/* portfolio */
+#portfolio {
+  height: 100%;
+  overflow: auto;
+}
+
+#portfolio::-webkit-scrollbar {
+  display: none;
+}
+
+.category-name {
+  margin-left: 26px;
+  color: #e7dfc6;
+}
+
+.card {
+  background-color: #e9f1f7;
+  color: #131b23;
+  padding: 0px !important;
+}
+
+.card-content {
+  height: 100%;
+  padding: 3px !important;
+}
+
+.card-content .title {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.card-content a {
+  color: #131b23;
+}
+
+.card-image {
+  padding: 7% 7% 0% 7%;
+  height: 200px;
+}
+
+.card-image img {
+  padding: 12px 12px 0px 12px;
+  height: 100%;
+}
+
+.card-stacked {
+  height: 11em;
+}
+
+@media (max-width: 600px) {
+  #profile-portfolio-divider-container {
+    width: 100%;
+    height: initial;
+  }
+
+  #profile-portfolio-divider {
+    width: 60%;
+    height: 2px;
+  }
+
+  #profile {
+    height: initial;
+  }
+
+  #profile .section {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #portfolio {
+    padding: 1%;
+    overflow: initial;
+  }
+}
+
+@media (max-width: 993px) {
+  .category-name {
+    text-align: center;
+  }
+
+  .card-stacked {
+    height: 9em;
+  }
+
+  .category-name {
+    margin-left: 0px;
+  }
+}
+
+@media (min-width: 993px) {
+  .card {
+    margin-left: 3% !important;
+    width: 30% !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .card-stacked {
+    height: 13em;
+  }
+}
