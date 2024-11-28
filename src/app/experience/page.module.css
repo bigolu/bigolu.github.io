@@ -80,8 +80,8 @@
   */
   grid-row: 1 / var(--timeline-last-row-line);
   background: linear-gradient(
-    rgb(var(--active-timeline-rgb)) var(--timeline-scroll-percentage, 0%),
-    rgb(var(--inactive-timeline-rgb)) var(--timeline-scroll-percentage, 0%)
+    rgb(var(--active-timeline-rgb)) var(--timeline-scroll-percentage),
+    rgb(var(--inactive-timeline-rgb)) var(--timeline-scroll-percentage)
   );
   content: "";
   border-radius: 5px;
