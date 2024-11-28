@@ -12,7 +12,7 @@ const nextConfig = {
     config.plugins.push(
       new webpack.ProvidePlugin({
         Buffer: ["buffer", "Buffer"],
-      })
+      }),
     );
     return config;
   },

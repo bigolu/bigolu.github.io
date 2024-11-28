@@ -12,5 +12,7 @@
 .olu,
 .big {
   display: inline-block;
-  transition: opacity 1s, transform 1s;
+  transition:
+    opacity 1s,
+    transform 1s;
 }

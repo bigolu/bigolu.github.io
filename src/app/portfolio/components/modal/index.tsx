@@ -28,7 +28,7 @@ export default function Modal(props: ModalProps) {
       const rect = props.source.current.getBoundingClientRect();
       const computedStyles = window.getComputedStyle(
         props.source.current,
-        null
+        null,
       );
       const modalViewportWidthPercentage = 65;
       const modalViewportHeightPercentage = 75;
@@ -41,96 +41,96 @@ export default function Modal(props: ModalProps) {
 
       modalRef.current.style.setProperty(
         "--width",
-        props.source.current.clientWidth + "px"
+        props.source.current.clientWidth + "px",
       );
       modalRef.current.style.setProperty(
         "--height",
-        props.source.current.clientHeight + "px"
+        props.source.current.clientHeight + "px",
       );
       modalRef.current.style.setProperty(
         "--modal-width",
-        modalViewportWidthPercentage + "dvi"
+        modalViewportWidthPercentage + "dvi",
       );
       modalRef.current.style.setProperty(
         "--modal-height",
-        modalViewportHeightPercentage + "dvb"
+        modalViewportHeightPercentage + "dvb",
       );
       modalRef.current.style.setProperty(
         "--left",
-        rect.left + rect.width / 2 - modalWidth / 2 + "px"
+        rect.left + rect.width / 2 - modalWidth / 2 + "px",
       );
       modalRef.current.style.setProperty(
         "--top",
-        rect.top + rect.height / 2 - modalHeight / 2 + "px"
+        rect.top + rect.height / 2 - modalHeight / 2 + "px",
       );
       modalRef.current.style.setProperty(
         "--background-color",
-        "rgb(var(--timeline-item-background-rgb))"
+        "rgb(var(--timeline-item-background-rgb))",
       );
       modalRef.current.style.setProperty("border-radius", "17px");
       modalRef.current.style.setProperty(
         "border-top",
-        computedStyles.borderTop
+        computedStyles.borderTop,
       );
       modalRef.current.style.setProperty(
         "border-bottom",
-        computedStyles.borderBottom
+        computedStyles.borderBottom,
       );
       modalRef.current.style.setProperty(
         "border-right",
-        computedStyles.borderRight
+        computedStyles.borderRight,
       );
       modalRef.current.style.setProperty(
         "border-left",
-        computedStyles.borderLeft
+        computedStyles.borderLeft,
       );
       modalRef.current.style.setProperty(
         "border-top-width",
         Number(
           computedStyles.borderTopWidth.substring(
             0,
-            computedStyles.borderTopWidth.length - 2
-          )
+            computedStyles.borderTopWidth.length - 2,
+          ),
         ) /
           heightScale +
-          "px"
+          "px",
       );
       modalRef.current.style.setProperty(
         "border-bottom-width",
         Number(
           computedStyles.borderBottomWidth.substring(
             0,
-            computedStyles.borderBottomWidth.length - 2
-          )
+            computedStyles.borderBottomWidth.length - 2,
+          ),
         ) /
           heightScale +
-          "px"
+          "px",
       );
       modalRef.current.style.setProperty(
         "border-left-width",
         Number(
           computedStyles.borderLeftWidth.substring(
             0,
-            computedStyles.borderLeftWidth.length - 2
-          )
+            computedStyles.borderLeftWidth.length - 2,
+          ),
         ) /
           widthScale +
-          "px"
+          "px",
       );
       modalRef.current.style.setProperty(
         "border-right-width",
         Number(
           computedStyles.borderRightWidth.substring(
             0,
-            computedStyles.borderRightWidth.length - 2
-          )
+            computedStyles.borderRightWidth.length - 2,
+          ),
         ) /
           widthScale +
-          "px"
+          "px",
       );
       modalRef.current.style.setProperty(
         "--scale",
-        `${widthScale}, ${heightScale}`
+        `${widthScale}, ${heightScale}`,
       );
 
       // props.source.current.style.filter = 'blur(10px)';

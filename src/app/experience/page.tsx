@@ -7,6 +7,7 @@ import React, {
   useState,
   CSSProperties,
   Fragment,
+  useEffect,
 } from "react";
 import { ImageComponent, ImageProps } from "components/image/image";
 
@@ -18,13 +19,14 @@ type Job = {
   date: string;
 };
 
-async function getJobs() {
+async function fetchJobs(setJobs: React.Dispatch<React.SetStateAction<Job[]>>) {
   const response = await fetch("/json/jobs.json");
-  return await response.json();
+  const jobs = await response.json();
+  setJobs(jobs);
 }
 
 function updateTimelineProgress(
-  setTimelineProgressPercentage: React.Dispatch<React.SetStateAction<number>>
+  setTimelineProgressPercentage: React.Dispatch<React.SetStateAction<number>>,
 ) {
   const windowHeight = window.innerHeight;
   const bodyHeight = document.body.scrollHeight;
@@ -45,16 +47,16 @@ function updateTimelineProgress(
 // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 function updateTimelineFade(
   timeline: HTMLElement,
-  setHideTopFade: React.Dispatch<React.SetStateAction<boolean>>,
-  setHideBottomFade: React.Dispatch<React.SetStateAction<boolean>>
+  setShouldHideTopFade: React.Dispatch<React.SetStateAction<boolean>>,
+  setShouldHideBottomFade: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   const didReachTopOfTimeline =
     window.scrollY <= timeline.getBoundingClientRect().top;
-  setHideTopFade(didReachTopOfTimeline);
+  setShouldHideTopFade(didReachTopOfTimeline);
 
   const didReachBottomOfTimeline =
     window.innerHeight >= timeline.getBoundingClientRect().bottom;
-  setHideBottomFade(didReachBottomOfTimeline);
+  setShouldHideBottomFade(didReachBottomOfTimeline);
 }
 
 function addViewportChangeHandler(handler: (event: Event) => any) {
@@ -62,28 +64,38 @@ function addViewportChangeHandler(handler: (event: Event) => any) {
   window.addEventListener("resize", handler);
 }
 
-function removeViewportChangeHandler(handler: () => void) {
+function removeViewportChangeHandler(handler: (event: Event) => any) {
   window.removeEventListener("scroll", handler);
   window.removeEventListener("resize", handler);
 }
 
 export default function Experience() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  if (jobs.length === 0) {
-    getJobs().then(setJobs);
-  }
+  useEffect(() => {
+    fetchJobs(setJobs);
+  }, []);
 
-  const [hideTopFade, setHideTopFade] = useState<boolean>(false);
-  const [hideBottomFade, setHideBottomFade] = useState<boolean>(false);
+  const [shouldHideTopFade, setShouldHideTopFade] = useState<boolean>(false);
+  const [shouldHideBottomFade, setShouldHideBottomFade] =
+    useState<boolean>(false);
   const [timelineProgressPercentage, setTimelineProgressPercentage] =
     useState<number>(0);
   const timelineRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
+    const isTimelineEmpty = jobs.length === 0;
+    if (isTimelineEmpty) {
+      return;
+    }
+
     // current won't be null since we're in a layout effect
     const timeline = timelineRef.current!;
     const updateTimelineEffects = () => {
       updateTimelineProgress(setTimelineProgressPercentage);
-      updateTimelineFade(timeline, setHideTopFade, setHideBottomFade);
+      updateTimelineFade(
+        timeline,
+        setShouldHideTopFade,
+        setShouldHideBottomFade,
+      );
     };
 
     updateTimelineEffects();
@@ -99,7 +111,7 @@ export default function Experience() {
     <Fragment>
       <div
         className={`${styles["timeline-top-fade"]} ${
-          hideTopFade ? styles.hide : ""
+          shouldHideTopFade ? styles.hide : ""
         }`}
       />
       <div
@@ -139,7 +151,7 @@ export default function Experience() {
       </div>
       <div
         className={`${styles["timeline-bottom-fade"]} ${
-          hideBottomFade ? styles.hide : ""
+          shouldHideBottomFade ? styles.hide : ""
         }`}
       />
     </Fragment>

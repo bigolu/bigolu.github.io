@@ -75,7 +75,8 @@ html {
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  transition: color var(--duration) var(--timing),
+  transition:
+    color var(--duration) var(--timing),
     background-color var(--duration) var(--timing);
 }
 

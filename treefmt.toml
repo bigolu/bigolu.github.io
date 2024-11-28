@@ -1,3 +1,5 @@
+excludes = ["archive/*"]
+
 [formatter.prettier]
 command = "prettier"
 options = ["--write"]

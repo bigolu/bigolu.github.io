@@ -4,22 +4,23 @@ import PortfolioCard, {
   PortfolioCardProps,
 } from "./components/portfolioCard/portfolioCard";
 import styles from "./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-async function getPortfolioItems() {
+async function fetchPortfolioItems(
+  setPortfolioItems: React.Dispatch<React.SetStateAction<PortfolioCardProps[]>>,
+) {
   const response = await fetch("/json/portfolio-items.json");
   const portfolioItems = await response.json();
-
-  return portfolioItems;
+  setPortfolioItems(portfolioItems);
 }
 
 export default function Portfolio() {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioCardProps[]>(
-    []
+    [],
   );
-  if (portfolioItems.length === 0) {
-    getPortfolioItems().then(setPortfolioItems);
-  }
+  useEffect(() => {
+    fetchPortfolioItems(setPortfolioItems);
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -94,7 +94,7 @@ export function Gallery({ media, ...props }: GalleryProps) {
 
   function makeThumbnailMedia(
     media: GalleryImage | GalleryVideo,
-    index: number
+    index: number,
   ) {
     function handleClick() {
       setActiveIndex(index);
