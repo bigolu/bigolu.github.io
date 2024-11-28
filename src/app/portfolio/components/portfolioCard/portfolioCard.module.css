@@ -15,16 +15,16 @@
   padding: calc(var(--background-image-size) + 25px) var(--card-padding)
     var(--card-padding) var(--card-padding);
   background-color: rgb(var(--timeline-item-background-rgb));
-  transition: transform 200ms ease-in;
   display: flex;
   flex-direction: column;
   border-width: 1px;
   border-color: rgb(var(--border-rgb));
+  transition: transform 150ms ease-in;
 }
 
 .container:hover {
-  transform: scale(1.1);
-  transition: transform 200ms ease-out;
+  transform: scale(1.05);
+  transition-timing-function: ease-out;
 }
 
 .taglist {
